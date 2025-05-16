@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr. Bot Plant - Assistente Virtual</title>
+    <link rel="stylesheet" href="../../src/assets/css/styles.css">
+      <link rel="icon" href="../../favicon.ico" type="image/x-icon">
+<link rel="icon" href="../../src/assets/images/drbotplant.jpg" type="image/png" sizes="32x32">
+    <style>
+            /* Estilos principais do projeto */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+#app {
+    text-align: center;
+    padding: 20px;
+}
+
+
+
+/* Estilos gerais */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #001f64;
+}
+
+#app {
+    text-align: center;
+    padding: 20px;
+}
+
+/* Estilos para telas pequenas (smartphones) */
+@media (max-width: 600px) {
+    body {
+        font-size: 14px;
+    }
+
+    #app {
+        padding: 10px;
+    }
+}
+
+/* Estilos para telas médias (tablets) */
+@media (min-width: 601px) and (max-width: 1024px) {
+    body {
+        font-size: 16px;
+    }
+
+    #app {
+        padding: 15px;
+    }
+}
+
+/* Estilos para telas grandes (desktops) */
+@media (min-width: 1025px) {
+    body {
+        font-size: 18px;
+    }
+
+    #app {
+        padding: 20px;
+    }
+}
+
+
+/* Exemplo de layout com Flexbox */
+#app {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+header, main, footer {
+    width: 100%;
+    max-width: 1200px;
+    margin: 10px;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    text-align: center;
+    background-color: aqua;
+    border: green 5px solid;
+}
+
+#a {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    text-align: center;
+    background-color: aquamarine;
+    position: relative;
+    top: -25px;
+    border: green 4px solid;
+}
+
+#b {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    text-align: center;
+    background-color: aquamarine;
+    position: relative;
+    top: -20px;
+}
+
+.align {
+    text-align: center;
+}
+
+.button {
+    display: flex;
+    padding: 10px 20px;
+    margin: 20px;
+    background-color: #007BFF;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 20px 35px rgb(0, 0, 0);
+    background: linear-gradient(135deg, #ffce00 0%, #ff9f00 100%);
+}
+.button:hover {
+    background-color: #0056b3;
+    padding: 1%;
+}
+.button:active {
+    background-color: #004085;
+    box-shadow: 0 10px 20px rgb(0, 0, 0);
+}
+.button:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+.button:disabled {
+    background-color: #007BFF;
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+
+.imagemFundo {
+    width: 100%;
+    position: fixed;
+    z-index: -1;
+    top: 0;
+    opacity: 0.5;
+}
+
+.whiteclass {
+    color: white;
+}
+
+a {
+    text-decoration: none;
+}
+
+#m {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    text-align: center;
+    position: relative;
+    top: 70px;
+}
+
+#n {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    text-align: center;
+    position: relative;
+    top: 70px;
+}
+
+#nbp {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    text-align: center;
+    position: relative;
+    top: 70px;
+}
+
+
+h1 {
+    text-align: center;
+    color: #1a0000;
+    font-size: 2.5rem;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px #000000;
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+p.align {
+    text-align: center;
+    color: #b5b800;
+    font-size: 1.5rem;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px #000000;
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.logoGame {
+    width: 150px;
+    border-radius: 10%;
+    border: 2px solid #000;
+}
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+form {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin: 10px 0 5px;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Estilo para mensagens de alerta */
+.alert-message {
+    color: red;
+    font-weight: bold;
+}
+        /* 🌿 Fundo azul clássico com visual tecnológico */
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(90deg, #001f3f, #007bff);
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        /* 🔹 Container do chat com efeito neon */
+        .chat-container {
+            width: 400px;
+            padding: 20px;
+            border-radius: 12px;
+            background: rgba(15, 25, 55, 0.9);
+            box-shadow: 0px 0px 20px rgba(0, 150, 255, 0.5);
+            backdrop-filter: blur(10px);
+            text-align: center;
+        }
+
+        h1, h2 {
+            text-align: center;
+            text-transform: uppercase;
+            color: #00ffff;
+        }
+
+        /* 🟢 Área de mensagens */
+        #chat-box {
+            height: 350px;
+            overflow-y: auto;
+            border: 2px solid #00ccff;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+            background: rgba(0, 50, 150, 0.3);
+            box-shadow: inset 0px 0px 15px rgba(0, 255, 255, 0.3);
+        }
+
+.user-message {
+    text-align: right;
+    color: #00ccff;
+    margin: 5px 0;
+    font-weight: bold;
+    padding: 8px;
+    border-radius: 8px;
+    background: rgba(0, 150, 255, 0.3);
+    max-width: 80%;
+    align-self: flex-end;
+
+    /* 🔹 Correções para texto longo */
+    word-wrap: break-word;   /* Permite quebra de linha automática */
+    overflow-wrap: break-word;  /* Garante que palavras longas sejam quebradas */
+    white-space: pre-line;   /* Mantém a formatação e quebras de linha */
+}
+
+.bot-message {
+    text-align: left;
+    color: #00ff99;
+    margin: 5px 0;
+    font-weight: bold;
+    padding: 8px;
+    border-radius: 8px;
+    background: rgba(0, 255, 150, 0.3);
+    max-width: 80%;
+    align-self: flex-start;
+
+    /* 🔹 Correções para texto longo */
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: pre-line;
+}
+
+#user-input {
+    width: 90%;
+    height: 80px; /* Altura ajustável para múltiplas linhas */
+    padding: 12px;
+    font-size: 16px;
+    border: 2px solid #00ccff;
+    outline: none;
+    border-radius: 10px;
+    background: rgba(0, 50, 150, 0.5);
+    color: white;
+    
+    /* 🔹 Permitir quebra de linha */
+    resize: none; /* Impede redimensionamento manual */
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: pre-wrap;
+}
+
+        /* 🚀 Botão de Enviar */
+        #send-btn {
+            padding: 12px 20px;
+            font-size: 16px;
+            border-radius: 10px;
+            background: linear-gradient(45deg, #00ffcc, #0099ff);
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s ease-in-out;
+            box-shadow: 0px 0px 10px rgba(0, 255, 150, 0.4);
+        }
+
+        #send-btn:hover {
+            background: linear-gradient(45deg, #0099ff, #00ffcc);
+            box-shadow: 0px 0px 15px rgba(0, 255, 150, 0.6);
+        }
+
+        /* ✨ Responsividade */
+        @media screen and (max-width: 600px) {
+            .chat-container {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 🌿 Container do Dr. Bot Plant -->
+    <h1>Dr. Bot Plant</h1>
+    <h2>Seu assistente virtual da FGP!</h2>
+    <p>Digite sua mensagem abaixo e clique em "Enviar".</p>
+    
+    <div class="chat-container">
+        <div id="chat-box"></div>
+        <textarea id="user-input" placeholder="Digite sua mensagem..."></textarea>
+        <button id="send-btn">Enviar</button>
+    </div>
+        <a href="../start.html">
+            <p id="send-btn"><<<< Voltar</p>
+        </a>
+
+<button id="teach-btn">Ensinar o Bot (com respeito!)</button>
+
+    <!-- 🔹 Inclusão do JavaScript -->
+    <script type="module" src="../../src/script/js/drbot.js">
+        import { evaluateExpression } from '../../src/utils/math.js';
+
+// Botões e storage para ensinar o bot
+document.getElementById('teach-btn').addEventListener('click', () => {
+  const question = prompt('Digite a pergunta que você quer ensinar ao bot:');
+  const answer   = prompt('Digite a resposta para essa pergunta:');
+  if (question && answer) {
+    teachBot(question, answer);
+    alert('Pergunta e resposta ensinadas com sucesso!');
+  } else {
+    alert('Pergunta ou resposta inválida. Tente novamente.');
+  }
+});
+
+let customResponses = JSON.parse(localStorage.getItem('customResponses')) || {};
+
+function teachBot(question, answer) {
+  customResponses[question.toLowerCase()] = answer;
+  localStorage.setItem('customResponses', JSON.stringify(customResponses));
+}
+
+// Inicializa o chat
+function initializeChat() {
+  const chatBox = document.getElementById('chat-box');
+  if (!chatBox) {
+    console.error('Elemento chat-box não encontrado.');
+    return;
+  }
+  const botMessage = createMessage(
+    'Dr. Bot Plant: Olá! Bem-vindo ao universo da nossa franquia! Pergunte sobre personagens, jogos, animações ou qualquer outra coisa!',
+    'bot-message'
+  );
+  chatBox.appendChild(botMessage);
+}
+
+// Efeito typewriter
+function typeWriter(element, text, speed = 50) {
+  element.textContent = '';
+  let i = 0;
+  (function addChar() {
+    if (i < text.length) {
+      element.textContent += text.charAt(i++);
+      setTimeout(addChar, speed);
+    }
+  })();
+}
+
+// Cria um elemento de mensagem
+function createMessage(text, className) {
+  const message = document.createElement('div');
+  message.textContent = text; 
+  message.classList.add(className);
+  return message;
+}
+
+// Captura o input do usuário
+async function handleUserInput() {
+  const inputEl = document.getElementById('user-input');
+  const chatBox = document.getElementById('chat-box');
+  const text    = inputEl.value.trim();
+  if (!text || !chatBox) return;
+
+  // Mensagem do usuário
+  const userMsg = createMessage(`Você: ${text}`, 'user-message');
+  chatBox.appendChild(userMsg);
+  inputEl.value = '';
+
+  // Placeholder do bot
+  const botMsg = createMessage('', 'bot-message');
+  chatBox.appendChild(botMsg);
+  chatBox.scrollTop = chatBox.scrollHeight;
+  botMsg.classList.add('typing-animation');
+
+  // Obter resposta
+  const reply = await getBotResponse(text);
+  botMsg.classList.remove('typing-animation');
+  typeWriter(botMsg, `Dr. Bot Plant: ${reply}`, 50);
+  chatBox.scrollTop = chatBox.scrollHeight;
+}
+
+// Resposta do bot (única função)
+async function getBotResponse(input) {
+  const lowerInput = input.toLowerCase();
+
+  // 0) Checa customResponses ensinadas pelo usuário
+  if (customResponses[lowerInput]) {
+    return customResponses[lowerInput];
+  }
+
+  // 1) Expressão matemática?
+  if (/^[0-9+\-*/().\s]+$/.test(lowerInput)) {
+    try {
+      const result = evaluateExpression(lowerInput);
+      return `O resultado é: ${result}`;
+    } catch {
+      return 'Desculpe, não foi possível calcular essa expressão, veja se não há erro de digitação, por favor.';
+    }
+  }
+
+  // 2) Dicionário geral
+  const dictionary = {
+    personagens: "Nossa franquia reúne personagens únicos: Ovynay, Iales e Dinoelai, cada um com uma história fascinante. Qual deles você gostaria de explorar mais?",
+    jogos:        "Desenvolvemos jogos que combinam ação, aventura e enigmas históricos. Explore os nossos títulos para uma experiência imersiva e inovadora!",
+    animações:    "Nossas animações dão vida a narrativas envolventes e visuais surpreendentes. Qual história animada você deseja conhecer?",
+    lançamento:   "Estamos sempre lançando novidades! Fique atento às nossas redes sociais e à área de lançamentos para não perder nada.",
+    história:     "A nossa franquia surgiu a partir de uma ideia visionária que evoluiu para um multiverso de aventuras. Cada capítulo guarda segredos para descobrir!",
+    curiosidade:  "Sabia que cada personagem foi inspirado em elementos da história, ciência e cultura pop? Nosso universo é cheio de detalhes incríveis.",
+    tecnologia:   "Utilizamos tecnologia de ponta para criar experiências imersivas, integrando narrativas emocionantes a mecânicas inovadoras.",
+    universo:     "O universo da nossa franquia é vasto e interligado, onde jogos, animações e histórias se encontram para formar um todo surpreendente."
+  };
+  for (const key in dictionary) {
+    if (lowerInput.includes(key)) {
+      return dictionary[key];
+    }
+  }
+
+  // 2.1) Sobre o criador/franquia
+  if (lowerInput.includes('quem criou') || lowerInput.includes('criador') || lowerInput.includes('programador')) {
+    return 'Dr. Bot Plant foi criado pelo Programador Elai Leonel Figueroa, da franquia FGP!';
+  }
+  if (lowerInput.includes('quando') && lowerInput.includes('fgp')) {
+    return 'A franquia FGP foi criada em 2022!';
+  }
+
+  // 3) Respostas específicas de personagem
+  if (lowerInput.includes('ovynay')) {
+    const ovynay = [
+      "Ovynay é o viajante do tempo que desafia as barreiras do espaço e tempo para restaurar a ordem em planetas como Marte, Vênus, Mercúrio e Terra. Ele mergulha em enigmas históricos enquanto corrige paradoxo por paradoxo.",
+      "Ovynay transita por eras para corrigir dissonâncias temporais. Sua jornada mistura ciência e misticismo, transformando eventos históricos e prevenindo catástrofes futuras.",
+      "Você sabia que Ovynay utiliza conhecimento científico avançado aliado à sabedoria ancestral para manter o fluxo do tempo em perfeito equilíbrio? Cada salto temporal dele abre uma nova aventura."
+    ];
+    return ovynay[Math.floor(Math.random() * ovynay.length)];
+  }
+  if (lowerInput.includes('iales')) {
+    const iales = [
+      "Iales é um universo místico onde a luz e a escuridão se encontram em um delicado equilíbrio. Suas narrativas profundas fazem deste universo um cenário enigmático e encantador.",
+      "No reino de Iales, cada sombra revela uma história e cada brilho indica um enigma. Um lugar de magia e mistério ancestrais.",
+      "Se você quer explorar os mistérios de Iales, prepare-se para adentrar um reino onde tradições místicas se entrelaçam com a inovação."
+    ];
+    return iales[Math.floor(Math.random() * iales.length)];
+  }
+  if (lowerInput.includes('dinoelai')) {
+    const dinoelai = [
+      "Dinoelai resgata a era dos dinossauros com toda a sua força e adrenalina. Ele traz de volta a nostalgia pré-histórica em batalhas épicas.",
+      "No universo de Dinoelai, imagine encontros com criaturas imponentes em cenários que misturam o passado distante com uma energia renovada.",
+      "Dinoelai é coragem e resiliência: o espírito ancestral manifestado em tempos modernos!"
+    ];
+    return dinoelai[Math.floor(Math.random() * dinoelai.length)];
+  }
+
+  // 4) Saudações e formas de cortesia
+  const generic = [
+    { keys: ['olá','oi'],        text: "Olá! Estou aqui para ajudar em tudo sobre o nosso universo. O que você gostaria de saber hoje?" },
+    { keys: ['tudo bem','como vai'], text: "Estou ótimo, obrigado por perguntar! E você, como está?" },
+    { keys: ['bom dia'],         text: "Bom dia! Espero que seu dia seja incrível! O que posso fazer por você hoje?" },
+    { keys: ['boa tarde'],       text: "Boa tarde! Espero que sua tarde esteja sendo produtiva! O que posso fazer por você hoje?" },
+    { keys: ['boa noite'],       text: "Boa noite! Espero que sua noite seja tranquila e cheia de sonhos! O que posso fazer por você hoje?" },
+    { keys: ['obrigado','obrigada'], text: "De nada! Fico feliz em poder ajudar." },
+  ];
+  for (const item of generic) {
+    if (item.keys.some(k => lowerInput.includes(k))) {
+      return item.text;
+    }
+  }
+
+  // 5) Perguntas sobre o bot
+  if (lowerInput.includes('seu nome')      || lowerInput.includes('qual é o seu nome') ||
+      lowerInput.includes('quem é você')) {
+    return "Eu sou o Dr. Bot Plant, seu assistente virtual inspirado no personagem Dr. Plant da franquia FGP.";
+  }
+  if (lowerInput.includes('o que você faz') || lowerInput.includes('qual é sua função')) {
+    return "Estou aqui para responder suas dúvidas sobre personagens, jogos, animações e curiosidades da FGP.";
+  }
+  if (lowerInput.includes('que horas são')) {
+    const now = new Date();
+    return `Agora são ${now.getHours()}:${now.getMinutes().toString().padStart(2,'0')}.`;
+  }
+
+  // Fallback final
+  return "Desculpe, não posso falar sobre isso. Fale sobre algum aspecto do nosso universo!";
+}
+
+// Eventos de clique e teclado
+document.getElementById('send-btn').addEventListener('click',  handleUserInput);
+document.getElementById('user-input').addEventListener('keypress', e => {
+  if (e.key === 'Enter') handleUserInput();
+});
+
+// Inicia o chat ao carregar
+window.addEventListener('load', initializeChat);
+
+    </script>
+
+</body>
+</html>

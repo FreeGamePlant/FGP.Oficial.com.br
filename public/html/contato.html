@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contato - FGP</title>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" rel="stylesheet">
+  <link rel="icon" href="../../favicon.ico" type="image/x-icon">
+<link rel="icon" href="../../src/assets/images/cartório.png" type="image/png" sizes="32x32">
+  <style>
+
+    /* Estilo geral */
+    body {
+      font-family: 'Merriweather', serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to bottom, #1a1a2e, #16213e); /* Fundo com gradiente escuro */
+      color: #eaeaea; /* Texto claro para contraste */
+    }
+
+    /* Cabeçalho */
+    .header {
+      background-color: #0f3460; /* Azul escuro vibrante */
+      color: #fff;
+      padding: 1rem;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Sombra para destaque */
+    }
+
+    .nav-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .nav-links a {
+      color: #eaeaea;
+      text-decoration: none;
+      margin: 0 1rem;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: #00d4ff; /* Azul neon ao passar o mouse */
+    }
+
+    /* Conteúdo principal */
+    .main-content {
+      padding: 2rem;
+      background: rgba(255, 255, 255, 0.05); /* Fundo translúcido para contraste */
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Sombra para profundidade */
+      max-width: 900px;
+      margin: 2rem auto;
+    }
+
+    h1, h2 {
+      color: #00d4ff; /* Azul neon para títulos */
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Efeito de profundidade nos títulos */
+      text-align: center;
+    }
+
+    p {
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+      text-align: justify;
+    }
+
+    /* Formulário de contato */
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 0.8rem;
+      border: none;
+      border-radius: 5px;
+      background: rgba(255, 255, 255, 0.1);
+      color: #eaeaea;
+      font-size: 1rem;
+      outline: none;
+      transition: background 0.3s ease;
+    }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      background: rgba(0, 212, 255, 0.2); /* Destaque ao focar */
+    }
+
+    .contact-form button {
+      padding: 0.8rem;
+      background-color: #00d4ff; /* Azul neon */
+      color: #16213e; /* Contraste com o fundo */
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+
+    .contact-form button:hover {
+      background-color: #00a3cc; /* Azul mais escuro ao passar o mouse */
+      transform: scale(1.05); /* Leve aumento ao passar o mouse */
+    }
+
+    /* Rodapé */
+    .footer {
+      text-align: center;
+      padding: 1rem;
+      background-color: #0f3460; /* Azul escuro vibrante */
+      color: #eaeaea;
+      border-top: 2px solid #00d4ff; /* Linha de destaque no rodapé */
+    }
+
+    .footer p {
+      margin: 0;
+      font-size: 0.9rem;
+    }
+
+    /* Responsividade */
+    @media (max-width: 768px) {
+      .main-content {
+        padding: 1rem;
+      }
+
+      h1, h2 {
+        font-size: 1.5rem;
+      }
+
+      .contact-form input,
+      .contact-form textarea {
+        font-size: 0.9rem;
+      }
+
+      .contact-form button {
+        font-size: 0.9rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      h1, h2 {
+        font-size: 1.2rem;
+      }
+
+      .contact-form input,
+      .contact-form textarea {
+        font-size: 0.8rem;
+      }
+
+      .contact-form button {
+        font-size: 0.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <nav class="navbar">
+      <a href="../../index.html" class="logo">FGP</a>
+      <ul class="nav-links">
+        <li><a href="entrtenimento/jogos.html">Jogos</a></li>
+        <li><a href="entrtenimento/anim.html">Animações</a></li>
+        <li><a href="../html/sobre.html">Sobre</a></li>
+        <li><a href="contato.html" class="active">Contato</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="main-content">
+    <h1>Entre em Contato</h1>
+    <p>
+      Tem alguma dúvida, sugestão ou deseja saber mais sobre a FGP? Preencha o formulário abaixo e entraremos em contato com você o mais breve possível!
+    </p>
+<form class="contact-form" action="/SITESPROJETOS.FGP/FreeGamePlant/index.php" method="POST">
+  <input type="text" name="name" placeholder="Seu Nome" required>
+  <input type="email" name="email" placeholder="Seu E-mail" required>
+  <textarea name="message" rows="5" placeholder="Sua Mensagem" required></textarea>
+  <button type="submit">Enviar</button>
+</form>
+
+  <footer class="footer">
+    <p>&copy; 2025 Free Game Plant. Todos os direitos reservados.</p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FGP • INFINITE PLANT STOCK</title>
+  <link rel="icon" href="../../../favicon.ico" type="image/x-icon">
+<link rel="icon" href="../../../src/assets/images/lOGOFGP.png" type="image/png" sizes="32x32">
+  <style>
+    /*─────────────────────────────────────────  
+  Variáveis de Tema  
+─────────────────────────────────────────*/
+:root {
+  --bg-dark:    #0d1117;
+  --card-bg:    rgba(255,255,255,0.05);
+  --primary:    #00ffcc;
+  --accent:     #ffce00;
+  --text-light: #e8e6e3;
+  --text-sub:   #b0b0b0;
+  --shadow:     rgba(0,0,0,0.6);
+  --radius:     10px;
+  --gap:        1.5rem;
+}
+
+/*─────────────────────────────────────────  
+  Reset & Base  
+─────────────────────────────────────────*/
+* { box-sizing: border-box; margin:0; padding:0; }
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: var(--bg-dark);
+  color: var(--text-light);
+  line-height: 1.6;
+}
+
+/*─────────────────────────────────────────  
+  Header  
+─────────────────────────────────────────*/
+.site-header {
+  text-align: center;
+  padding: 2rem 1rem;
+  background: var(--card-bg);
+  box-shadow: 0 4px 16px var(--shadow);
+  backdrop-filter: blur(6px);
+}
+.site-header .logo img {
+  width: 120px;
+  margin-bottom: 1rem;
+}
+.site-header h1 {
+  font-size: 2.5rem;
+  color: var(--accent);
+  letter-spacing: 1px;
+  margin-bottom: .5rem;
+}
+.site-header .subtitle {
+  color: var(--text-sub);
+  font-size: 1.1rem;
+}
+
+/*─────────────────────────────────────────  
+  Grid de Jogos  
+─────────────────────────────────────────*/
+.games-grid {
+  display: grid;
+  gap: var(--gap);
+  padding: 2rem 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+@media (min-width: 600px)  { .games-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 900px)  { .games-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (min-width:1200px)  { .games-grid { grid-template-columns: repeat(4, 1fr); } }
+
+/*─────────────────────────────────────────  
+  Card de Jogo  
+─────────────────────────────────────────*/
+.game-card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 6px 20px var(--shadow);
+  display: flex;
+  flex-direction: column;
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+.game-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 28px var(--shadow);
+}
+
+/* Imagem do jogo */
+.game-thumb {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+}
+
+/* Info do jogo */
+.game-info {
+  padding: 1rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.game-info h2 {
+  font-size: 1.4rem;
+  color: var(--primary);
+  margin-bottom: .5rem;
+  text-transform: uppercase;
+}
+.game-info .description {
+  flex: 1;
+  font-size: .95rem;
+  margin-bottom: 1rem;
+  color: var(--text-sub);
+}
+.game-info .specs {
+  list-style: none;
+  margin-bottom: 1rem;
+  font-size: .85rem;
+}
+.game-info .specs li {
+  margin: .25rem 0;
+}
+
+/* Botão de download */
+.btn-download {
+  display: inline-block;
+  text-align: center;
+  padding: .6rem 1.2rem;
+  background: linear-gradient(135deg, var(--accent), #ff9f00);
+  color: var(--bg-dark);
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  box-shadow: 0 4px 14px var(--shadow);
+  text-transform: uppercase;
+  transition: transform .2s ease, box-shadow .2s ease;
+  cursor: pointer;
+  text-decoration: none;
+}
+.btn-download:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px var(--shadow);
+}
+.btn-download:active {
+  transform: translateY(0);
+  box-shadow: 0 3px 8px var(--shadow);
+}
+.btn-download[disabled] {
+  opacity: .5;
+  cursor: not-allowed;
+}
+
+/*─────────────────────────────────────────  
+  Estado Coming Soon  
+─────────────────────────────────────────*/
+.coming-soon .game-thumb {
+  filter: grayscale(80%);
+  opacity: .8;
+}
+.coming-soon h2 { opacity: .7; }
+
+/*─────────────────────────────────────────  
+  Footer  
+─────────────────────────────────────────*/
+.site-footer {
+  text-align: center;
+  padding: 1.5rem 1rem;
+  margin-top: auto;
+  background: var(--card-bg);
+  box-shadow: 0 -4px 12px var(--shadow);
+}
+.site-footer .footer-links {
+  margin-bottom: .5rem;
+}
+.site-footer .btn-secondary {
+  display: inline-block;
+  margin: 0 .5rem;
+  color: var(--text-light);
+  font-size: .9rem;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: .4rem .8rem;
+  border: 2px solid var(--accent);
+  border-radius: 4px;
+  transition: background .2s ease, color .2s ease;
+}
+.site-footer .btn-secondary:hover {
+  background: var(--accent);
+  color: var(--bg-dark);
+}
+.site-footer small {
+  color: var(--text-sub);
+  font-size: .8rem;
+}
+
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="logo">
+      <img src="../../../src/assets/images/lOGOFGP.png" alt="Logo FGP" />
+    </div>
+    <h1>Jogos Oficiais FGP</h1>
+    <p class="subtitle">Todas as nossas aventuras gratuitas de alta qualidade</p>
+  </header>
+
+  <main class="games-grid">
+    <!-- Card de Jogo #1 -->
+    <article class="game-card">
+      <img src="../../../src/assets/images/Ovynay the time traveler.png" alt="Ovynay" class="game-thumb" />
+      <div class="game-info">
+        <h2>Ovynay: The Red Dust (Beta)</h2>
+        <p class="description">
+          Embarque numa épica jornada temporal em Marte primitivo. Resolva puzzles, estabilize atmosferas e enfrente paradoxos…
+        </p>
+        <ul class="specs">
+          <li><strong>Gênero:</strong> Ação‑Aventura, Puzzle, Viagem no Tempo</li>
+          <li><strong>Engine:</strong> Game Maker</li>
+          <li><strong>Plataforma:</strong> Windows, Android, iOS</li>
+          <li><strong>Idioma:</strong> PT/EN/ES</li>
+        </ul>
+        <a href="jogos/jogo1.zip" download class="btn-download">Baixar</a>
+      </div>
+    </article>
+
+    <!-- Card de Jogo #2 (Coming soon) -->
+    <article class="game-card coming-soon">
+      <img src="jogo2_placeholder.png" alt="Em breve" class="game-thumb" />
+      <div class="game-info">
+        <h2>Próximo Lançamento</h2>
+        <p class="description">Uma nova aventura está chegando! Fique atento para descobrir mais. spoiler - The World of Iales / Bawrloty Adventure / Vector no planeta dos Insetoides</p>
+        <button class="btn-download" disabled>Em Breve</button>
+      </div>
+    </article>
+
+    <!-- Adicione mais game-card aqui -->
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-links">
+      <a href="../entretenimento.html" class="btn-secondary">← Voltar</a>
+      <a href="../../start.html" class="btn-secondary">Início</a>
+    </div>
+    <small>© 2025 Free Game Plant. Todos os direitos reservados.</small>
+  </footer>
+
+</body>
+</html>

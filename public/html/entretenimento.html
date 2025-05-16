@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FGP / entertainment</title>
+    <link rel="stylesheet" href="../../src/assets/css/styles.css">
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon">
+<link rel="icon" href="../../src/assets/images/lOGOFGP.png" type="image/png" sizes="32x32">
+</head>
+<style>
+        /* Estilos principais do projeto */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+#app {
+    text-align: center;
+    padding: 20px;
+}
+
+
+
+/* Estilos gerais */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #001f64;
+}
+
+#app {
+    text-align: center;
+    padding: 20px;
+}
+
+/* Estilos para telas pequenas (smartphones) */
+@media (max-width: 600px) {
+    body {
+        font-size: 14px;
+    }
+
+    #app {
+        padding: 10px;
+    }
+}
+
+/* Estilos para telas médias (tablets) */
+@media (min-width: 601px) and (max-width: 1024px) {
+    body {
+        font-size: 16px;
+    }
+
+    #app {
+        padding: 15px;
+    }
+}
+
+/* Estilos para telas grandes (desktops) */
+@media (min-width: 1025px) {
+    body {
+        font-size: 18px;
+    }
+
+    #app {
+        padding: 20px;
+    }
+}
+
+
+/* Exemplo de layout com Flexbox */
+#app {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+header, main, footer {
+    width: 100%;
+    max-width: 1200px;
+    margin: 10px;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    text-align: center;
+    background-color: aqua;
+    border: green 5px solid;
+}
+
+#a {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    text-align: center;
+    background-color: aquamarine;
+    position: relative;
+    top: -25px;
+    border: green 4px solid;
+}
+
+#b {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    text-align: center;
+    background-color: aquamarine;
+    position: relative;
+    top: -20px;
+}
+
+.align {
+    text-align: center;
+}
+
+.button {
+    display: flex;
+    padding: 10px 20px;
+    margin: 20px;
+    background-color: #007BFF;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 20px 35px rgb(0, 0, 0);
+    background: linear-gradient(135deg, #ffce00 0%, #ff9f00 100%);
+}
+.button:hover {
+    background-color: #0056b3;
+    padding: 1%;
+}
+.button:active {
+    background-color: #004085;
+    box-shadow: 0 10px 20px rgb(0, 0, 0);
+}
+.button:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+.button:disabled {
+    background-color: #007BFF;
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+
+.imagemFundo {
+    width: 100%;
+    position: fixed;
+    z-index: -1;
+    top: 0;
+    opacity: 0.5;
+}
+
+.whiteclass {
+    color: white;
+}
+
+a {
+    text-decoration: none;
+}
+
+#m {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    text-align: center;
+    position: relative;
+    top: 70px;
+}
+
+#n {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    text-align: center;
+    position: relative;
+    top: 70px;
+}
+
+#nbp {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    text-align: center;
+    position: relative;
+    top: 70px;
+}
+
+
+h1 {
+    text-align: center;
+    color: #1a0000;
+    font-size: 2.5rem;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px #000000;
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+p.align {
+    text-align: center;
+    color: #b5b800;
+    font-size: 1.5rem;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px #000000;
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.logoGame {
+    width: 150px;
+    border-radius: 10%;
+    border: 2px solid #000;
+}
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+form {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin: 10px 0 5px;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Estilo para mensagens de alerta */
+.alert-message {
+    color: red;
+    font-weight: bold;
+}
+    h2.align {
+        text-align: center;
+        color: aliceblue;
+        font-size: 2.5rem;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        text-shadow: 2px 2px 4px #000000;
+        font-family: 'Arial', sans-serif;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
+</style>
+<body>
+    <h1>FREE GAME PLANT</h1>
+    <h2 class="align">Entretenimento!</h2>
+
+    <a href="entrtenimento/anim.html" class="button"><p class="align">
+        ANIMAÇÕES / FILMES / SÈRIES
+    </p></a>
+    <a href="entrtenimento/msc.html" class="button"><p class="align">
+        MÚSICAS
+    </p></a>
+    <a href="entrtenimento/jogos.html" class="button"><p class="align">
+        JOGOS
+    </p></a>
+    <a href="entrtenimento/livros.html" class="button"><p class="align">
+        HISTÓRIAS DE PERSONAGENS / LIVROS
+    </p></a>
+    
+    <img src="../../src/assets/images/free game plant original model.png" alt="fundo" class="imagemFundo">
+
+    <a href="../start.html" class="button">
+        <p class="align"><<< Voltar</p>
+    </a>
+</body>
+</html>
