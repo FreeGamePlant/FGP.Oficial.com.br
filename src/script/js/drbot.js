@@ -1,4 +1,4 @@
-import { evaluateExpression } from '../utils/math.js';
+import { evaluateExpression } from '../../utils/math.js';
 
 // Botões e storage para ensinar o bot
 document.getElementById('teach-btn').addEventListener('click', () => {
