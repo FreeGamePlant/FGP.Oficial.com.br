@@ -6,7 +6,11 @@
     <title>Entrada FGP</title>
     <link rel="stylesheet" href="/src/assets/css/styles.css">
 <link rel="icon" href="/favicon.ico" type="image/x-icon">
-<link rel="icon" href="/src/assets/images/lOGOFGP.png" type="image/png" sizes="32x32">
+<link rel="icon" href="src/assets/images/lOGOFGP.png" type="image/png" sizes="32x32">
+    <meta name="description" content="Site oficial da Free Game Plant com jogos, animações e mais.">
+    <meta name="keywords" content="jogos, FGP, Ovynay, games, animações">
+    <meta name="author" content="Free Game Plant">
+
     <style>
 
         /* Estilos principais do projeto */
@@ -367,28 +371,34 @@ button:hover {
         .disabled {
             background: linear-gradient(gray);
         }
+
+    .disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        pointer-events: none;
+        filter: grayscale(100%);
+    }
+        
         
     </style>
 </head>
 <body>
-    <h1>Seja Bem Vindo a Free Game Plant!</h1>
+    <header>
+        <h1>Seja Bem-Vindo à Free Game Plant!</h1>
+    </header>
 
-    <h2>
-        <a href="public/start.html" class="button">
-            <p>Entrar direto</p>
-        </a>
-    </h2>
+    <main>
+        <h2><a href="public/start.html" class="button"><p>Entrar direto</p></a></h2>
+        <h2><a href="#" class="button disabled"><p>Entrar (em desenvolvimento)</p></a></h2>
+        <h2><a href="public/FGPwork/FGPajuda.html" class="button"><p>Ajuda</p></a></h2>
+    </main>
 
-    <h2><a href="#" class="button disabled">
-            <p>Entrar (em desenvolvimento)</p>
-        </a>
-    </h2>
-    <h2>
-        <a href="public/FGPwork/FGPajuda.html" class="button">
-            <p>Ajuda</p>
-        </a>
-    </h2>
+    <footer>
+        <p class="align whiteclass">© 2025 Free Game Plant. Todos os direitos reservados.</p>
+    </footer>
 
-    <img src="src/assets/images/free game plant original model.png" alt="" class="imagemFundo">
+    <img src="src/assets/images/free game plant original model.png" alt="Logo da Free Game Plant" class="imagemFundo">
+
+    <script src="src/assets/js/scripts.js"></script>
 </body>
 </html>
