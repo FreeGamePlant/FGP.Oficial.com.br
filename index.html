@@ -13,10 +13,7 @@
     <meta name="author" content="Free Game Plant">
 
     <style>
-
-```
     /* Estilos principais do projeto */
-```
 
 body {
 font-family: Arial, sans-serif;
@@ -25,7 +22,7 @@ padding: 0;
 overflow-x: hidden;
 }
 
-\#app {
+#app {
 text-align: center;
 padding: 20px;
 }
@@ -38,7 +35,7 @@ padding: 0;
 background-color: #001f64;
 }
 
-\#app {
+#app {
 text-align: center;
 padding: 20px;
 }
@@ -49,11 +46,9 @@ body {
 font-size: 14px;
 }
 
-```
 #app {
     padding: 10px;
 }
-```
 
 }
 
@@ -63,11 +58,9 @@ body {
 font-size: 16px;
 }
 
-```
 #app {
     padding: 15px;
 }
-```
 
 }
 
@@ -77,16 +70,14 @@ body {
 font-size: 18px;
 }
 
-```
 #app {
     padding: 20px;
 }
-```
 
 }
 
 /\* Exemplo de layout com Flexbox \*/
-\#app {
+#app {
 display: flex;
 flex-direction: column;
 align-items: center;
@@ -112,7 +103,7 @@ background-color: aqua;
 border: green 5px solid;
 }
 
-\#a {
+#a {
 font-size: 1.5em;
 margin-bottom: 20px;
 text-align: center;
@@ -122,7 +113,7 @@ top: -25px;
 border: green 4px solid;
 }
 
-\#b {
+#b {
 font-size: 1.5em;
 margin-bottom: 20px;
 text-align: center;
@@ -181,7 +172,7 @@ a {
 text-decoration: none;
 }
 
-\#m {
+#m {
 font-size: 1.5em;
 margin-bottom: 20px;
 text-align: center;
@@ -189,7 +180,7 @@ position: relative;
 top: 70px;
 }
 
-\#n {
+#n {
 font-size: 1.5em;
 margin-bottom: 20px;
 text-align: center;
@@ -197,7 +188,7 @@ position: relative;
 top: 70px;
 }
 
-\#nbp {
+#nbp {
 font-size: 1.5em;
 margin-bottom: 20px;
 text-align: center;
@@ -277,7 +268,7 @@ border-radius: 5px;
 cursor: pointer;
 }
 
-button\:hover {
+button:hover {
 background-color: #0056b3;
 }
 
@@ -291,7 +282,7 @@ font-weight: bold;
 display: flex;
 align-items: center;
 justify-content: center;
-position: relative;            /\* necessário para o ::before */
+position: relative;
 padding: 10px 20px;
 margin: 20px;
 background: linear-gradient(135deg, #ffce00 0%, #ff9f00 100%);
@@ -306,7 +297,6 @@ transition: transform 0.3s ease, box-shadow 0.3s ease;
 box-shadow: 0 8px 16px rgba(0,0,0,0.4);
 }
 
-/\* Faixa brilhante \*/
 .button::before {
 content: "";
 position: absolute;
@@ -319,7 +309,6 @@ transform: skewX(-30deg) translateX(0);
 transition: transform 0.7s ease-in-out;
 }
 
-/\* Hover/Focus anima o brilho e dá pop no botão \*/
 .button\:hover,
 .button\:focus {
 transform: scale(1.05);
@@ -331,24 +320,21 @@ box-shadow: 0 12px 24px rgba(0,0,0,0.5);
 transform: skewX(-30deg) translateX(300%);
 }
 
-/\* Active (clique) \*/
 .button\:active {
 transform: scale(0.98);
 box-shadow: 0 6px 12px rgba(0,0,0,0.4);
 }
 
-/\* Disabled \*/
 .button\:disabled {
 opacity: 0.6;
 cursor: not-allowed;
 }
 
-/\* Se quiser manter o padding animado no hover, combine assim: */
 .button\:hover {
 padding: 12px 24px;  /* sutil expansão \*/
 }
 
-\#app {
+#app {
 flex: 1;
 display: flex;
 flex-direction: column;
