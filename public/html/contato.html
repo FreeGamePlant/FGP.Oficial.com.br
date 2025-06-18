@@ -159,22 +159,19 @@
         font-size: 0.8rem;
       }
     }
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto 1rem;
+      width: 150px;
+    }
   </style>
 </head>
 <body>
-  <header class="header">
-    <nav class="navbar">
-      <a href="../../index.html" class="logo">FGP</a>
-      <ul class="nav-links">
-        <li><a href="entrtenimento/jogos.html">Jogos</a></li>
-        <li><a href="entrtenimento/anim.html">Animações</a></li>
-        <li><a href="../html/sobre.html">Sobre</a></li>
-        <li><a href="contato.html" class="active">Contato</a></li>
-      </ul>
-    </nav>
-  </header>
 
   <main class="main-content">
+    <img src="../../src/assets/images/LOGOFGPGLOBAL.png" alt="">
     <h1>Entre em Contato</h1>
     <p>
       Tem alguma dúvida, sugestão ou deseja saber mais sobre a FGP? Preencha o formulário abaixo e entraremos em contato com você o mais breve possível!
@@ -182,7 +179,7 @@
 <form class="contact-form" action="/SITESPROJETOS.FGP/FreeGamePlant/index.php" method="POST">
   <input type="text" name="name" placeholder="Seu Nome" required>
   <input type="email" name="email" placeholder="Seu E-mail" required>
-  <textarea name="message" rows="5" placeholder="Sua Mensagem" required></textarea>
+  <textarea name="message" rows="5" placeholder="Sua Mensagem {porfavor, se necessário coloque seu número de telefone aqui.}" required></textarea>
   <button type="submit">Enviar</button>
 </form>
 
