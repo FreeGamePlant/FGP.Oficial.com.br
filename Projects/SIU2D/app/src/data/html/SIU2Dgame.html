@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<body lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -135,7 +135,126 @@
             </div>
           </div>
         </div>
+        <script>
+        const btnSaves = document.getElementById('btnSaves');
+        const savesSidebar = document.getElementById('savesSidebar');
+        const closeSavesBtn = document.getElementById('closeSavesBtn');
+        const addSaveBtn = document.getElementById('addSaveBtn');
+        const saveNameInput = document.getElementById('saveNameInput');
+        const savesList = document.getElementById('savesList');
+        const noSavesMsg = document.getElementById('noSavesMsg');
 
+        const btnSaveUniverse = document.getElementById('btnSaveUniverse');
+        const btnLoadUniverse = document.getElementById('btnLoadUniverse');
+
+        
+        function randomSaveName() {
+          const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 !@#$%&*()_+-=.,';
+          const len = Math.floor(Math.random() * 11) + 5; 
+          let name = '';
+          for (let i = 0; i < len; i++) {
+            name += chars.charAt(Math.floor(Math.random() * chars.length));
+          }
+          return name.trim();
+        }
+
+        function getAllSaves() {
+          const saves = JSON.parse(localStorage.getItem('siu2d_saves') || '[]');
+          return saves;
+        }
+        function setAllSaves(saves) {
+          localStorage.setItem('siu2d_saves', JSON.stringify(saves));
+        }
+        function renderSavesList() {
+          const saves = getAllSaves();
+          savesList.innerHTML = '';
+          if (saves.length === 0) {
+            noSavesMsg.style.display = '';
+            return;
+          }
+          noSavesMsg.style.display = 'none';
+          saves.forEach((save, idx) => {
+            const li = document.createElement('li');
+            li.style.display = 'flex';
+            li.style.alignItems = 'center';
+            li.style.justifyContent = 'space-between';
+            li.style.padding = '6px 0';
+            li.innerHTML = `<span style='flex:1;'>${save.name} <span style='color:#aaa;font-size:0.8em;'>(${new Date(save.date).toLocaleString()})</span></span>
+              <span>
+                <button class='btn' style='margin-right:6px;' onclick='loadSave(${idx})' data-i18n="ui.saves.load">Carregar</button>
+                <button class='btn secondary' onclick='deleteSave(${idx})' data-i18n="ui.saves.delete">Excluir</button>
+              </span>`;
+            savesList.appendChild(li);
+          });
+        }
+        function showSavesSidebar() {
+          savesSidebar.style.display = '';
+          setTimeout(() => savesSidebar.classList.add('open'), 10);
+          renderSavesList();
+          document.body.style.overflow = 'hidden';
+        }
+        function hideSavesSidebar() {
+          savesSidebar.classList.remove('open');
+          setTimeout(() => {
+            savesSidebar.style.display = 'none';
+            document.body.style.overflow = '';
+          }, 300);
+        }
+        btnSaves.onclick = showSavesSidebar;
+        closeSavesBtn.onclick = hideSavesSidebar;
+        addSaveBtn.onclick = function() {
+          let name = saveNameInput.value.trim();
+          if (!name) name = randomSaveName();
+          if (typeof saveUniverseData === 'function') {
+            const data = saveUniverseData();
+            const saves = getAllSaves();
+            saves.push({ name, date: Date.now(), data });
+            setAllSaves(saves);
+            renderSavesList();
+            saveNameInput.value = '';
+          } else {
+            alert('Função saveUniverseData não encontrada!');
+          }
+        };
+        
+        if (btnLoadUniverse) btnLoadUniverse.onclick = showSavesSidebar;
+
+        
+        if (btnSaveUniverse) btnSaveUniverse.onclick = function() {
+          let name = saveNameInput.value.trim();
+          if (!name) name = randomSaveName();
+          if (typeof saveUniverseData === 'function') {
+            const data = saveUniverseData();
+            const saves = getAllSaves();
+            saves.push({ name, date: Date.now(), data });
+            setAllSaves(saves);
+            renderSavesList();
+            saveNameInput.value = '';
+            showSavesSidebar();
+          } else {
+            alert('Função saveUniverseData não encontrada!');
+          }
+        };
+        window.loadSave = function(idx) {
+          const saves = getAllSaves();
+          if (typeof loadUniverseData === 'function') {
+            loadUniverseData(saves[idx].data);
+            hideSavesSidebar();
+          } else {
+            alert('Função loadUniverseData não encontrada!');
+          }
+        };
+        window.deleteSave = function(idx) {
+          let saves = getAllSaves();
+          saves.splice(idx, 1);
+          setAllSaves(saves);
+          renderSavesList();
+        };
+        document.addEventListener('keydown', function(e) {
+          if (e.key === 'Escape' && savesSidebar.style.display !== 'none') hideSavesSidebar();
+        });
+        renderSavesList();
+        </script>
 <style>
 #savesSidebar.sidebar-overlay {
   position: fixed;
@@ -198,10 +317,6 @@
         
     <div id="diarySidebar" class="sidebar-overlay fullscreen-sidebar" style="display:none;">
       <div class="sidebar-panel diary-panel">
-          <div class="sidebar-panel diary-panel">
-    <button class="close-diary-btn" id="closeDiaryBtn" title="Fechar Diário">
-      <i class="fas fa-times"></i>
-    </button>
         <div class="diary-book">
           <div class="diary-page left-page">
             <div class="page-content">
@@ -223,6 +338,7 @@
           <button class="diary-nav-btn" id="prevPage"><i class="fas fa-chevron-left"></i> Anterior</button>
           <span class="page-indicator">Páginas <span id="currentPages">1-2</span> de <span id="totalPages">10</span></span>
           <button class="diary-nav-btn" id="nextPage">Próxima <i class="fas fa-chevron-right"></i></button>
+          <button class="close-diary" id="closeDiaryBtn" (onclick)="hideDiary">X</button>
         </div>
       </div>
     </div>
@@ -235,19 +351,19 @@
           <h2 style="color:#81d4fa; margin-bottom:1rem;">Notícias da FGP</h2>
           <div class="news-content">
             <div class="news-item">
-              <h3><i class="fas fa-rocket"></i>FGP News</h3>
-              <p class="news-date">a</p>
-              <p>a</p>
+              <h3><i class="fas fa-rocket"></i> Nova Atualização Disponível!</h3>
+              <p class="news-date">15 de Março de 2025</p>
+              <p>Estamos animados em anunciar a nova atualização do SIU 2D! Adicionamos novos tipos de astros, melhorias de performance e correções de bugs.</p>
             </div>
             <div class="news-item">
-              <h3><i class="fas fa-star"></i>a</h3>
-              <p class="news-date">a</p>
-              <p>a</p>
+              <h3><i class="fas fa-star"></i> Evento Especial de Aniversário</h3>
+              <p class="news-date">10 de Março de 2025</p>
+              <p>Participe do nosso evento especial de aniversário! Durante esta semana, astros raros terão chance aumentada de aparecerem no seu universo.</p>
             </div>
             <div class="news-item">
-              <h3><i class="fas fa-globe"></i>a</h3>
-              <p class="news-date">a</p>
-              <p>a</p>
+              <h3><i class="fas fa-globe"></i> Novos Idiomas Adicionados</h3>
+              <p class="news-date">5 de Março de 2025</p>
+              <p>Expandimos nosso suporte para mais idiomas! Agora o SIU 2D está disponível em 14 idiomas diferentes.</p>
             </div>
             <!-- Adicione mais notícias conforme necessário -->
           </div>
@@ -256,10 +372,18 @@
     </div>
 
     <!-- Código existente... -->
-        </div>
+</div>
 
 <!-- Estilos para os novos painéis -->
 <style>
+
+
+.close-diary{
+  background-color: rgb(235, 235, 125);
+  padding: 20px;
+  border: black;
+  border-radius: 10px 10px 10px 10px;
+}
 /* Painéis em tela cheia */
 .fullscreen-sidebar.sidebar-overlay {
   position: fixed;
@@ -472,136 +596,258 @@
   color: #e0e0e0;
   line-height: 1.6;
 }
-/* Botão de fechar do diário */
-.close-diary-btn {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  background: #8b4513;
-  border: none;
-  color: #f8f4e9;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  cursor: pointer;
-  font-size: 1.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-}
-
-.close-diary-btn:hover {
-  background: #6b2f0d;
-  transform: scale(1.1);
-}
-
-.sidebar-panel.diary-panel {
-  position: relative;
-}
 </style>
 
-
-<style>
-    #achievementNotification{
-        z-index: 110101010101000101001001010100110100101010101001001;
+<script>
+// Script para controlar os novos painéis
+document.addEventListener('DOMContentLoaded', function() {
+  // Diário do T Singularity
+  const btnDiary = document.getElementById('btnDiary');
+  const diarySidebar = document.getElementById('diarySidebar');
+  const closeDiaryBtn = document.getElementById('closeDiaryBtn');
+  
+  // Notícias da FGP
+  const btnNews = document.getElementById('btnNews');
+  const newsSidebar = document.getElementById('newsSidebar');
+  const closeNewsBtn = document.getElementById('closeNewsBtn');
+  
+  // Controles do diário
+  const prevPageBtn = document.getElementById('prevPage');
+  const nextPageBtn = document.getElementById('nextPage');
+  const currentPagesEl = document.getElementById('currentPages');
+  const totalPagesEl = document.getElementById('totalPages');
+  
+  // Dados do diário (em uma aplicação real, isso viria de um arquivo JSON)
+  const diaryPages = [
+    {
+      title: "Planeta Terra",
+      image: "../assets/img/planets/earth.jpg",
+      content: "O Planeta Terra é o terceiro planeta do Sistema Solar e o único conhecido a abrigar vida. Possui uma atmosfera rica em nitrogênio e oxigênio, e aproximadamente 71% de sua superfície é coberta por água."
+    },
+    {
+      title: "Marte",
+      image: "../assets/img/planets/mars.jpg",
+      content: "Marte é o quarto planeta a partir do Sol, conhecido como 'Planeta Vermelho' devido à sua aparência causada por óxido de ferro em sua superfície. Possui duas luas pequenas e irregulares: Fobos e Deimos."
+    },
+    {
+      title: "Júpiter",
+      image: "../assets/img/planets/jupiter.jpg",
+      content: "Júpiter é o maior planeta do Sistema Solar, um gigante gasoso com uma massa superior à de todos os outros planetas juntos. É conhecido por sua Grande Mancha Vermelha, uma tempestade gigante que dura séculos."
+    },
+    {
+      title: "Saturno",
+      image: "../assets/img/planets/saturn.jpg",
+      content: "Saturno é o sexto planeta a partir do Sol e o segundo maior do Sistema Solar. É famoso por seus impressionantes anéis, compostos principalmente de partículas de gelo e poeira cósmica."
+    },
+    {
+      title: "Vênus",
+      image: "../assets/img/planets/venus.jpg",
+      content: "Vênus é o segundo planeta do Sistema Solar, frequentemente chamado de 'estrela da manhã' ou 'estrela da tarde'. Possui uma atmosfera densa e tóxica que cria um intenso efeito estufa, tornando-o o planeta mais quente do sistema."
     }
-#achievementsSidebar.sidebar-overlay {
-  position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-  background: rgba(10,20,40,0.7); z-index: 1003; display: none; opacity: 0;
-  transition: opacity 0.3s;
-}
-#achievementsSidebar.sidebar-overlay.open { display: block; opacity: 1; }
-.sidebar-panel.achievements-panel {
-  position: absolute; left: 0; top: 0; height: 100vh; width: 100vw;
-  background: #181f2a; box-shadow: 2px 0 16px #000a;
-  transform: translateX(-100vw); transition: transform 0.5s;
-  display: flex; flex-direction: column;
-}
-#achievementsSidebar.open .sidebar-panel.achievements-panel { transform: translateX(0); }
-.close-sidebar { position: absolute; top: 12px; right: 18px; background: none; border: none; color: #fff; font-size: 2rem; cursor: pointer; z-index: 10; }
-.achievements-panel .sidebar-content { padding: 2.2rem 1.5rem 1.5rem 1.5rem; overflow-y: auto; flex: 1; }
-.achievement-card { display: flex; align-items: center; margin-bottom: 18px; background: #222; border-radius: 10px; padding: 12px; box-shadow: 0 2px 8px #0004; transition: background 0.2s; }
-.achievement-card.locked { background: #181a1f; filter: grayscale(1) brightness(0.6); }
-.achievement-img { width: 48px; height: 48px; border-radius: 8px; margin-right: 18px; background: #333; display: flex; align-items: center; justify-content: center; font-size: 2rem; }
-.achievement-card.locked .achievement-img { background: #222; color: #888; }
-.achievement-title { font-size: 1.1rem; font-weight: bold; color: #ffd700; }
-.achievement-card.locked .achievement-title { color: #aaa; }
-.achievement-desc { font-size: 0.98rem; color: #eee; margin-top: 2px; }
-.achievement-card.locked .achievement-desc { color: #444; }
-.achievement-card.locked .achievement-img img { display: none; }
-.achievement-card.locked .achievement-img .locked-icon { display: block; }
-.achievement-img .locked-icon { font-size: 2.2rem; color: #888; }
-#achievementNotification {
-  position: fixed; left: -400px; top: 40px; z-index: 99999;
-  background: linear-gradient(90deg,#ffd700,#fffbe6); color: #222;
-  border-radius: 12px; box-shadow: 0 4px 24px #0008;
-  padding: 18px 32px; font-size: 1.2rem; font-weight: bold;
-  display: flex; align-items: center; gap: 18px;
-  transition: left 0.7s cubic-bezier(.7,.2,.2,1);
-}
-        #achievementNotification.show { left: 40px; }
+  ];
+  
+  // Funções para mostrar/ocultar painéis
+  function showDiary() {
+    diarySidebar.style.display = '';
+    setTimeout(() => diarySidebar.classList.add('open'), 10);
+    document.body.style.overflow = 'hidden';
+    updateDiaryPages();
+  }
+  
+  function hideDiary() {
+    diarySidebar.classList.remove('open');
+    setTimeout(() => {
+      diarySidebar.style.display = 'none';
+      document.body.style.overflow = '';
+    }, 300);
+  }
+  
+  function showNews() {
+    newsSidebar.style.display = '';
+    setTimeout(() => newsSidebar.classList.add('open'), 10);
+    document.body.style.overflow = 'hidden';
+  }
+  
+  function hideNews() {
+    newsSidebar.classList.remove('open');
+    setTimeout(() => {
+      newsSidebar.style.display = 'none';
+      document.body.style.overflow = '';
+    }, 300);
+  }
+  
+  // Navegação do diário
+  let currentSpread = 0;
+  const totalSpreads = Math.ceil(diaryPages.length / 2);
+  
+  function updateDiaryPages() {
+    const leftPage = document.querySelector('.left-page .page-content');
+    const rightPage = document.querySelector('.right-page .page-content');
+    
+    const leftPageIndex = currentSpread * 2;
+    const rightPageIndex = currentSpread * 2 + 1;
+    
+    // Atualizar página esquerda
+    if (leftPageIndex < diaryPages.length) {
+      leftPage.innerHTML = `
+        <h3>${diaryPages[leftPageIndex].title}</h3>
+        <img src="${diaryPages[leftPageIndex].image}" alt="${diaryPages[leftPageIndex].title}">
+        <p>${diaryPages[leftPageIndex].content}</p>
+      `;
+    } else {
+      leftPage.innerHTML = `<div style="text-align:center;padding-top:40%;color:#8b4513;font-style:italic;">Página em branco</div>`;
+    }
+    
+    // Atualizar página direita
+    if (rightPageIndex < diaryPages.length) {
+      rightPage.innerHTML = `
+        <h3>${diaryPages[rightPageIndex].title}</h3>
+        <img src="${diaryPages[rightPageIndex].image}" alt="${diaryPages[rightPageIndex].title}">
+        <p>${diaryPages[rightPageIndex].content}</p>
+      `;
+    } else {
+      rightPage.innerHTML = `<div style="text-align:center;padding-top:40%;color:#8b4513;font-style:italic;">Página em branco</div>`;
+    }
+    
+    // Atualizar indicador de páginas
+    currentPagesEl.textContent = `${currentSpread * 2 + 1}-${Math.min(currentSpread * 2 + 2, diaryPages.length)}`;
+    totalPagesEl.textContent = diaryPages.length;
+    
+    // Atualizar estado dos botões
+    prevPageBtn.disabled = currentSpread === 0;
+    nextPageBtn.disabled = currentSpread >= totalSpreads - 1;
+  }
+  
+  // Event listeners
+  btnDiary.addEventListener('click', showDiary);
+  closeDiaryBtn.addEventListener('click', hideDiary);
+  
+  btnNews.addEventListener('click', showNews);
+  closeNewsBtn.addEventListener('click', hideNews);
+  
+  prevPageBtn.addEventListener('click', () => {
+    if (currentSpread > 0) {
+      currentSpread--;
+      updateDiaryPages();
+    }
+  });
+  
+  nextPageBtn.addEventListener('click', () => {
+    if (currentSpread < totalSpreads - 1) {
+      currentSpread++;
+      updateDiaryPages();
+    }
+  });
+  
+  // Fechar com ESC
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      if (diarySidebar.style.display !== 'none') hideDiary();
+      if (newsSidebar.style.display !== 'none') hideNews();
+    }
+  });
+  
+  // Inicializar diário
+  updateDiaryPages();
+});
+</script>
+        <style>
+            #achievementNotification{
+                z-index: 110101010101000101001001010100110100101010101001001;
+            }
+        #achievementsSidebar.sidebar-overlay {
+          position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+          background: rgba(10,20,40,0.7); z-index: 1003; display: none; opacity: 0;
+          transition: opacity 0.3s;
+        }
+        #achievementsSidebar.sidebar-overlay.open { display: block; opacity: 1; }
+        .sidebar-panel.achievements-panel {
+          position: absolute; left: 0; top: 0; height: 100vh; width: 100vw;
+          background: #181f2a; box-shadow: 2px 0 16px #000a;
+          transform: translateX(-100vw); transition: transform 0.5s;
+          display: flex; flex-direction: column;
+        }
+        #achievementsSidebar.open .sidebar-panel.achievements-panel { transform: translateX(0); }
+        .close-sidebar { position: absolute; top: 12px; right: 18px; background: none; border: none; color: #fff; font-size: 2rem; cursor: pointer; z-index: 10; }
+        .achievements-panel .sidebar-content { padding: 2.2rem 1.5rem 1.5rem 1.5rem; overflow-y: auto; flex: 1; }
+        .achievement-card { display: flex; align-items: center; margin-bottom: 18px; background: #222; border-radius: 10px; padding: 12px; box-shadow: 0 2px 8px #0004; transition: background 0.2s; }
+        .achievement-card.locked { background: #181a1f; filter: grayscale(1) brightness(0.6); }
+        .achievement-img { width: 48px; height: 48px; border-radius: 8px; margin-right: 18px; background: #333; display: flex; align-items: center; justify-content: center; font-size: 2rem; }
+        .achievement-card.locked .achievement-img { background: #222; color: #888; }
+        .achievement-title { font-size: 1.1rem; font-weight: bold; color: #ffd700; }
+        .achievement-card.locked .achievement-title { color: #aaa; }
+        .achievement-desc { font-size: 0.98rem; color: #eee; margin-top: 2px; }
+        .achievement-card.locked .achievement-desc { color: #444; }
+        .achievement-card.locked .achievement-img img { display: none; }
+        .achievement-card.locked .achievement-img .locked-icon { display: block; }
+        .achievement-img .locked-icon { font-size: 2.2rem; color: #888; }
         #achievementNotification {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  z-index: 100000;
-  background: linear-gradient(90deg, #ffd700, #fffbe6);
-  color: #222;
-  border-radius: 12px;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.5);
-  padding: 12px 24px;
-  font-size: 1.1rem;
-  font-weight: bold;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  transform: translateX(120%);
-  transition: transform 0.7s cubic-bezier(0.7, 0.2, 0.2, 1);
-}
+          position: fixed; left: -400px; top: 40px; z-index: 99999;
+          background: linear-gradient(90deg,#ffd700,#fffbe6); color: #222;
+          border-radius: 12px; box-shadow: 0 4px 24px #0008;
+          padding: 18px 32px; font-size: 1.2rem; font-weight: bold;
+          display: flex; align-items: center; gap: 18px;
+          transition: left 0.7s cubic-bezier(.7,.2,.2,1);
+        }
+                #achievementNotification.show { left: 40px; }
+                #achievementNotification {
+          position: fixed;
+          top: 20px;
+          right: 20px;
+          z-index: 100000;
+          background: linear-gradient(90deg, #ffd700, #fffbe6);
+          color: #222;
+          border-radius: 12px;
+          box-shadow: 0 4px 24px rgba(0,0,0,0.5);
+          padding: 12px 24px;
+          font-size: 1.1rem;
+          font-weight: bold;
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          transform: translateX(120%);
+          transition: transform 0.7s cubic-bezier(0.7, 0.2, 0.2, 1);
+        }
 
-#achievementNotification.show {
-  transform: translateX(0);
-}
+        #achievementNotification.show {
+          transform: translateX(0);
+        }
 
-#achievementNotification img {
-  width: 48px;
-  height: 48px;
-  border-radius: 8px;
-}
-</style>
-<style>
-  .reset-btn {
-    background: linear-gradient(to bottom, #ff4444, #cc0000);
-    color: white;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 20px;
-    cursor: pointer;
-    font-size: 0.9rem;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-    transition: all 0.2s;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
+        #achievementNotification img {
+          width: 48px;
+          height: 48px;
+          border-radius: 8px;
+        }
+        </style>
+        <style>
+          .reset-btn {
+            background: linear-gradient(to bottom, #ff4444, #cc0000);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+          }
 
-  .reset-btn:hover {
-    background: linear-gradient(to bottom, #ff6666, #dd2222);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-  }
+          .reset-btn:hover {
+            background: linear-gradient(to bottom, #ff6666, #dd2222);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+          }
 
-  .reset-btn:active {
-    transform: translateY(1px);
-  }
+          .reset-btn:active {
+            transform: translateY(1px);
+          }
 
-  .reset-btn i {
-    font-size: 0.9em;
-  }
-</style>
-        
+          .reset-btn i {
+            font-size: 0.9em;
+          }
+        </style>
     </div>
     </div>
 <!-- Adicione este código dentro do <body> -->
@@ -711,7 +957,65 @@
 }
 </style>
 
-
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const btnLanguage = document.getElementById('btnleng');
+  const languageMenu = document.getElementById('languageMenu');
+  const closeLanguageBtn = document.getElementById('closeLanguageBtn');
+  
+  function showLanguageMenu() {
+    languageMenu.style.display = '';
+    setTimeout(() => languageMenu.classList.add('open'), 10);
+    document.body.style.overflow = 'hidden';
+  }
+  
+  function hideLanguageMenu() {
+    languageMenu.classList.remove('open');
+    setTimeout(() => {
+      languageMenu.style.display = 'none';
+      document.body.style.overflow = '';
+    }, 300);
+  }
+  
+  
+  btnLanguage.addEventListener('click', showLanguageMenu);
+  
+  
+  closeLanguageBtn.addEventListener('click', hideLanguageMenu);
+  
+  
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && languageMenu.style.display !== 'none') {
+      hideLanguageMenu();
+    }
+  });
+  
+  
+  const langItems = document.querySelectorAll('.language-list li');
+  langItems.forEach(item => {
+    item.addEventListener('click', function() {
+      const lang = this.getAttribute('data-lang');
+      console.log('Idioma selecionado:', lang);
+      
+      
+      
+      
+      
+      this.style.backgroundColor = '#81d4fa';
+      this.style.color = '#181f2a';
+      
+      setTimeout(() => {
+        hideLanguageMenu();
+        
+        setTimeout(() => {
+          this.style.backgroundColor = '';
+          this.style.color = '';
+        }, 1000);
+      }, 500);
+    });
+  });
+});
+</script>
 <!-- T Singularity Sidebar Overlay -->
 <div id="tsingularitySidebar">
   <button class="close-tsingularity" id="closeTSingularityBtn" title="Fechar T Singularity">&times;</button>
@@ -2014,6 +2318,7 @@ document.getElementById('tsingu').addEventListener('contextmenu', (e) => {
           });
         }
     </script>
+</body>
 <script>
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -2318,374 +2623,6 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 <div id="achievementNotification" style="display:none;"></div>
-<script>
-// Script para controlar os novos painéis
-document.addEventListener('DOMContentLoaded', function() {
-  // Diário do T Singularity
-  const btnDiary = document.getElementById('btnDiary');
-  const diarySidebar = document.getElementById('diarySidebar');
-  const closeDiaryBtn = document.getElementById('closeDiaryBtn');
-
-  // Adicionar event listeners
-  if (btnNews) {
-    btnNews.addEventListener('click', showNews);
-  }
-
-  if (closeNewsBtn) {
-    closeNewsBtn.addEventListener('click', hideNews);
-  }
-
-  // Fechar com ESC
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') {
-      if (newsSidebar && newsSidebar.style.display !== 'none') hideNews();
-    }
-  });
-  
-  // Controles do diário
-  const prevPageBtn = document.getElementById('prevPage');
-  const nextPageBtn = document.getElementById('nextPage');
-  const currentPagesEl = document.getElementById('currentPages');
-  const totalPagesEl = document.getElementById('totalPages');
-  
-  // Dados do diário (em uma aplicação real, isso viria de um arquivo JSON)
-  const diaryPages = [
-    {
-      title: "Planeta Terra",
-      image: "../assets/img/planets/earth.jpg",
-      content: "O Planeta Terra é o terceiro planeta do Sistema Solar e o único conhecido a abrigar vida. Possui uma atmosfera rica em nitrogênio e oxigênio, e aproximadamente 71% de sua superfície é coberta por água."
-    },
-    {
-      title: "Marte",
-      image: "../assets/img/planets/mars.jpg",
-      content: "Marte é o quarto planeta a partir do Sol, conhecido como 'Planeta Vermelho' devido à sua aparência causada por óxido de ferro em sua superfície. Possui duas luas pequenas e irregulares: Fobos e Deimos."
-    },
-    {
-      title: "Júpiter",
-      image: "../assets/img/planets/jupiter.jpg",
-      content: "Júpiter é o maior planeta do Sistema Solar, um gigante gasoso com uma massa superior à de todos os outros planetas juntos. É conhecido por sua Grande Mancha Vermelha, uma tempestade gigante que dura séculos."
-    },
-    {
-      title: "Saturno",
-      image: "../assets/img/planets/saturn.jpg",
-      content: "Saturno é o sexto planeta a partir do Sol e o segundo maior do Sistema Solar. É famoso por seus impressionantes anéis, compostos principalmente de partículas de gelo e poeira cósmica."
-    },
-    {
-      title: "Vênus",
-      image: "../assets/img/planets/venus.jpg",
-      content: "Vênus é o segundo planeta do Sistema Solar, frequentemente chamado de 'estrela da manhã' ou 'estrela da tarde'. Possui uma atmosfera densa e tóxica que cria um intenso efeito estufa, tornando-o o planeta mais quente do sistema."
-    }
-  ];
-  
-  // Funções para mostrar/ocultar painéis
-  function showDiary() {
-    if (!diarySidebar) return;
-    diarySidebar.style.display = '';
-    setTimeout(() => diarySidebar.classList.add('open'), 10);
-    document.body.style.overflow = 'hidden';
-    updateDiaryPages();
-  }
-  
-  function hideDiary() {
-    if (!diarySidebar) return;
-    diarySidebar.classList.remove('open');
-    setTimeout(() => {
-      diarySidebar.style.display = 'none';
-      document.body.style.overflow = '';
-    }, 300);
-  }
-  
-  function showNews() {
-    if (!newsSidebar) return;
-    newsSidebar.style.display = '';
-    setTimeout(() => newsSidebar.classList.add('open'), 10);
-    document.body.style.overflow = 'hidden';
-  }
-  
-  function hideNews() {
-    if (!newsSidebar) return;
-    newsSidebar.classList.remove('open');
-    setTimeout(() => {
-      newsSidebar.style.display = 'none';
-      document.body.style.overflow = '';
-    }, 300);
-  }
-  
-  // Navegação do diário
-  let currentSpread = 0;
-  const totalSpreads = Math.ceil(diaryPages.length / 2);
-  
-  function updateDiaryPages() {
-    const leftPage = document.querySelector('.left-page .page-content');
-    const rightPage = document.querySelector('.right-page .page-content');
-    
-    const leftPageIndex = currentSpread * 2;
-    const rightPageIndex = currentSpread * 2 + 1;
-    
-    // Atualizar página esquerda
-    if (leftPage && leftPageIndex < diaryPages.length) {
-      leftPage.innerHTML = `
-        <h3>${diaryPages[leftPageIndex].title}</h3>
-        <img src="${diaryPages[leftPageIndex].image}" alt="${diaryPages[leftPageIndex].title}">
-        <p>${diaryPages[leftPageIndex].content}</p>
-      `;
-    } else if (leftPage) {
-      leftPage.innerHTML = `<div style="text-align:center;padding-top:40%;color:#8b4513;font-style:italic;">Página em branco</div>`;
-    }
-    
-    // Atualizar página direita
-    if (rightPage && rightPageIndex < diaryPages.length) {
-      rightPage.innerHTML = `
-        <h3>${diaryPages[rightPageIndex].title}</h3>
-        <img src="${diaryPages[rightPageIndex].image}" alt="${diaryPages[rightPageIndex].title}">
-        <p>${diaryPages[rightPageIndex].content}</p>
-      `;
-    } else if (rightPage) {
-      rightPage.innerHTML = `<div style="text-align:center;padding-top:40%;color:#8b4513;font-style:italic;">Página em branco</div>`;
-    }
-    
-    // Atualizar indicador de páginas
-    if (currentPagesEl) {
-      currentPagesEl.textContent = `${currentSpread * 2 + 1}-${Math.min(currentSpread * 2 + 2, diaryPages.length)}`;
-    }
-    if (totalPagesEl) {
-      totalPagesEl.textContent = diaryPages.length;
-    }
-    
-    // Atualizar estado dos botões
-    if (prevPageBtn) {
-      prevPageBtn.disabled = currentSpread === 0;
-    }
-    if (nextPageBtn) {
-      nextPageBtn.disabled = currentSpread >= totalSpreads - 1;
-    }
-  }
-  
-  // Adicionar event listeners apenas se os elementos existirem
-  if (btnDiary) {
-    btnDiary.addEventListener('click', showDiary);
-  }
-  
-  if (closeDiaryBtn) {
-    closeDiaryBtn.addEventListener('click', hideDiary);
-  }
-  
-  if (btnNews) {
-    btnNews.addEventListener('click', showNews);
-  }
-  
-  if (closeNewsBtn) {
-    closeNewsBtn.addEventListener('click', hideNews);
-  }
-  
-  if (prevPageBtn) {
-    prevPageBtn.addEventListener('click', () => {
-      if (currentSpread > 0) {
-        currentSpread--;
-        updateDiaryPages();
-      }
-    });
-  }
-  
-  if (nextPageBtn) {
-    nextPageBtn.addEventListener('click', () => {
-      if (currentSpread < totalSpreads - 1) {
-        currentSpread++;
-        updateDiaryPages();
-      }
-    });
-  }
-  
-  // Fechar com ESC
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') {
-      if (diarySidebar && diarySidebar.style.display !== 'none') hideDiary();
-      if (newsSidebar && newsSidebar.style.display !== 'none') hideNews();
-    }
-  });
-  
-  // Inicializar diário
-  updateDiaryPages();
-});
-</script>
-<script>
-const btnSaves = document.getElementById('btnSaves');
-const savesSidebar = document.getElementById('savesSidebar');
-const closeSavesBtn = document.getElementById('closeSavesBtn');
-const addSaveBtn = document.getElementById('addSaveBtn');
-const saveNameInput = document.getElementById('saveNameInput');
-const savesList = document.getElementById('savesList');
-const noSavesMsg = document.getElementById('noSavesMsg');
-
-const btnSaveUniverse = document.getElementById('btnSaveUniverse');
-const btnLoadUniverse = document.getElementById('btnLoadUniverse');
-
-
-function randomSaveName() {
-  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 !@#$%&*()_+-=.,';
-  const len = Math.floor(Math.random() * 11) + 5; 
-  let name = '';
-  for (let i = 0; i < len; i++) {
-    name += chars.charAt(Math.floor(Math.random() * chars.length));
-  }
-  return name.trim();
-}
-
-function getAllSaves() {
-  const saves = JSON.parse(localStorage.getItem('siu2d_saves') || '[]');
-  return saves;
-}
-function setAllSaves(saves) {
-  localStorage.setItem('siu2d_saves', JSON.stringify(saves));
-}
-function renderSavesList() {
-  const saves = getAllSaves();
-  savesList.innerHTML = '';
-  if (saves.length === 0) {
-    noSavesMsg.style.display = '';
-    return;
-  }
-  noSavesMsg.style.display = 'none';
-  saves.forEach((save, idx) => {
-    const li = document.createElement('li');
-    li.style.display = 'flex';
-    li.style.alignItems = 'center';
-    li.style.justifyContent = 'space-between';
-    li.style.padding = '6px 0';
-    li.innerHTML = `<span style='flex:1;'>${save.name} <span style='color:#aaa;font-size:0.8em;'>(${new Date(save.date).toLocaleString()})</span></span>
-      <span>
-        <button class='btn' style='margin-right:6px;' onclick='loadSave(${idx})' data-i18n="ui.saves.load">Carregar</button>
-        <button class='btn secondary' onclick='deleteSave(${idx})' data-i18n="ui.saves.delete">Excluir</button>
-      </span>`;
-    savesList.appendChild(li);
-  });
-}
-function showSavesSidebar() {
-  savesSidebar.style.display = '';
-  setTimeout(() => savesSidebar.classList.add('open'), 10);
-  renderSavesList();
-  document.body.style.overflow = 'hidden';
-}
-function hideSavesSidebar() {
-  savesSidebar.classList.remove('open');
-  setTimeout(() => {
-    savesSidebar.style.display = 'none';
-    document.body.style.overflow = '';
-  }, 300);
-}
-btnSaves.onclick = showSavesSidebar;
-closeSavesBtn.onclick = hideSavesSidebar;
-addSaveBtn.onclick = function() {
-  let name = saveNameInput.value.trim();
-  if (!name) name = randomSaveName();
-  if (typeof saveUniverseData === 'function') {
-    const data = saveUniverseData();
-    const saves = getAllSaves();
-    saves.push({ name, date: Date.now(), data });
-    setAllSaves(saves);
-    renderSavesList();
-    saveNameInput.value = '';
-  } else {
-    alert('Função saveUniverseData não encontrada!');
-  }
-};
-
-if (btnLoadUniverse) btnLoadUniverse.onclick = showSavesSidebar;
-
-
-if (btnSaveUniverse) btnSaveUniverse.onclick = function() {
-  let name = saveNameInput.value.trim();
-  if (!name) name = randomSaveName();
-  if (typeof saveUniverseData === 'function') {
-    const data = saveUniverseData();
-    const saves = getAllSaves();
-    saves.push({ name, date: Date.now(), data });
-    setAllSaves(saves);
-    renderSavesList();
-    saveNameInput.value = '';
-    showSavesSidebar();
-  } else {
-    alert('Função saveUniverseData não encontrada!');
-  }
-};
-window.loadSave = function(idx) {
-  const saves = getAllSaves();
-  if (typeof loadUniverseData === 'function') {
-    loadUniverseData(saves[idx].data);
-    hideSavesSidebar();
-  } else {
-    alert('Função loadUniverseData não encontrada!');
-  }
-};
-window.deleteSave = function(idx) {
-  let saves = getAllSaves();
-  saves.splice(idx, 1);
-  setAllSaves(saves);
-  renderSavesList();
-};
-document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape' && savesSidebar.style.display !== 'none') hideSavesSidebar();
-});
-renderSavesList();
-</script>
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-const btnLanguage = document.getElementById('btnleng');
-const languageMenu = document.getElementById('languageMenu');
-const closeLanguageBtn = document.getElementById('closeLanguageBtn');
-
-function showLanguageMenu() {
-languageMenu.style.display = '';
-setTimeout(() => languageMenu.classList.add('open'), 10);
-document.body.style.overflow = 'hidden';
-}
-
-function hideLanguageMenu() {
-languageMenu.classList.remove('open');
-setTimeout(() => {
-languageMenu.style.display = 'none';
-document.body.style.overflow = '';
-}, 300);
-}
-
-
-btnLanguage.addEventListener('click', showLanguageMenu);
-
-
-closeLanguageBtn.addEventListener('click', hideLanguageMenu);
-
-
-document.addEventListener('keydown', function(e) {
-if (e.key === 'Escape' && languageMenu.style.display !== 'none') {
-hideLanguageMenu();
-}
-});
-
-
-const langItems = document.querySelectorAll('.language-list li');
-langItems.forEach(item => {
-item.addEventListener('click', function() {
-const lang = this.getAttribute('data-lang');
-console.log('Idioma selecionado:', lang);
-
-
-
-
-
-this.style.backgroundColor = '#81d4fa';
-this.style.color = '#181f2a';
-
-setTimeout(() => {
-hideLanguageMenu();
-
-setTimeout(() => {
-  this.style.backgroundColor = '';
-  this.style.color = '';
-}, 1000);
-}, 500);
-});
-});
-});
-</script>
+</body>
 </body>
 </html>
