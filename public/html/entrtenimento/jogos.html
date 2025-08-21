@@ -6,9 +6,6 @@
   <title>FGP • INFINITE PLANT STOCK</title>
 <link rel="icon" href="../../../src/assets/images/gamestore.png" type="image/png" sizes="32x32">
   <style>
-    /*─────────────────────────────────────────  
-  Variáveis de Tema  
-─────────────────────────────────────────*/
 :root {
   --bg-dark:    #0d1117;
   --card-bg:    rgba(255,255,255,0.05);
@@ -21,9 +18,6 @@
   --gap:        1.5rem;
 }
 
-/*─────────────────────────────────────────  
-  Reset & Base  
-─────────────────────────────────────────*/
 * { box-sizing: border-box; margin:0; padding:0; }
 body {
   font-family: 'Segoe UI', sans-serif;
@@ -31,10 +25,6 @@ body {
   color: var(--text-light);
   line-height: 1.6;
 }
-
-/*─────────────────────────────────────────  
-  Header  
-─────────────────────────────────────────*/
 .site-header {
   text-align: center;
   padding: 2rem 1rem;
@@ -56,10 +46,6 @@ body {
   color: var(--text-sub);
   font-size: 1.1rem;
 }
-
-/*─────────────────────────────────────────  
-  Grid de Jogos  
-─────────────────────────────────────────*/
 .games-grid {
   display: grid;
   gap: var(--gap);
@@ -71,9 +57,6 @@ body {
 @media (min-width: 900px)  { .games-grid { grid-template-columns: repeat(3, 1fr); } }
 @media (min-width:1200px)  { .games-grid { grid-template-columns: repeat(4, 1fr); } }
 
-/*─────────────────────────────────────────  
-  Card de Jogo  
-─────────────────────────────────────────*/
 .game-card {
   background: var(--card-bg);
   border-radius: var(--radius);
@@ -87,15 +70,12 @@ body {
   transform: translateY(-6px);
   box-shadow: 0 10px 28px var(--shadow);
 }
-
-/* Imagem do jogo */
 .game-thumb {
   width: 100%;
   aspect-ratio: 16/9;
   object-fit: cover;
 }
 
-/* Info do jogo */
 .game-info {
   padding: 1rem;
   flex: 1;
@@ -123,7 +103,6 @@ body {
   margin: .25rem 0;
 }
 
-/* Botão de download */
 .btn-download {
   display: inline-block;
   text-align: center;
@@ -152,18 +131,12 @@ body {
   cursor: not-allowed;
 }
 
-/*─────────────────────────────────────────  
-  Estado Coming Soon  
-─────────────────────────────────────────*/
 .coming-soon .game-thumb {
   filter: grayscale(80%);
   opacity: .8;
 }
 .coming-soon h2 { opacity: .7; }
 
-/*─────────────────────────────────────────  
-  Footer  
-─────────────────────────────────────────*/
 .site-footer {
   text-align: center;
   padding: 1.5rem 1rem;
@@ -208,9 +181,28 @@ body {
   </header>
 
   <main class="games-grid">
-    <!-- Card de Jogo #1 -->
+
+
     <article class="game-card">
       <img src="../../../src/assets/images/Ovynay the time traveler.png" alt="Ovynay" class="game-thumb" />
+      <div class="game-info">
+        <h2>SIU2D - SIMULATOR OF THE INCREDIBLE UNIVERSE</h2>
+        <p class="description">
+          SIU2D é um Simulador do Universo, em Cartoon 2d , ainda em beta, aproveite e avalie como o jogo está ;D , em sey Lançamento Oficial, poderão Instalar ele.
+        </p>
+        <ul class="specs">
+          <li><strong>Gênero:</strong> Simulação, Missão, (averá mais)</li>
+          <li><strong>Engine:</strong> VS Code</li>
+          <li><strong>Plataforma:</strong> Windows (Android, iOS , ainda não)</li>
+          <li><strong>Idioma:</strong> contem mais de 10 idiomas..</li>
+        </ul>
+        <a href="#" download class="btn-download">Ainda em Desenvolvimento...</a>
+      </div>
+    </article>
+
+    
+    <article class="game-card">
+      <img src="../../../src/assets/images/SIU2D.jpg" alt="TSingu" class="game-thumb" />
       <div class="game-info">
         <h2>Ovynay: The Red Dust (Beta)</h2>
         <p class="description">
@@ -222,11 +214,10 @@ body {
           <li><strong>Plataforma:</strong> Windows, Android, iOS</li>
           <li><strong>Idioma:</strong> PT/EN/ES</li>
         </ul>
-        <a href="jogos/jogo1.zip" download class="btn-download">Baixar</a>
+        <a href="#" download class="btn-download">Ainda em Desenvolvimento...</a>
       </div>
     </article>
 
-    <!-- Card de Jogo #2 (Coming soon) -->
     <article class="game-card coming-soon">
       <img src="jogo2_placeholder.png" alt="Em breve" class="game-thumb" />
       <div class="game-info">
@@ -236,7 +227,6 @@ body {
       </div>
     </article>
 
-    <!-- Adicione mais game-card aqui -->
   </main>
 
   <footer class="site-footer">
@@ -249,3 +239,4 @@ body {
 
 </body>
 </html>
+
