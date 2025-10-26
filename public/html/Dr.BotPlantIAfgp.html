@@ -3,415 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dr. Bot Plant - Assistente Virtual</title>
-    <link rel="stylesheet" href="../../src/assets/css/styles.css">
-<link rel="icon" href="../../src/assets/images/drbotplant.jpg" type="image/png" sizes="32x32">
-    <style>
-            /* Estilos principais do projeto */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
-}
-
-#app {
-    text-align: center;
-    padding: 20px;
-}
-
-
-
-/* Estilos gerais */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #001f64;
-}
-
-#app {
-    text-align: center;
-    padding: 20px;
-}
-
-/* Estilos para telas pequenas (smartphones) */
-@media (max-width: 600px) {
-    body {
-        font-size: 14px;
-    }
-
-    #app {
-        padding: 10px;
-    }
-}
-
-/* Estilos para telas médias (tablets) */
-@media (min-width: 601px) and (max-width: 1024px) {
-    body {
-        font-size: 16px;
-    }
-
-    #app {
-        padding: 15px;
-    }
-}
-
-/* Estilos para telas grandes (desktops) */
-@media (min-width: 1025px) {
-    body {
-        font-size: 18px;
-    }
-
-    #app {
-        padding: 20px;
-    }
-}
-
-
-/* Exemplo de layout com Flexbox */
-#app {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-}
-
-header, main, footer {
-    width: 100%;
-    max-width: 1200px;
-    margin: 10px;
-    padding: 10px;
-    background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-h1 {
-    font-size: 2em;
-    margin-bottom: 20px;
-    text-align: center;
-    background-color: aqua;
-    border: green 5px solid;
-}
-
-#a {
-    font-size: 1.5em;
-    margin-bottom: 20px;
-    text-align: center;
-    background-color: aquamarine;
-    position: relative;
-    top: -25px;
-    border: green 4px solid;
-}
-
-#b {
-    font-size: 1.5em;
-    margin-bottom: 20px;
-    text-align: center;
-    background-color: aquamarine;
-    position: relative;
-    top: -20px;
-}
-
-.align {
-    text-align: center;
-}
-
-.button {
-    display: flex;
-    padding: 10px 20px;
-    margin: 20px;
-    background-color: #007BFF;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-    box-shadow: 0 20px 35px rgb(0, 0, 0);
-    background: linear-gradient(135deg, #ffce00 0%, #ff9f00 100%);
-}
-.button:hover {
-    background-color: #0056b3;
-    padding: 1%;
-}
-.button:active {
-    background-color: #004085;
-    box-shadow: 0 10px 20px rgb(0, 0, 0);
-}
-.button:focus {
-    outline: none;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-}
-.button:disabled {
-    background-color: #007BFF;
-    opacity: 0.5;
-    cursor: not-allowed;
-}
-
-
-.imagemFundo {
-    width: 100%;
-    position: fixed;
-    z-index: -1;
-    top: 0;
-    opacity: 0.5;
-}
-
-.whiteclass {
-    color: white;
-}
-
-a {
-    text-decoration: none;
-}
-
-#m {
-    font-size: 1.5em;
-    margin-bottom: 20px;
-    text-align: center;
-    position: relative;
-    top: 70px;
-}
-
-#n {
-    font-size: 1.5em;
-    margin-bottom: 20px;
-    text-align: center;
-    position: relative;
-    top: 70px;
-}
-
-#nbp {
-    font-size: 1.5em;
-    margin-bottom: 20px;
-    text-align: center;
-    position: relative;
-    top: 70px;
-}
-
-
-h1 {
-    text-align: center;
-    color: #1a0000;
-    font-size: 2.5rem;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    text-shadow: 2px 2px 4px #000000;
-    font-family: 'Arial', sans-serif;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-}
-p.align {
-    text-align: center;
-    color: #b5b800;
-    font-size: 1.5rem;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    text-shadow: 2px 2px 4px #000000;
-    font-family: 'Arial', sans-serif;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-}
-
-.logoGame {
-    width: 150px;
-    border-radius: 10%;
-    border: 2px solid #000;
-}
-
-.container {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    text-align: center;
-    background-color: #f9f9f9;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-h1 {
-    font-size: 2rem;
-    margin-bottom: 20px;
-}
-
-form {
-    margin-bottom: 20px;
-}
-
-label {
-    display: block;
-    margin: 10px 0 5px;
-}
-
-input {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #0056b3;
-}
-
-/* Estilo para mensagens de alerta */
-.alert-message {
-    color: red;
-    font-weight: bold;
-}
-        /* 🌿 Fundo azul clássico com visual tecnológico */
-        body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(90deg, #001f3f, #007bff);
-            color: #ffffff;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-        }
-
-        /* 🔹 Container do chat com efeito neon */
-        .chat-container {
-            width: 400px;
-            padding: 20px;
-            border-radius: 12px;
-            background: rgba(15, 25, 55, 0.9);
-            box-shadow: 0px 0px 20px rgba(0, 150, 255, 0.5);
-            backdrop-filter: blur(10px);
-            text-align: center;
-        }
-
-        h1, h2 {
-            text-align: center;
-            text-transform: uppercase;
-            color: #00ffff;
-        }
-
-        /* 🟢 Área de mensagens */
-        #chat-box {
-            height: 350px;
-            overflow-y: auto;
-            border: 2px solid #00ccff;
-            border-radius: 10px;
-            padding: 15px;
-            margin-bottom: 15px;
-            background: rgba(0, 50, 150, 0.3);
-            box-shadow: inset 0px 0px 15px rgba(0, 255, 255, 0.3);
-        }
-
-.user-message {
-    text-align: right;
-    color: #00ccff;
-    margin: 5px 0;
-    font-weight: bold;
-    padding: 8px;
-    border-radius: 8px;
-    background: rgba(0, 150, 255, 0.3);
-    max-width: 80%;
-    align-self: flex-end;
-
-    /* 🔹 Correções para texto longo */
-    word-wrap: break-word;   /* Permite quebra de linha automática */
-    overflow-wrap: break-word;  /* Garante que palavras longas sejam quebradas */
-    white-space: pre-line;   /* Mantém a formatação e quebras de linha */
-}
-
-.bot-message {
-    text-align: left;
-    color: #00ff99;
-    margin: 5px 0;
-    font-weight: bold;
-    padding: 8px;
-    border-radius: 8px;
-    background: rgba(0, 255, 150, 0.3);
-    max-width: 80%;
-    align-self: flex-start;
-
-    /* 🔹 Correções para texto longo */
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-    white-space: pre-line;
-}
-
-#user-input {
-    width: 90%;
-    height: 80px; /* Altura ajustável para múltiplas linhas */
-    padding: 12px;
-    font-size: 16px;
-    border: 2px solid #00ccff;
-    outline: none;
-    border-radius: 10px;
-    background: rgba(0, 50, 150, 0.5);
-    color: white;
-    
-    /* 🔹 Permitir quebra de linha */
-    resize: none; /* Impede redimensionamento manual */
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-    white-space: pre-wrap;
-}
-
-        /* 🚀 Botão de Enviar */
-        #send-btn {
-            padding: 12px 20px;
-            font-size: 16px;
-            border-radius: 10px;
-            background: linear-gradient(45deg, #00ffcc, #0099ff);
-            color: white;
-            border: none;
-            cursor: pointer;
-            transition: 0.3s ease-in-out;
-            box-shadow: 0px 0px 10px rgba(0, 255, 150, 0.4);
-        }
-
-        #send-btn:hover {
-            background: linear-gradient(45deg, #0099ff, #00ffcc);
-            box-shadow: 0px 0px 15px rgba(0, 255, 150, 0.6);
-        }
-
-        /* ✨ Responsividade */
-        @media screen and (max-width: 600px) {
-            .chat-container {
-                width: 90%;
-            }
-        }
-    </style>
+    <title>Dr. Bot Plant - Assistente Virtual | Free Game Plant</title>
+    <link rel="stylesheet" href="../../src/assets/css/bot.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../../src/assets/images/drbotplant.jpg" type="image/png" sizes="32x32">
 </head>
 <body>
-
-    <!-- 🌿 Container do Dr. Bot Plant -->
-    <h1>Dr. Bot Plant</h1>
-    <h2>Seu assistente virtual da FGP!</h2>
-    <p>Digite sua mensagem abaixo e clique em "Enviar".</p>
-    
-    <div class="chat-container">
-        <div id="chat-box"></div>
-        <textarea id="user-input" placeholder="Digite sua mensagem..."></textarea>
-        <button id="send-btn">Enviar</button>
+    <div id="app">
+        <header class="main-header">
+            <div class="bot-avatar">
+                <div class="avatar-container">
+                    <span class="avatar-icon">🤖</span>
+                </div>
+            </div>
+            <h1>Dr. Bot Plant</h1>
+            <p class="subtitle">Seu assistente virtual inteligente da FGP</p>
+        </header>
+        <main class="chat-main">
+            <div class="chat-container">
+                <div class="chat-header">
+                    <h2>Chat com o Dr. Bot Plant</h2>
+                    <p>Digite sua mensagem abaixo para conversar com nosso assistente</p>
+                </div>
+                <div id="chat-box" class="chat-messages">
+                    <div class="bot-message welcome-message">
+                        <div class="message-avatar">🤖</div>
+                        <div class="message-content">
+                            <p>Olá! Eu sou o Dr. Bot Plant, seu assistente virtual da Free Game Plant. Como posso ajudá-lo hoje?</p>
+                            <span class="message-time">Agora</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="chat-input-container">
+                    <textarea id="user-input" placeholder="Digite sua mensagem aqui..." rows="3"></textarea>
+                    <div class="chat-actions">
+                        <button id="send-btn" class="btn btn-primary">
+                            <span class="btn-icon">📤</span>
+                            <span class="btn-text">Enviar Mensagem</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="bot-features">
+                <div class="feature-card">
+                    <span class="feature-icon">💡</span>
+                    <h3>Assistente Inteligente</h3>
+                    <p>Responde perguntas e ajuda com informações sobre a FGP</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">🎓</span>
+                    <h3>Aprendizado Contínuo</h3>
+                    <p>Melhora constantemente com novas interações</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">🛡️</span>
+                    <h3>Respeito Garantido</h3>
+                    <p>Interações sempre com educação e respeito</p>
+                </div>
+            </div>
+            <div class="action-buttons">
+                <button id="teach-btn" class="btn btn-secondary">
+                    <span class="btn-icon">🎓</span>
+                    <span class="btn-text">Ensinar o Bot</span>
+                    <span class="btn-subtext">Ajude a melhorar nosso assistente</span>
+                </button>
+                <a href="../start.html" class="btn btn-back">
+                    <span class="btn-icon">←</span>
+                    <span class="btn-text">Voltar ao Início</span>
+                </a>
+            </div>
+        </main>
+        <footer class="main-footer">
+            <p>Dr. Bot Plant - Assistente Virtual da Free Game Plant</p>
+            <p class="footer-sub">Sempre aprendendo e evoluindo para melhor atendê-lo</p>
+        </footer>
     </div>
-        <a href="../start.html">
-            <p id="send-btn"><<<< Voltar</p>
-        </a>
-
-<button id="teach-btn">Ensinar o Bot (com respeito!)</button>
-
-    <!-- 🔹 Inclusão do JavaScript -->
-    <script type="module" src="../../src/script/js/drbot.js"></script>
+    <div class="background-container">
+        <div class="background-overlay"></div>
+        <img src="../../src/assets/images/free game plant original model.png" alt="Free Game Plant Background" class="background-image">
+    </div>
+    <script type="module" src="../../src/js/drbot.js"></script>
 </body>
 </html>

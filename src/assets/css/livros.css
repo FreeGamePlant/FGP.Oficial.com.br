@@ -1,6 +1,6 @@
-/* Estilos básicos para uma página de livro */
+
 body {
-    background: linear-gradient(to bottom, #ffe5b4, #704f28); /* Pergaminho amarelado com tom quente */
+    background: linear-gradient(to bottom, #ffe5b4, #704f28); 
     font-family: 'Merriweather', serif;
     color: #333;
     margin: 0;
@@ -8,33 +8,33 @@ body {
     line-height: 1.8;
   }
   
-  /* Estrutura principal do capítulo */
+  
   .chapter-container {
     max-width: 850px;
     margin: 50px auto;
     padding: 40px 60px;
-    background-color: #fffae5; /* Tom mais suave para facilitar a leitura */
-    border: 4px solid #B37E2F; /* Bordas reforçadas para destaque */
-    box-shadow: 0 8px 20px rgba(0,0,0,0.3); /* Sombras mais profundas para dar elegância */
-    border-radius: 12px; /* Bordas arredondadas para suavidade */
+    background-color: #fffae5; 
+    border: 4px solid #B37E2F; 
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3); 
+    border-radius: 12px; 
   }
   
-  /* Título principal */
+  
   h1 {
     text-align: center;
-    font-size: 48px; /* Maior impacto visual */
+    font-size: 48px; 
     font-weight: bold;
-    color: #58391b; /* Dourado queimado */
+    color: #58391b; 
     text-transform: uppercase;
     letter-spacing: 2.5px;
     padding: 15px;
     border-radius: 10px;
     border: 6px solid #2a2a2a;
-    background: linear-gradient(to right, #704f28, #b37e2f); /* Fundo com transição elegante */
-    text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.4); /* Efeito de profundidade */
+    background: linear-gradient(to right, #704f28, #b37e2f); 
+    text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.4); 
   }
   
-  /* Subtítulo */
+  
   h2 {
     font-size: 26px;
     font-weight: bold;
@@ -44,7 +44,7 @@ body {
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
   }
   
-  /* Parágrafos gerais */
+  
   p {
     font-size: 20px;
     text-align: justify;
@@ -52,21 +52,21 @@ body {
     color: #3d2a14;
   }
   
-  /* Destaque para falas */
+  
   .dialogue {
     font-style: italic;
     margin: 20px 40px;
-    border-left: 6px solid #d8a35c; /* Tom dourado suave */
+    border-left: 6px solid #d8a35c; 
     padding-left: 15px;
-    color: #49341d; /* Cor mais quente para falas */
+    color: #49341d; 
   }
   
-  /* Parágrafos narrativos com recuo */
+  
   .narrative {
     text-indent: 2em;
   }
   
-  /* Seção com fundo destacado para capítulos */
+  
   .section-title {
     font-size: 24px;
     font-weight: bold;
@@ -76,7 +76,7 @@ body {
     border-bottom: 2px solid #b37e2f;
   }
   
-  /* Botões de navegação */
+  
   .button {
     display: inline-block;
     padding: 12px 24px;
@@ -93,5 +93,5 @@ body {
   
   .button:hover {
     background-color: #704f28;
-    transform: scale(1.05); /* Pequena animação ao passar o mouse */
+    transform: scale(1.05); 
   }

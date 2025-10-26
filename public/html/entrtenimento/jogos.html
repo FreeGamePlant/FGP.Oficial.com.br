@@ -5,183 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>FGP • INFINITE PLANT STOCK</title>
 <link rel="icon" href="../../../src/assets/images/gamestore.png" type="image/png" sizes="32x32">
-  <style>
-:root {
-  --bg-dark:    #0d1117;
-  --card-bg:    rgba(255,255,255,0.05);
-  --primary:    #00ffcc;
-  --accent:     #ffce00;
-  --text-light: #e8e6e3;
-  --text-sub:   #b0b0b0;
-  --shadow:     rgba(0,0,0,0.6);
-  --radius:     10px;
-  --gap:        1.5rem;
-}
-
-* { box-sizing: border-box; margin:0; padding:0; }
-body {
-  font-family: 'Segoe UI', sans-serif;
-  background: var(--bg-dark);
-  color: var(--text-light);
-  line-height: 1.6;
-}
-.site-header {
-  text-align: center;
-  padding: 2rem 1rem;
-  background: var(--card-bg);
-  box-shadow: 0 4px 16px var(--shadow);
-  backdrop-filter: blur(6px);
-}
-.site-header .logo img {
-  width: 120px;
-  margin-bottom: 1rem;
-}
-.site-header h1 {
-  font-size: 2.5rem;
-  color: var(--accent);
-  letter-spacing: 1px;
-  margin-bottom: .5rem;
-}
-.site-header .subtitle {
-  color: var(--text-sub);
-  font-size: 1.1rem;
-}
-.games-grid {
-  display: grid;
-  gap: var(--gap);
-  padding: 2rem 1rem;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-@media (min-width: 600px)  { .games-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (min-width: 900px)  { .games-grid { grid-template-columns: repeat(3, 1fr); } }
-@media (min-width:1200px)  { .games-grid { grid-template-columns: repeat(4, 1fr); } }
-
-.game-card {
-  background: var(--card-bg);
-  border-radius: var(--radius);
-  overflow: hidden;
-  box-shadow: 0 6px 20px var(--shadow);
-  display: flex;
-  flex-direction: column;
-  transition: transform .3s ease, box-shadow .3s ease;
-}
-.game-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 10px 28px var(--shadow);
-}
-.game-thumb {
-  width: 100%;
-  aspect-ratio: 16/9;
-  object-fit: cover;
-}
-
-.game-info {
-  padding: 1rem;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-.game-info h2 {
-  font-size: 1.4rem;
-  color: var(--primary);
-  margin-bottom: .5rem;
-  text-transform: uppercase;
-}
-.game-info .description {
-  flex: 1;
-  font-size: .95rem;
-  margin-bottom: 1rem;
-  color: var(--text-sub);
-}
-.game-info .specs {
-  list-style: none;
-  margin-bottom: 1rem;
-  font-size: .85rem;
-}
-.game-info .specs li {
-  margin: .25rem 0;
-}
-
-.btn-download {
-  display: inline-block;
-  text-align: center;
-  padding: .6rem 1.2rem;
-  background: linear-gradient(135deg, var(--accent), #ff9f00);
-  color: var(--bg-dark);
-  font-weight: bold;
-  border: none;
-  border-radius: 6px;
-  box-shadow: 0 4px 14px var(--shadow);
-  text-transform: uppercase;
-  transition: transform .2s ease, box-shadow .2s ease;
-  cursor: pointer;
-  text-decoration: none;
-}
-.btn-download:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 18px var(--shadow);
-}
-.btn-download:active {
-  transform: translateY(0);
-  box-shadow: 0 3px 8px var(--shadow);
-}
-.btn-download[disabled] {
-  opacity: .5;
-  cursor: not-allowed;
-}
-
-.coming-soon .game-thumb {
-  filter: grayscale(80%);
-  opacity: .8;
-}
-.coming-soon h2 { opacity: .7; }
-
-.site-footer {
-  text-align: center;
-  padding: 1.5rem 1rem;
-  margin-top: auto;
-  background: var(--card-bg);
-  box-shadow: 0 -4px 12px var(--shadow);
-}
-.site-footer .footer-links {
-  margin-bottom: .5rem;
-}
-.site-footer .btn-secondary {
-  display: inline-block;
-  margin: 0 .5rem;
-  color: var(--text-light);
-  font-size: .9rem;
-  text-transform: uppercase;
-  text-decoration: none;
-  padding: .4rem .8rem;
-  border: 2px solid var(--accent);
-  border-radius: 4px;
-  transition: background .2s ease, color .2s ease;
-}
-.site-footer .btn-secondary:hover {
-  background: var(--accent);
-  color: var(--bg-dark);
-}
-.site-footer small {
-  color: var(--text-sub);
-  font-size: .8rem;
-}
-
-  </style>
+    <link rel="stylesheet" href="../../../src/assets/css/j.css">
 </head>
 <body>
-
   <header class="site-header">
     <div class="logo">
       <img src="../../../src/assets/images/lOGOFGP.png" alt="Logo FGP" />
     </div>
     <h1>Jogos da FGP</h1>
   </header>
-
   <main class="games-grid">
-
-
     <article class="game-card">
       <img src="../../../src/assets/images/SIU2D" alt="T singularity" class="game-thumb" />
       <div class="game-info">
@@ -190,17 +23,34 @@ body {
           SIU2D é um Simulador do Universo, em Cartoon 2d , ainda em beta, aproveite e avalie como o jogo está ;D , em seu Lançamento Oficial, poderão Instalar ele.
         </p>
         <ul class="specs">
-          <li><strong>Gênero:</strong> Simulator, Achivements, missions</li>
+          <li><strong>Gênero:</strong> Simulação, Missão, (averá mais)</li>
           <li><strong>Engine:</strong> VS Code</li>
-          <li><strong>Plataforma:</strong> Windows, Android/IOS</li>
-          <li><strong>Idioma:</strong> + 10 languages</li>
-          <li><strong>Versão:</strong> 0.0.5</li>
+          <li><strong>Plataforma:</strong> Windows (Android, iOS , ainda não)</li>
+          <li><strong>Idioma:</strong> contem mais de 10 idiomas..</li>
+          <li><strong>Versão:</strong> 0.01</li>
+          <li><strong>Data de lançamento:</strong> August/20/2025</li>
+          <li><strong>Protagonista:</strong> T Singularity</li>
         </ul>
         <a href="https://freegameplant.github.io/SIU2D/" class="btn-download">BETA</a>
       </div>
     </article>
-
-    
+        <article class="game-card">
+      <img src="../../../src/assets/images/Chess" alt="Dr Joker Pawn" class="game-thumb" />
+      <div class="game-info">
+        <h2>Chess RPG</h2>
+        <p class="description">
+          Chess RPG é um Jogo de RPG em Xadrex, offline e Online, você vai upando a sua peça de nível e etc. até mesmo tem skins para suas peças. cada peça é um personagem seu! se aventure no mundo de guerras Xadrezanas!
+        </p>
+        <ul class="specs">
+          <li><strong>Gênero:</strong> Simulação, Missão, (averá mais)</li>
+          <li><strong>Engine:</strong> VS Code</li>
+          <li><strong>Plataforma:</strong> Windows (Android, iOS , ainda não)</li>
+          <li><strong>Idioma:</strong> Nulo - (Ainda em Desenvolvimento)</li>
+          <li><strong>Versão:</strong> 0.0</li><li><strong>Protagonista:</strong> Dr Joker Pawn</li>
+        </ul>
+        <a href="#" class="btn-download">Ainda em Desenvolvimento...</a>
+      </div>
+    </article>
     <article class="game-card">
       <img src="../../../src/assets/images/Ovynay the time traveler.png" alt="Ovynay" class="game-thumb" />
       <div class="game-info">
@@ -212,12 +62,11 @@ body {
           <li><strong>Gênero:</strong> Ação‑Aventura, Puzzle, Viagem no Tempo</li>
           <li><strong>Engine:</strong> Game Maker</li>
           <li><strong>Plataforma:</strong> Windows, Android, iOS</li>
-          <li><strong>Idioma:</strong> PT/EN/ES</li>
+          <li><strong>Idioma:</strong> PT/EN/ES</li><li><strong>Protagonista:</strong> Ovynay</li>
         </ul>
         <a class="btn-download">Ainda em Desenvolvimento...</a>
       </div>
     </article>
-
     <article class="game-card coming-soon">
       <img src="jogo2_placeholder.png" alt="Em breve" class="game-thumb" />
       <div class="game-info">
@@ -227,7 +76,6 @@ body {
       </div>
     </article>
   </main>
-  
   <footer class="site-footer">
     <div class="footer-links">
       <a href="../entretenimento.html" class="btn-secondary">← Voltar</a>
@@ -235,15 +83,5 @@ body {
     </div>
     <small>© 2025 Free Game Plant. Todos os direitos reservados.</small>
   </footer>
-
 </body>
 </html>
-
-
-
-
-
-
-
-
-

@@ -1,6 +1,4 @@
-/* ──────────────────────────────────  
-   Variáveis de Tema FGP  
-─────────────────────────────────── */
+
 :root {
     --fgp-bg: #0d1117;
     --fgp-card-bg: rgba(255,255,255,0.05);
@@ -10,9 +8,6 @@
     --fgp-shadow: rgba(0,0,0,0.6);
   }
   
-  /* ──────────────────────────────────  
-     Reset & Base  
-  ─────────────────────────────────── */
   * {
     box-sizing: border-box;
     margin: 0; padding: 0;
@@ -25,10 +20,6 @@
     display: flex;
     flex-direction: column;
   }
-  
-  /* ──────────────────────────────────  
-     Header  
-  ─────────────────────────────────── */
   .site-header {
     text-align: center;
     padding: 2rem 1rem;
@@ -47,9 +38,6 @@
     text-shadow: 2px 2px 6px var(--fgp-shadow);
   }
   
-  /* ──────────────────────────────────  
-     Grid de Releases  
-  ─────────────────────────────────── */
   #releases-container {
     display: grid;
     gap: 1.5rem;
@@ -59,7 +47,7 @@
     margin: 0 auto;
   }
   
-  /* Cards de lançamento */
+  
   .release-card {
     background: var(--fgp-card-bg);
     border-radius: 10px;
@@ -101,7 +89,7 @@
     color: var(--fgp-text);
   }
   
-  /* Botão “Saiba Mais” */
+  
   .release-info .btn {
     align-self: flex-start;
     background: linear-gradient(135deg, var(--fgp-accent) 0%, #ff9f00 100%);
@@ -123,9 +111,6 @@
     box-shadow: 0 3px 8px var(--fgp-shadow);
   }
   
-  /* ──────────────────────────────────  
-     Footer  
-  ─────────────────────────────────── */
   .site-footer {
     text-align: center;
     padding: 1rem;
@@ -135,9 +120,6 @@
     box-shadow: 0 -2px 8px var(--fgp-shadow);
   }
   
-  /* ──────────────────────────────────  
-     Responsividade  
-  ─────────────────────────────────── */
   @media (min-width: 480px) {
     #releases-container {
       grid-template-columns: repeat(2, 1fr);

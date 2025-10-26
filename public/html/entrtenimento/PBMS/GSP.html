@@ -1,429 +1,111 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FGP / PBMS / GSP</title>
     <link rel="stylesheet" href="../../../../src/assets/css/styles.css">
-<link rel="icon" href="../../../../src/assets/images/song.png" type="image/png" sizes="32x32">
-    <style>
-        /* Estilos principais do projeto */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
-}
-
-#app {
-    text-align: center;
-    padding: 20px;
-}
-
-
-
-/* Estilos gerais */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #001f64;
-}
-
-#app {
-    text-align: center;
-    padding: 20px;
-}
-
-/* Estilos para telas pequenas (smartphones) */
-@media (max-width: 600px) {
-    body {
-        font-size: 14px;
-    }
-
-    #app {
-        padding: 10px;
-    }
-}
-
-/* Estilos para telas médias (tablets) */
-@media (min-width: 601px) and (max-width: 1024px) {
-    body {
-        font-size: 16px;
-    }
-
-    #app {
-        padding: 15px;
-    }
-}
-
-/* Estilos para telas grandes (desktops) */
-@media (min-width: 1025px) {
-    body {
-        font-size: 18px;
-    }
-
-    #app {
-        padding: 20px;
-    }
-}
-
-
-/* Exemplo de layout com Flexbox */
-#app {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-}
-
-header, main, footer {
-    width: 100%;
-    max-width: 1200px;
-    margin: 10px;
-    padding: 10px;
-    background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-h1 {
-    font-size: 2em;
-    margin-bottom: 20px;
-    text-align: center;
-    background-color: aqua;
-    border: green 5px solid;
-}
-
-#a {
-    font-size: 1.5em;
-    margin-bottom: 20px;
-    text-align: center;
-    background-color: aquamarine;
-    position: relative;
-    top: -25px;
-    border: green 4px solid;
-}
-
-#b {
-    font-size: 1.5em;
-    margin-bottom: 20px;
-    text-align: center;
-    background-color: aquamarine;
-    position: relative;
-    top: -20px;
-}
-
-.align {
-    text-align: center;
-}
-
-.button {
-    display: flex;
-    padding: 10px 20px;
-    margin: 20px;
-    background-color: #007BFF;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-    box-shadow: 0 20px 35px rgb(0, 0, 0);
-    background: linear-gradient(135deg, #ffce00 0%, #ff9f00 100%);
-}
-.button:hover {
-    background-color: #0056b3;
-    padding: 1%;
-}
-.button:active {
-    background-color: #004085;
-    box-shadow: 0 10px 20px rgb(0, 0, 0);
-}
-.button:focus {
-    outline: none;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-}
-.button:disabled {
-    background-color: #007BFF;
-    opacity: 0.5;
-    cursor: not-allowed;
-}
-
-
-.imagemFundo {
-    width: 100%;
-    position: fixed;
-    z-index: -1;
-    top: 0;
-    opacity: 0.5;
-}
-
-.whiteclass {
-    color: white;
-}
-
-a {
-    text-decoration: none;
-}
-
-#m {
-    font-size: 1.5em;
-    margin-bottom: 20px;
-    text-align: center;
-    position: relative;
-    top: 70px;
-}
-
-#n {
-    font-size: 1.5em;
-    margin-bottom: 20px;
-    text-align: center;
-    position: relative;
-    top: 70px;
-}
-
-#nbp {
-    font-size: 1.5em;
-    margin-bottom: 20px;
-    text-align: center;
-    position: relative;
-    top: 70px;
-}
-
-
-h1 {
-    text-align: center;
-    color: #1a0000;
-    font-size: 2.5rem;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    text-shadow: 2px 2px 4px #000000;
-    font-family: 'Arial', sans-serif;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-}
-p.align {
-    text-align: center;
-    color: #b5b800;
-    font-size: 1.5rem;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    text-shadow: 2px 2px 4px #000000;
-    font-family: 'Arial', sans-serif;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-}
-
-.logoGame {
-    width: 150px;
-    border-radius: 10%;
-    border: 2px solid #000;
-}
-
-.container {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    text-align: center;
-    background-color: #f9f9f9;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-h1 {
-    font-size: 2rem;
-    margin-bottom: 20px;
-}
-
-form {
-    margin-bottom: 20px;
-}
-
-label {
-    display: block;
-    margin: 10px 0 5px;
-}
-
-input {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #0056b3;
-}
-
-/* Estilo para mensagens de alerta */
-.alert-message {
-    color: red;
-    font-weight: bold;
-}
-
-
-.button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;            /* necessário para o ::before */
-    padding: 10px 20px;
-    margin: 20px;
-    background: linear-gradient(135deg, #ffce00 0%, #ff9f00 100%);
-    color: #001f64;
-    font-weight: bold;
-    text-transform: uppercase;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    overflow: hidden;              /* esconde o brilho fora do botão */
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 8px 16px rgba(0,0,0,0.4);
-  }
-  
-  /* Faixa brilhante */
-  .button::before {
-    content: "";
-    position: absolute;
-    top: -50%;
-    left: -75%;
-    width: 50%;
-    height: 200%;
-    background: rgba(255, 255, 255, 0.171);
-    transform: skewX(-30deg) translateX(0);
-    transition: transform 0.7s ease-in-out;
-  }
-  
-  /* Hover/Focus anima o brilho e dá pop no botão */
-  .button:hover,
-  .button:focus {
-    transform: scale(1.05);
-    box-shadow: 0 12px 24px rgba(0,0,0,0.5);
-  }
-  
-  .button:hover::before,
-  .button:focus::before {
-    transform: skewX(-30deg) translateX(300%);
-  }
-  
-  /* Active (clique) */
-  .button:active {
-    transform: scale(0.98);
-    box-shadow: 0 6px 12px rgba(0,0,0,0.4);
-  }
-  
-  /* Disabled */
-  .button:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-  }
-  
-  /* Se quiser manter o padding animado no hover, combine assim: */
-  .button:hover {
-    padding: 12px 24px;  /* sutil expansão */
-  }
-
-  #app {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem;
-  }
-  
-  header,
-  main,
-  footer {
-    width: 100%;
-    max-width: 1200px;
-    background: var(--color-bg-card);
-    border-radius: 12px;
-    padding: 1.5rem;
-    margin: 1rem 0;
-    box-shadow: 0 8px 16px var(--color-shadow);
-    backdrop-filter: blur(8px);
-    background-color: rgba(169, 169, 169, 0.418);
-  }
-  
-        .n {
-            position: relative;
-            color: #FF0000;
-            font-size: 20px;
-            font-weight: bold;
-            text-align: center;
-            margin: 20px 0;
-            background-color: aquamarine;
-            padding: 10px;
-            border-radius: 5px;
-            box-shadow: 5px 14px 48px rgb(0, 0, 0);
-            top: 20%;
-        }
-
-        h2 , audio{
-            color: #FF0000;
-            font-size: 20px;
-            font-weight: bold;
-            text-align: center;
-            margin: 20px 0;
-            background-color: aquamarine;
-            padding: 10px;
-            border-radius: 5px;
-            box-shadow: 5px 14px 48px rgb(0, 0, 0);
-            position: relative;
-            top: 100px;
-            align-items: center;
-            display: flex;
-            justify-content: center;
-            flex-direction: column;
-            width: 100%;
-        }
-
-        audio::-internal-media-controls-download-button {
-    display: none;
-}
-audio::-webkit-media-controls-enclosure {
-    overflow: hidden;
-}
-audio::-webkit-media-controls-panel {
-    width: calc(100% + 30px); /* Ajusta o espaço perdido */
-}
-
-    </style>
+    <link rel="stylesheet" href="../../../../src/assets/css/gsp.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="../../../../favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../../../../src/assets/images/lOGOFGP.png" type="image/png" sizes="32x32">
 </head>
 <body>
-    <h1>GSP CLUBE DE TRILHAS SONORAS OFICIAIS!</h1>
-    <p class="align" id="a">Sejam Muito Bem-Vindos a GSP!</p>
-    <p class="n">Aqui você pode ouvir as trilhas sonoras e melodias do nosso clube! apenas melodias oficiais da franquia FGP!</p>
-    <p class="n">Aproveite!</p>
-
-    <div class="containerDeMusicas">
-        <div class="musica">
-            <h2>Musica 1</h2>
-            <audio controls controlsList="nodownload">
-                <source src="../../../../src/assets/sounds/fgp-DustMountains-day-officialVersion.mp3" type="audio/mpeg">
-            </audio>
-        </div>
-        <div class="musica">
-            <h2>Musica 2</h2>
-            <audio controls controlsList="nodownload">
-                <source src="/src/assets/musicas/musica2.mp3" type="audio/mpeg">
-            </audio>
-        </div>
-        <!-- Adicione mais músicas conforme necessário -->
+    <div id="app">
+        <header class="main-header">
+            <h1>GSP CLUBE DE TRILHAS SONORAS OFICIAIS!</h1>
+            <p class="subtitle" id="a">Sejam Muito Bem-Vindos a GSP!</p>
+            <p class="description">Aqui você pode ouvir as trilhas sonoras e melodias do nosso clube! Apenas melodias oficiais da franquia FGP!</p>
+        </header>
+        <section id="cards-section" class="cards-section active">
+            <h2 class="section-title">Nossas Trilhas Sonoras</h2>
+            <div class="cards-container">
+                <div class="card" data-target="siu2d-section">
+                    <div class="card-icon">🎵</div>
+                    <h3 class="card-title">SIU2D</h3>
+                    <p class="card-description">Trilha sonora completa do jogo SIU2D</p>
+                    <div class="card-badge">OFICIAL</div>
+                </div>
+                <div class="card coming-soon">
+                    <div class="card-icon">⏳</div>
+                    <h3 class="card-title">Em Breve</h3>
+                    <p class="card-description">Novas trilhas sonoras em desenvolvimento</p>
+                    <div class="card-badge">EM BREVE</div>
+                </div>
+            </div>
+        </section>
+        <section id="siu2d-section" class="content-section">
+            <div class="section-header">
+                <button class="back-button" onclick="showCardsSection()">
+                    <span class="back-icon">✕</span>
+                    Voltar
+                </button>
+                <h2>SIU2D - Trilha Sonora Completa</h2>
+                <p>Ouça todas as trilhas sonoras oficiais do jogo SIU2D</p>
+            </div>
+            <div class="music-container">
+                <div class="music-card">
+                    <div class="music-info">
+                        <h3>1° Traveling through the cosmos</h3>
+                        <p class="music-duration">Trilha principal do SIU2D</p>
+                    </div>
+                    <audio controls controlsList="nodownload">
+                        <source src="../../../../src/assets/sounds/SIU2D_soundtrack1.mp3" type="audio/mpeg">
+                        Seu navegador não suporta o elemento de áudio.
+                    </audio>
+                </div>
+                <div class="music-card">
+                    <div class="music-info">
+                        <h3>2° The Universal Rock Star</h3>
+                        <p class="music-duration">Trilha especial do SIU2D</p>
+                    </div>
+                    <audio controls controlsList="nodownload">
+                        <source src="../../../../src/assets/sounds/SIU2D_soundtrack2.mp3" type="audio/mpeg">
+                        Seu navegador não suporta o elemento de áudio.
+                    </audio>
+                </div>
+                <div class="music-card coming-soon">
+                    <div class="music-info">
+                        <h3>3° Nova Trilha</h3>
+                        <p class="music-duration">Em desenvolvimento</p>
+                    </div>
+                    <div class="coming-soon-overlay">
+                        <span>EM BREVE</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <footer class="main-footer">
+            <p>GSP - Clube de Trilhas Sonoras Oficiais da FGP</p>
+            <p class="footer-sub">Música de qualidade para suas experiências</p>
+        </footer>
     </div>
-
+    <div class="background-container">
+        <div class="background-overlay"></div>
+        <img src="../../../../src/assets/images/free game plant original model.png" alt="Free Game Plant Background" class="background-image">
+    </div>
+    <script>
+        function showCardsSection() {
+            document.getElementById('cards-section').classList.add('active');
+            document.getElementById('siu2d-section').classList.remove('active');
+        }
+        function showContentSection(sectionId) {
+            document.getElementById('cards-section').classList.remove('active');
+            document.getElementById(sectionId).classList.add('active');
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.card:not(.coming-soon)');
+            cards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const targetSection = this.getAttribute('data-target');
+                    if (targetSection) {
+                        showContentSection(targetSection);
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>

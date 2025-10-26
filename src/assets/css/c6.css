@@ -1,0 +1,79 @@
+body {
+background: linear-gradient(to bottom, #ffe5b4, #704f28); 
+font-family: 'Merriweather', serif;
+color: #333;
+margin: 0;
+padding: 0;
+line-height: 1.8;
+}
+.chapter-container {
+max-width: 850px;
+margin: 50px auto;
+padding: 40px 60px;
+background-color: #fffae5; 
+border: 4px solid #B37E2F; 
+box-shadow: 0 8px 20px rgba(0,0,0,0.3); 
+border-radius: 12px; 
+}
+h1 {
+text-align: center;
+font-size: 48px; 
+font-weight: bold;
+color: #58391b; 
+text-transform: uppercase;
+letter-spacing: 2.5px;
+padding: 15px;
+border-radius: 10px;
+border: 6px solid #2a2a2a;
+background: linear-gradient(to right, #704f28, #b37e2f); 
+text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.4); 
+}
+h2 {
+font-size: 26px;
+font-weight: bold;
+margin-bottom: 30px;
+text-align: justify;
+color: #6f4d27;
+text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+p {
+font-size: 20px;
+text-align: justify;
+margin-bottom: 25px;
+color: #3d2a14;
+}
+.dialogue {
+font-style: italic;
+margin: 20px 40px;
+border-left: 6px solid #d8a35c; 
+padding-left: 15px;
+color: #49341d; 
+}
+.narrative {
+text-indent: 2em;
+}
+.section-title {
+font-size: 24px;
+font-weight: bold;
+margin: 35px 0 25px;
+padding-bottom: 8px;
+color: #6d4827;
+border-bottom: 2px solid #b37e2f;
+}
+.button {
+display: inline-block;
+padding: 12px 24px;
+background: linear-gradient(to right, #8f5a28, #b37e2f);
+color: #fff;
+text-decoration: none;
+font-size: 18px;
+font-weight: bold;
+text-align: center;
+border-radius: 8px;
+transition: background-color 0.3s, transform 0.2s;
+margin-top: 30px;
+}
+.button:hover {
+background-color: #704f28;
+transform: scale(1.05); 
+}
