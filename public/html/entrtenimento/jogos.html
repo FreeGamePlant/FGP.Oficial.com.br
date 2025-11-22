@@ -3,9 +3,637 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="FGP Store - Descubra jogos incríveis como SIU2D, Chess RPG, The Life of Atoms e muito mais!">
   <title>FGP • INFINITE PLANT STOCK</title>
-<link rel="icon" href="../../../src/assets/images/gamestore.png" type="image/png" sizes="32x32">
-    <link rel="stylesheet" href="../../../src/assets/css/j.css">
+  <link rel="icon" href="../../../src/assets/images/gamestore.png" type="image/png" sizes="32x32">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../src/assets/css/j.css">
+  <style>
+    :root {
+      --bg-dark: #0a0e17;
+      --bg-darker: #05080f;
+      --card-bg: rgba(255, 255, 255, 0.08);
+      --card-bg-hover: rgba(255, 255, 255, 0.12);
+      --primary: #00e5ff;
+      --primary-glow: rgba(0, 229, 255, 0.4);
+      --accent: #ffce00;
+      --accent-glow: rgba(255, 206, 0, 0.4);
+      --danger: #ff4757;
+      --success: #2ed573;
+      --text-light: #f0f6fc;
+      --text-sub: #8b949e;
+      --text-muted: #484f58;
+      --shadow: rgba(0, 0, 0, 0.7);
+      --shadow-heavy: rgba(0, 0, 0, 0.9);
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --radius-xl: 24px;
+      --gap: 1.5rem;
+      --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      --gradient-primary: linear-gradient(135deg, var(--primary) 0%, #0099cc 100%);
+      --gradient-accent: linear-gradient(135deg, var(--accent) 0%, #ff9f00 100%);
+      --gradient-dark: linear-gradient(135deg, var(--bg-dark) 0%, var(--bg-darker) 100%);
+      --gradient-card: linear-gradient(145deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+    }
+    * { 
+      box-sizing: border-box; 
+      margin:0; 
+      padding:0; 
+    }
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+    body {
+      font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+      background: var(--gradient-dark);
+      color: var(--text-light);
+      line-height: 1.6;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        radial-gradient(circle at 10% 20%, rgba(0, 229, 255, 0.05) 0%, transparent 20%),
+        radial-gradient(circle at 90% 60%, rgba(255, 206, 0, 0.05) 0%, transparent 20%),
+        radial-gradient(circle at 50% 80%, rgba(255, 255, 255, 0.03) 0%, transparent 20%);
+      z-index: -1;
+      pointer-events: none;
+    }
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+    /* Header melhorado */
+    .site-header {
+      text-align: center;
+      padding: 3rem 1rem;
+      background: var(--card-bg);
+      box-shadow: 0 8px 32px var(--shadow-heavy);
+      -webkit-backdrop-filter: blur(12px);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      position: relative;
+      overflow: hidden;
+    }
+    .site-header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(0, 229, 255, 0.03) 50%, 
+        transparent 100%);
+      animation: headerShine 8s infinite linear;
+    }
+    @keyframes headerShine {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+    .site-header .logo {
+      margin-bottom: 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
+    .site-header .logo img {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--primary);
+      box-shadow: 0 0 30px var(--primary-glow);
+      transition: var(--transition);
+    }
+    .site-header .logo img:hover {
+      transform: scale(1.05) rotate(5deg);
+      box-shadow: 0 0 40px var(--primary-glow);
+    }
+    .site-header h1 {
+      font-size: 3.5rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--primary) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: 1px;
+      margin-bottom: .5rem;
+      text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      position: relative;
+      z-index: 1;
+    }
+    .site-header .subtitle {
+      color: var(--text-sub);
+      font-size: 1.3rem;
+      font-weight: 300;
+      max-width: 600px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+    /* Filtros e busca */
+    .filters-section {
+      padding: 2rem 1rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+      align-items: center;
+    }
+    .search-box {
+      position: relative;
+      flex: 1;
+      max-width: 500px;
+    }
+    .search-box input {
+      width: 100%;
+      padding: 1rem 1rem 1rem 3rem;
+      background: var(--card-bg);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius-lg);
+      color: var(--text-light);
+      font-size: 1rem;
+      transition: var(--transition);
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+    }
+    .search-box input:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px var(--primary-glow);
+    }
+    .search-box::before {
+      content: '🔍';
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-sub);
+    }
+    .filter-buttons {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .filter-btn {
+      padding: 0.7rem 1.2rem;
+      background: var(--card-bg);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius-md);
+      color: var(--text-light);
+      cursor: pointer;
+      transition: var(--transition);
+      font-weight: 500;
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+    }
+    .filter-btn:hover, .filter-btn.active {
+      background: var(--primary);
+      color: var(--bg-dark);
+      border-color: var(--primary);
+      box-shadow: 0 0 15px var(--primary-glow);
+    }
+    /* Grid de jogos melhorado */
+    .games-grid {
+      display: grid;
+      gap: var(--gap);
+      padding: 2rem 1rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    @media (min-width: 576px)  { .games-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 768px)  { .games-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 992px)  { .games-grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (min-width: 1200px) { .games-grid { grid-template-columns: repeat(4, 1fr); } }
+    /* Cards de jogo melhorados */
+    .game-card {
+      background: var(--gradient-card);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: 0 10px 30px var(--shadow);
+      display: flex;
+      flex-direction: column;
+      transition: var(--transition);
+      position: relative;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+    }
+    .game-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(0, 229, 255, 0.03) 0%, transparent 50%);
+      opacity: 0;
+      transition: var(--transition);
+    }
+    .game-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px var(--shadow-heavy);
+      background: var(--card-bg-hover);
+    }
+    .game-card:hover::before {
+      opacity: 1;
+    }
+    .game-badge {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      padding: 0.4rem 0.8rem;
+      background: var(--accent);
+      color: var(--bg-dark);
+      font-size: 0.8rem;
+      font-weight: 700;
+      border-radius: var(--radius-sm);
+      z-index: 2;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+    .game-badge.free {
+      background: var(--success);
+    }
+    .game-badge.coming-soon {
+      background: var(--text-muted);
+    }
+    .game-thumb {
+      width: 100%;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+    .game-card:hover .game-thumb {
+      transform: scale(1.05);
+    }
+    .game-info {
+      padding: 1.5rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      z-index: 1;
+    }
+    .game-info h2 {
+      font-size: 1.5rem;
+      color: var(--primary);
+      margin-bottom: .5rem;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+    .game-info .description {
+      flex: 1;
+      font-size: .95rem;
+      margin-bottom: 1.2rem;
+      color: var(--text-sub);
+      line-height: 1.5;
+    }
+    .game-info .specs {
+      list-style: none;
+      margin-bottom: 1.5rem;
+      font-size: .85rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .game-info .specs li {
+      padding: 0.3rem 0.6rem;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: var(--radius-sm);
+      color: var(--text-sub);
+    }
+    .game-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: auto;
+    }
+    .game-rating {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      color: var(--accent);
+    }
+    .game-rating span {
+      color: var(--text-sub);
+      font-size: 0.8rem;
+    }
+    .game-size {
+      color: var(--text-sub);
+      font-size: 0.8rem;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 0.3rem 0.6rem;
+      border-radius: var(--radius-sm);
+    }
+    /* Botões melhorados */
+    .btn-download {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      text-align: center;
+      padding: 1rem 1.5rem;
+      background: var(--gradient-accent);
+      color: var(--bg-dark);
+      font-weight: 700;
+      border: none;
+      border-radius: var(--radius-md);
+      box-shadow: 0 6px 20px var(--shadow);
+      text-transform: uppercase;
+      transition: var(--transition);
+      cursor: pointer;
+      text-decoration: none;
+      font-size: 0.9rem;
+      letter-spacing: 0.5px;
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-download::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      transition: left 0.7s ease;
+    }
+    .btn-download:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px var(--shadow-heavy);
+    }
+    .btn-download:hover::before {
+      left: 100%;
+    }
+    .btn-download:active {
+      transform: translateY(0);
+      box-shadow: 0 4px 12px var(--shadow);
+    }
+    .btn-download[disabled] {
+      opacity: .5;
+      cursor: not-allowed;
+      transform: none !important;
+    }
+    .btn-download i {
+      font-size: 1.1rem;
+    }
+    .coming-soon .game-thumb {
+      filter: grayscale(70%) brightness(0.7);
+    }
+    .coming-soon h2 {
+      opacity: .7;
+    }
+    .coming-soon .btn-download {
+      background: var(--text-muted);
+      cursor: not-allowed;
+    }
+    /* Divisão de seções */
+    .section-divider {
+      text-align: center;
+      margin: 4rem auto;
+      position: relative;
+      max-width: 1000px;
+    }
+    .section-divider::before,
+    .section-divider::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      width: 40%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--primary), transparent);
+    }
+    .section-divider::before {
+      left: 0;
+    }
+    .section-divider::after {
+      right: 0;
+    }
+    .section-title {
+      display: inline-block;
+      padding: 0.5rem 2rem;
+      background: var(--card-bg);
+      border-radius: var(--radius-lg);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--accent);
+      box-shadow: 0 4px 15px var(--shadow);
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    /* Footer melhorado */
+    .site-footer {
+      text-align: center;
+      padding: 3rem 1rem;
+      margin-top: 4rem;
+      background: var(--card-bg);
+      box-shadow: 0 -4px 20px var(--shadow);
+      -webkit-backdrop-filter: blur(12px);
+      backdrop-filter: blur(12px);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      position: relative;
+    }
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      text-align: left;
+    }
+    .footer-section h3 {
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+    .footer-section p {
+      color: var(--text-sub);
+      margin-bottom: 1rem;
+      line-height: 1.6;
+    }
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+    .footer-links a {
+      color: var(--text-sub);
+      text-decoration: none;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .footer-links a:hover {
+      color: var(--primary);
+      transform: translateX(5px);
+    }
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    .social-links a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: var(--card-bg);
+      border-radius: 50%;
+      color: var(--text-light);
+      transition: var(--transition);
+    }
+    .social-links a:hover {
+      background: var(--primary);
+      color: var(--bg-dark);
+      transform: translateY(-3px);
+    }
+    .footer-bottom {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      text-align: center;
+    }
+    .footer-bottom small {
+      color: var(--text-sub);
+      font-size: 0.9rem;
+    }
+    /* Animações */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .game-card {
+      animation: fadeIn 0.6s ease-out forwards;
+    }
+    .game-thumb {
+      background: linear-gradient(90deg, #1a1a1a 25%, #2a2a2a 50%, #1a1a1a 75%);
+      background-size: 200% 100%;
+      animation: loading 1.5s infinite;
+    }
+    @keyframes loading {
+      0% {
+        background-position: 200% 0;
+      }
+      100% {
+        background-position: -200% 0;
+      }
+    }
+    /* Scrollbar personalizada */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--bg-darker);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--card-bg);
+      border-radius: 5px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--primary);
+    }
+    /* Responsividade */
+    @media (max-width: 768px) {
+      .site-header h1 {
+        font-size: 2.5rem;
+      }
+      .site-header .subtitle {
+        font-size: 1.1rem;
+      }
+      .filters-section {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .search-box {
+        max-width: 100%;
+      }
+      .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .footer-links a {
+        justify-content: center;
+      }
+    }
+    /* Acessibilidade */
+    @media (prefers-contrast: high) {
+      :root {
+        --bg-dark: #000000;
+        --text-light: #ffffff;
+        --text-sub: #cccccc;
+        --primary: #00ffff;
+        --accent: #ffff00;
+      }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+      .game-card:hover {
+        transform: none;
+      }
+    }
+    /* Melhorias para a divisão de jogos do amigo */
+    .friend-games-section {
+      position: relative;
+    }
+    .friend-games-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 50% 0%, rgba(255, 206, 0, 0.05) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: -1;
+    }
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.8rem 1.5rem;
+      background: var(--card-bg);
+      color: var(--text-light);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius-md);
+      text-decoration: none;
+      font-weight: 500;
+      transition: var(--transition);
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+    }
+    .btn-secondary:hover {
+      background: var(--primary);
+      color: var(--bg-dark);
+      border-color: var(--primary);
+      transform: translateY(-2px);
+    }
+  </style>
 </head>
 <body>
   <header class="site-header">
@@ -13,14 +641,27 @@
       <img src="../../../src/assets/images/lOGOFGP.png" alt="Logo FGP" />
     </div>
     <h1>FGP Store</h1>
+    <p class="subtitle">Descubra jogos incríveis e mergulhe em aventuras épicas!</p>
   </header>
-  <main class="games-grid">
-    <article class="game-card">
-      <img src="../../../src/assets/images/SIU2D.jpg" alt="T singularity" class="game-thumb" />
+  <div class="filters-section">
+    <div class="search-box">
+      <input type="text" placeholder="Buscar jogos..." id="searchInput">
+    </div>
+    <div class="filter-buttons">
+      <button class="filter-btn active" data-filter="all">Todos</button>
+      <button class="filter-btn" data-filter="available">Disponíveis</button>
+      <button class="filter-btn" data-filter="soon">Em Breve</button>
+      <button class="filter-btn" data-filter="android">Android</button>
+    </div>
+  </div>
+  <main class="games-grid" id="gamesContainer">
+    <article class="game-card" data-category="available android">
+      <span class="game-badge free">Disponível</span>
+      <img src="../../../src/assets/images/SIU2D.jpg" alt="SIU2D - Simulator of the Incredible Universe" class="game-thumb" />
       <div class="game-info">
         <h2>SIU2D - SIMULATOR OF THE INCREDIBLE UNIVERSE</h2>
         <p class="description">
-          SIU2D é um Simulador do Universo, em Cartoon 2d, avalie como o jogo está ;D, há plataformas como (Playstore).
+          SIU2D é um Simulador do Universo, em Cartoon 2D, avalie como o jogo está ;D, há plataformas como (Playstore).
         </p>
         <ul class="specs">
           <li><strong>Gênero:</strong> Space Sandbox, Educacional, Criativo</li>
@@ -31,32 +672,43 @@
           <li><strong>Data de lançamento:</strong> August/20/2025</li>
           <li><strong>Protagonista:</strong> T Singularity</li>
         </ul>
-        <a href="https://drive.google.com/file/d/1uhCu3y22vsx89geQh48-K9aLKD7TSR-4/view?usp=sharing" class="btn-download">Apk</a>
+          <span class="game-size">~36MB</span>
+        </div>
+        <a href="https://drive.google.com/file/d/1uhCu3y22vsx89geQh48-K9aLKD7TSR-4/view?usp=sharing" target="_blank" class="btn-download">
+          <i class="fas fa-download"></i> Baixar APK
+        </a>
       </div>
     </article>
-    <article class="game-card">
-      <img src="../../../src/assets/images/Chess.jpg" alt="Dr Joker Pawn" class="game-thumb" />
+    <article class="game-card" data-category="soon">
+      <span class="game-badge coming-soon">Em Desenvolvimento</span>
+      <img src="../../../src/assets/images/Chess.jpg" alt="Chess RPG" class="game-thumb" />
       <div class="game-info">
         <h2>Chess RPG</h2>
         <p class="description">
-          Chess RPG é um Jogo de RPG em Xadrex, você vai upando a sua peça de nível e etc. até mesmo tem skins para suas peças. cada peça é um personagem seu! se aventure no mundo de guerras Xadrezanas!
+          Chess RPG é um Jogo de RPG em Xadrez, você vai upando a sua peça de nível e etc. até mesmo tem skins para suas peças. cada peça é um personagem seu! se aventure no mundo de guerras Xadrezanas!
         </p>
         <ul class="specs">
           <li><strong>Gênero:</strong> Ação, Missão, Estratégia</li>
           <li><strong>Engine:</strong> VS Code</li>
           <li><strong>Plataforma:</strong> Windows (Android, iOS , ainda não)</li>
           <li><strong>Idioma:</strong> Nulo - (Ainda em Desenvolvimento)</li>
-          <li><strong>Versão:</strong> 0.0</li><li><strong>Protagonista:</strong> Dr Joker Pawn</li>
+          <li><strong>Versão:</strong> 0.0</li>
+          <li><strong>Protagonista:</strong> Dr Joker Pawn</li>
         </ul>
-        <a href="#" class="btn-download">Ainda em Desenvolvimento...</a>
+          <span class="game-size">--</span>
+        </div>
+        <button class="btn-download" disabled>
+          <i class="fas fa-hourglass-half"></i> Em Desenvolvimento
+        </button>
       </div>
     </article>
-    <article class="game-card">
+    <article class="game-card" data-category="available android">
+      <span class="game-badge free">Disponível</span>
       <img src="../../../src/assets/images/atoms.jpg" alt="The Life of Atoms" class="game-thumb" />
       <div class="game-info">
         <h2>The Life of Atoms</h2>
         <p class="description">
-          The Life of Atoms é um Simulador de átomos, em Cartoon 2d , ainda em beta, aproveite e avalie como o jogo está ;D , em seu Lançamento Oficial, poderão Instalar ele.
+          The Life of Atoms é um Simulador de átomos, em Cartoon 2D, ainda em beta, aproveite e avalie como o jogo está ;D, em seu Lançamento Oficial, poderão Instalar ele.
         </p>
         <ul class="specs">
           <li><strong>Gênero:</strong> Sandbox, Educacional, Missão</li>
@@ -65,15 +717,20 @@
           <li><strong>Idioma:</strong> contem mais de 10 idiomas..</li>
           <li><strong>Versão:</strong> 0.01</li>
           <li><strong>Data de lançamento:</strong> August/20/2025</li>
-          <li><strong>Protagonista:</strong>Dr Bawrloty</li>
-          <li><strong>Co‑protagonista:</strong>T Singularity</li>
-          <li><strong>Antagonista:</strong>Dr Elayte</li>
+          <li><strong>Protagonista:</strong> Dr Bawrloty</li>
+          <li><strong>Co‑protagonista:</strong> T Singularity</li>
+          <li><strong>Antagonista:</strong> Dr Elayte</li>
         </ul>
-        <a href="#" class="btn-download">Apk</a>
+          <span class="game-size">~XXXMB</span>
+        </div>
+        <button class="btn-download" disabled>
+          <i class="fas fa-download"></i> Em Breve
+        </button>
       </div>
     </article>
-    <article class="game-card">
-      <img src="../../../src/assets/images/Ovynay the time traveler.png" alt="Ovynay" class="game-thumb" />
+    <article class="game-card" data-category="soon">
+      <span class="game-badge coming-soon">Em Desenvolvimento</span>
+      <img src="../../../src/assets/images/Ovynay the time traveler.png" alt="Ovynay: The Red Dust" class="game-thumb" />
       <div class="game-info">
         <h2>Ovynay: The Red Dust (Beta)</h2>
         <p class="description">
@@ -83,29 +740,128 @@
           <li><strong>Gênero:</strong> Ação‑Aventura, Puzzle, Viagem no Tempo</li>
           <li><strong>Engine:</strong> Game Maker</li>
           <li><strong>Plataforma:</strong> Windows, Android, iOS</li>
-          <li><strong>Idioma:</strong> PT/EN/ES</li><li><strong>Protagonista:</strong> Ovynay</li>
+          <li><strong>Idioma:</strong> PT/EN/ES</li>
+          <li><strong>Protagonista:</strong> Ovynay</li>
         </ul>
-        <a class="btn-download">Ainda em Desenvolvimento...</a>
+          <span class="game-size">--</span>
+        </div>
+        <button class="btn-download" disabled>
+          <i class="fas fa-hourglass-half"></i> Em Desenvolvimento
+        </button>
       </div>
     </article>
-    <article class="game-card coming-soon">
-      <img src="jogo2_placeholder.png" alt="Em breve" class="game-thumb" />
+    <article class="game-card coming-soon" data-category="soon">
+      <span class="game-badge coming-soon">Próximos Lançamentos</span>
+      <img src="../../../src/assets/images/placeholder.jpg" alt="Próximo Lançamento" class="game-thumb" />
       <div class="game-info">
         <h2>Próximo Lançamento</h2>
-        <p class="description">Uma nova aventura está chegando! Fique atento para descobrir mais. spoiler - The World of Iales / Bawrloty Adventure / Vector no planeta dos Insetoides</p>
-        <button class="btn-download" disabled>Em Breve</button>
+        <p class="description">Em breve haverá mais!</p>
+        <button class="btn-download" disabled>
+          <i class="fas fa-clock"></i> Em Breve
+        </button>
+      </div>
+    </article>
+  </main>
+  <div class="section-divider friend-games-section">
+    <div class="section-title">Jogos do Edward</div>
+  </div>
+  <main class="games-grid">
+    <article class="game-card" data-category="available android">
+      <span class="game-badge free">Disponível</span>
+      <img src="../../../src/assets/images/coffe-talk.jpg" alt="Coffee Talk" class="game-thumb" />
+      <div class="game-info">
+        <h2>COFFEE TALK</h2>
+        <p class="description">
+          Coffee Talk, trabalhe em uma linda cafeteria enquanto isso, converse com seus clientes seguindo uma incrível história!
+        </p>
+        <ul class="specs">
+          <li><strong>Gênero:</strong> história, Missão, Criativo</li>
+          <li><strong>Engine:</strong> Unity</li>
+          <li><strong>Plataforma:</strong> Android</li>
+          <li><strong>Idioma:</strong> contem mais de 10 idiomas..</li>
+          <li><strong>Versão:</strong> 1.0.39</li>
+          <li><strong>Data de lançamento:</strong> Aqui nesta plataforma: 22/11/2025</li>
+          <li><strong>Protagonista:</strong> Cafeteiro - Você</li>
+        </ul>
+          <span class="game-size">~250MB</span>
+        </div>
+        <a href="https://drive.google.com/file/d/1sXdWuN_CtSZMPGdGcPwqZ3zY1oC-Uftk/view?usp=sharing" target="_blank" class="btn-download">
+          <i class="fas fa-download"></i> Baixar APK
+        </a>
       </div>
     </article>
   </main>
   <footer class="site-footer">
-    <div class="footer-links">
-      <a href="../entretenimento.html" class="btn-secondary">← Voltar</a>
-      <a href="../../start.html" class="btn-secondary">Início</a>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>Sobre a FGP Store</h3>
+        <p>Uma loja de jogos independentes, trazendo experiências únicas e criativas para todos os jogadores.</p>
+        <div class="social-links">
+          <a href="https://www.youtube.com/@freegameplant" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+      <div class="footer-section">
+        <h3>Links Rápidos</h3>
+        <div class="footer-links">
+          <a href="../entretenimento.html"><i class="fas fa-arrow-left"></i> Voltar</a>
+          <a href="../../start.html"><i class="fas fa-home"></i> Início</a>
+          <a href="#"><i class="fas fa-gamepad"></i> Todos os Jogos</a>
+          <a href="#"><i class="fas fa-question-circle"></i> Ajuda</a>
+        </div>
+      </div>
+      <div class="footer-section">
+        <h3>Contato</h3>
+        <p><i class="fas fa-envelope"></i> contato@fgpfreegameplant.com</p>
+      </div>
     </div>
-    <small>© 2025 Free Game Plant. Todos os direitos reservados.</small>
+    <div class="footer-bottom">
+      <small>© 2025 Free Game Plant. Todos os direitos reservados.</small>
+    </div>
   </footer>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const filterButtons = document.querySelectorAll('.filter-btn');
+      const searchInput = document.getElementById('searchInput');
+      const gameCards = document.querySelectorAll('.game-card');
+      filterButtons.forEach(button => {
+        button.addEventListener('click', function() {
+          filterButtons.forEach(btn => btn.classList.remove('active'));
+          this.classList.add('active');
+          const filter = this.getAttribute('data-filter');
+          gameCards.forEach(card => {
+            if (filter === 'all' || card.getAttribute('data-category').includes(filter)) {
+              card.style.display = 'flex';
+            } else {
+              card.style.display = 'none';
+            }
+          });
+        });
+      });
+      searchInput.addEventListener('input', function() {
+        const searchTerm = this.value.toLowerCase();
+        gameCards.forEach(card => {
+          const title = card.querySelector('h2').textContent.toLowerCase();
+          const description = card.querySelector('.description').textContent.toLowerCase();
+          if (title.includes(searchTerm) || description.includes(searchTerm)) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+      const titleElement = document.querySelector('.site-header h1');
+      const originalTitle = titleElement.textContent;
+      titleElement.textContent = '';
+      let i = 0;
+      function typeWriter() {
+        if (i < originalTitle.length) {
+          titleElement.textContent += originalTitle.charAt(i);
+          i++;
+          setTimeout(typeWriter, 100);
+        }
+      }
+      setTimeout(typeWriter, 500);
+    });
+  </script>
 </body>
 </html>
-
-
-
