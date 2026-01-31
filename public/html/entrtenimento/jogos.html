@@ -3,10 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="FGP Store - Descubra jogos incríveis como SIU2D, Chess RPG, The Life of Atoms e muito mais!">
-  <title>FGP • INFINITE PLANT STOCK</title>
+  <meta name="description" content="FGP Store - A Play Store da vida real! Descubra jogos incríveis como SIU2D, Chess RPG, The Life of Atoms e muito mais!">
+  <title>FGP Store • A Play Store da Vida</title>
   <link rel="icon" href="../../../src/assets/images/gamestore.png" type="image/png" sizes="32x32">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
   <link rel="stylesheet" href="../../../src/assets/css/j.css">
   <style>
     :root {
@@ -36,15 +37,18 @@
       --gradient-dark: linear-gradient(135deg, var(--bg-dark) 0%, var(--bg-darker) 100%);
       --gradient-card: linear-gradient(145deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
     }
+
     * { 
       box-sizing: border-box; 
       margin:0; 
       padding:0; 
     }
+
     html {
       scroll-behavior: smooth;
       font-size: 16px;
     }
+
     body {
       font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
       background: var(--gradient-dark);
@@ -53,6 +57,7 @@
       min-height: 100vh;
       overflow-x: hidden;
     }
+
     body::before {
       content: '';
       position: fixed;
@@ -67,12 +72,14 @@
       z-index: -1;
       pointer-events: none;
     }
+
     .container {
       max-width: 1400px;
       margin: 0 auto;
       padding: 0 1rem;
     }
-    /* Header melhorado */
+
+    /* Header Premium */
     .site-header {
       text-align: center;
       padding: 3rem 1rem;
@@ -84,6 +91,7 @@
       position: relative;
       overflow: hidden;
     }
+
     .site-header::before {
       content: '';
       position: absolute;
@@ -97,15 +105,18 @@
         transparent 100%);
       animation: headerShine 8s infinite linear;
     }
+
     @keyframes headerShine {
       0% { transform: translateX(-100%); }
       100% { transform: translateX(100%); }
     }
+
     .site-header .logo {
       margin-bottom: 1.5rem;
       position: relative;
       z-index: 1;
     }
+
     .site-header .logo img {
       width: 140px;
       height: 140px;
@@ -115,10 +126,12 @@
       box-shadow: 0 0 30px var(--primary-glow);
       transition: var(--transition);
     }
+
     .site-header .logo img:hover {
       transform: scale(1.05) rotate(5deg);
       box-shadow: 0 0 40px var(--primary-glow);
     }
+
     .site-header h1 {
       font-size: 3.5rem;
       font-weight: 800;
@@ -132,6 +145,7 @@
       position: relative;
       z-index: 1;
     }
+
     .site-header .subtitle {
       color: var(--text-sub);
       font-size: 1.3rem;
@@ -141,226 +155,180 @@
       position: relative;
       z-index: 1;
     }
-    /* Filtros e busca */
-    .filters-section {
+
+    /* Barra de busca simplificada */
+    .search-section {
       padding: 2rem 1rem;
-      max-width: 1200px;
+      max-width: 700px;
       margin: 0 auto;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      justify-content: center;
-      align-items: center;
     }
+
     .search-box {
-      position: relative;
-      flex: 1;
-      max-width: 500px;
-    }
-    .search-box input {
-      width: 100%;
-      padding: 1rem 1rem 1rem 3rem;
+      display: flex;
+      align-items: center;
       background: var(--card-bg);
-      border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: var(--radius-lg);
-      color: var(--text-light);
-      font-size: 1rem;
-      transition: var(--transition);
+      padding: 0.5rem 1rem;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.1);
       -webkit-backdrop-filter: blur(10px);
       backdrop-filter: blur(10px);
     }
-    .search-box input:focus {
-      outline: none;
-      border-color: var(--primary);
-      box-shadow: 0 0 0 3px var(--primary-glow);
+
+    .search-box i {
+      color: var(--text-sub);
+      font-size: 1.2rem;
+      margin-right: 1rem;
     }
-    .search-box::before {
-      content: '🔍';
-      position: absolute;
-      left: 1rem;
-      top: 50%;
-      transform: translateY(-50%);
+
+    .search-box input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      color: var(--text-light);
+      font-size: 1.1rem;
+      padding: 1rem 0;
+      outline: none;
+    }
+
+    .search-box input::placeholder {
       color: var(--text-sub);
     }
-    .filter-buttons {
-      display: flex;
-      gap: 0.5rem;
-      flex-wrap: wrap;
+
+    /* Filtros estilo Play Store */
+    .filters-section {
+      padding: 1rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: center;
     }
-    .filter-btn {
-      padding: 0.7rem 1.2rem;
+
+    .filters-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
+
+    .filter-chip {
+      padding: 0.7rem 1.5rem;
       background: var(--card-bg);
       border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: var(--radius-md);
+      border-radius: 50px;
       color: var(--text-light);
       cursor: pointer;
       transition: var(--transition);
-      font-weight: 500;
       -webkit-backdrop-filter: blur(10px);
       backdrop-filter: blur(10px);
     }
-    .filter-btn:hover, .filter-btn.active {
+
+    .filter-chip:hover, .filter-chip.active {
       background: var(--primary);
       color: var(--bg-dark);
       border-color: var(--primary);
-      box-shadow: 0 0 15px var(--primary-glow);
+      box-shadow: 0 0 20px var(--primary-glow);
+      transform: translateY(-2px);
     }
-    /* Grid de jogos melhorado */
+
+    /* Grid de jogos simplificado */
     .games-grid {
       display: grid;
-      gap: var(--gap);
+      gap: 2rem;
       padding: 2rem 1rem;
       max-width: 1400px;
       margin: 0 auto;
     }
+
     @media (min-width: 576px)  { .games-grid { grid-template-columns: repeat(2, 1fr); } }
     @media (min-width: 768px)  { .games-grid { grid-template-columns: repeat(2, 1fr); } }
     @media (min-width: 992px)  { .games-grid { grid-template-columns: repeat(3, 1fr); } }
     @media (min-width: 1200px) { .games-grid { grid-template-columns: repeat(4, 1fr); } }
-    /* Cards de jogo melhorados */
-    .game-card {
+
+    /* Cards SIMPLIFICADOS - apenas ícone e botão */
+    .game-card-simple {
       background: var(--gradient-card);
       border-radius: var(--radius-lg);
       overflow: hidden;
       box-shadow: 0 10px 30px var(--shadow);
       display: flex;
       flex-direction: column;
+      align-items: center;
       transition: var(--transition);
       position: relative;
       border: 1px solid rgba(255, 255, 255, 0.05);
+      padding: 2rem 1.5rem;
+      text-align: center;
       -webkit-backdrop-filter: blur(10px);
       backdrop-filter: blur(10px);
     }
-    .game-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(135deg, rgba(0, 229, 255, 0.03) 0%, transparent 50%);
-      opacity: 0;
-      transition: var(--transition);
-    }
-    .game-card:hover {
+
+    .game-card-simple:hover {
       transform: translateY(-10px);
       box-shadow: 0 20px 40px var(--shadow-heavy);
       background: var(--card-bg-hover);
     }
-    .game-card:hover::before {
-      opacity: 1;
+
+    .game-icon-large {
+      width: 120px;
+      height: 120px;
+      border-radius: var(--radius-xl);
+      object-fit: cover;
+      border: 3px solid var(--primary);
+      margin-bottom: 1.5rem;
+      box-shadow: 0 0 25px var(--primary-glow);
     }
-    .game-badge {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-      padding: 0.4rem 0.8rem;
-      background: var(--accent);
+
+    .game-title-simple {
+      font-size: 1.5rem;
+      color: var(--primary);
+      margin-bottom: 1rem;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+
+    .game-status {
+      display: inline-block;
+      padding: 0.4rem 1rem;
+      background: var(--success);
       color: var(--bg-dark);
       font-size: 0.8rem;
       font-weight: 700;
       border-radius: var(--radius-sm);
-      z-index: 2;
+      margin-bottom: 1.5rem;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     }
-    .game-badge.free {
-      background: var(--success);
-    }
-    .game-badge.coming-soon {
+
+    .game-status.soon {
       background: var(--text-muted);
     }
-    .game-thumb {
-      width: 100%;
-      aspect-ratio: 16/9;
-      object-fit: cover;
-      transition: var(--transition);
-    }
-    .game-card:hover .game-thumb {
-      transform: scale(1.05);
-    }
-    .game-info {
-      padding: 1.5rem;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      position: relative;
-      z-index: 1;
-    }
-    .game-info h2 {
-      font-size: 1.5rem;
-      color: var(--primary);
-      margin-bottom: .5rem;
-      font-weight: 700;
-      line-height: 1.3;
-    }
-    .game-info .description {
-      flex: 1;
-      font-size: .95rem;
-      margin-bottom: 1.2rem;
-      color: var(--text-sub);
-      line-height: 1.5;
-    }
-    .game-info .specs {
-      list-style: none;
-      margin-bottom: 1.5rem;
-      font-size: .85rem;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-    }
-    .game-info .specs li {
-      padding: 0.3rem 0.6rem;
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: var(--radius-sm);
-      color: var(--text-sub);
-    }
-    .game-meta {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-top: auto;
-    }
-    .game-rating {
-      display: flex;
-      align-items: center;
-      gap: 0.3rem;
-      color: var(--accent);
-    }
-    .game-rating span {
-      color: var(--text-sub);
-      font-size: 0.8rem;
-    }
-    .game-size {
-      color: var(--text-sub);
-      font-size: 0.8rem;
-      background: rgba(255, 255, 255, 0.05);
-      padding: 0.3rem 0.6rem;
-      border-radius: var(--radius-sm);
-    }
-    /* Botões melhorados */
-    .btn-download {
+
+    .btn-view {
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 0.5rem;
       text-align: center;
-      padding: 1rem 1.5rem;
+      padding: 1rem 2rem;
       background: var(--gradient-accent);
       color: var(--bg-dark);
-      font-weight: 700;
+      font-weight: 800;
       border: none;
       border-radius: var(--radius-md);
-      box-shadow: 0 6px 20px var(--shadow);
+      box-shadow: 0 8px 25px var(--shadow);
       text-transform: uppercase;
       transition: var(--transition);
       cursor: pointer;
       text-decoration: none;
-      font-size: 0.9rem;
+      font-size: 1rem;
       letter-spacing: 0.5px;
       position: relative;
       overflow: hidden;
+      width: 100%;
+      max-width: 250px;
     }
-    .btn-download::before {
+
+    .btn-view::before {
       content: '';
       position: absolute;
       top: 0;
@@ -370,82 +338,337 @@
       background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
       transition: left 0.7s ease;
     }
-    .btn-download:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 10px 25px var(--shadow-heavy);
+
+    .btn-view:hover {
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 15px 30px var(--shadow-heavy);
     }
-    .btn-download:hover::before {
+
+    .btn-view:hover::before {
       left: 100%;
     }
-    .btn-download:active {
-      transform: translateY(0);
-      box-shadow: 0 4px 12px var(--shadow);
+
+    .btn-view i {
+      font-size: 1.2rem;
     }
-    .btn-download[disabled] {
-      opacity: .5;
-      cursor: not-allowed;
-      transform: none !important;
+
+    /* Modal - Tela completa para detalhes do jogo */
+    .game-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.95);
+      z-index: 1000;
+      overflow-y: auto;
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
     }
-    .btn-download i {
+
+    .game-modal.active {
+      display: block;
+    }
+
+    .modal-content {
+      position: relative;
+      max-width: 1200px;
+      margin: 2rem auto;
+      background: var(--card-bg);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      -webkit-backdrop-filter: blur(20px);
+      backdrop-filter: blur(20px);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      width: 50px;
+      height: 50px;
+      background: rgba(0, 0, 0, 0.7);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      font-size: 1.8rem;
+      cursor: pointer;
+      z-index: 1001;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+    }
+
+    .modal-close:hover {
+      background: var(--danger);
+      transform: rotate(90deg);
+    }
+
+    /* Conteúdo do modal */
+    .modal-header {
+      padding: 2rem;
+      background: linear-gradient(135deg, rgba(0, 229, 255, 0.1) 0%, rgba(255, 206, 0, 0.05) 100%);
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .modal-icon {
+      width: 120px;
+      height: 120px;
+      border-radius: var(--radius-lg);
+      object-fit: cover;
+      border: 3px solid var(--primary);
+      box-shadow: 0 0 30px var(--primary-glow);
+    }
+
+    .modal-header-info {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    .modal-title {
+      font-size: 2.5rem;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+      font-weight: 800;
+    }
+
+    .modal-developer {
+      color: var(--text-sub);
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+    }
+
+    .modal-body {
+      padding: 2rem;
+    }
+
+    /* Mídia do jogo dentro do modal */
+    .modal-media {
+      margin-bottom: 2rem;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .modal-media img {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .modal-description {
       font-size: 1.1rem;
+      line-height: 1.7;
+      color: var(--text-light);
+      margin-bottom: 2rem;
+      padding: 1.5rem;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: var(--radius-lg);
     }
-    .coming-soon .game-thumb {
-      filter: grayscale(70%) brightness(0.7);
+
+    /* Especificações no modal */
+    .modal-specs {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
     }
-    .coming-soon h2 {
-      opacity: .7;
+
+    .modal-spec-item {
+      padding: 1.5rem;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: var(--radius-lg);
+      border-left: 4px solid var(--primary);
     }
-    .coming-soon .btn-download {
-      background: var(--text-muted);
-      cursor: not-allowed;
+
+    .modal-spec-label {
+      color: var(--text-sub);
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 0.5rem;
     }
+
+    .modal-spec-value {
+      color: var(--text-light);
+      font-size: 1.1rem;
+      font-weight: 500;
+    }
+
+    /* Downloads no modal */
+    .modal-downloads {
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      margin-top: 2rem;
+    }
+
+    .modal-downloads-title {
+      font-size: 1.8rem;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    .download-options {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .download-option {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1.5rem;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: var(--radius-lg);
+      transition: var(--transition);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .download-option:hover {
+      background: rgba(255, 255, 255, 0.08);
+      transform: translateY(-5px);
+      border-color: var(--primary);
+    }
+
+    .download-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      flex-shrink: 0;
+    }
+
+    .download-icon.android {
+      background: #3DDC84;
+      color: #000;
+    }
+
+    .download-icon.windows {
+      background: #0078D4;
+      color: #fff;
+    }
+
+    .download-icon.itch {
+      background: #FA5C5C;
+      color: #fff;
+    }
+
+    .download-icon.gamejolt {
+      background: #FFCE00;
+      color: #000;
+    }
+
+    .download-info {
+      flex: 1;
+    }
+
+    .download-info h4 {
+      color: var(--text-light);
+      margin-bottom: 0.3rem;
+      font-size: 1.2rem;
+    }
+
+    .download-info p {
+      color: var(--text-sub);
+      font-size: 0.9rem;
+    }
+
+    .btn-download-modal {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.8rem 1.5rem;
+      background: var(--gradient-accent);
+      color: var(--bg-dark);
+      font-weight: 700;
+      border: none;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: var(--transition);
+      white-space: nowrap;
+    }
+
+    .btn-download-modal:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    }
+
     /* Divisão de seções */
     .section-divider {
       text-align: center;
       margin: 4rem auto;
       position: relative;
-      max-width: 1000px;
+      max-width: 1200px;
     }
+
     .section-divider::before,
     .section-divider::after {
       content: '';
       position: absolute;
       top: 50%;
       width: 40%;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--primary), transparent);
+      height: 2px;
+      background: linear-gradient(90deg, 
+        transparent, 
+        rgba(0, 229, 255, 0.3), 
+        rgba(0, 229, 255, 0.6), 
+        rgba(0, 229, 255, 0.3), 
+        transparent);
     }
+
     .section-divider::before {
       left: 0;
     }
+
     .section-divider::after {
       right: 0;
     }
+
     .section-title {
       display: inline-block;
-      padding: 0.5rem 2rem;
+      padding: 1rem 2rem;
       background: var(--card-bg);
-      border-radius: var(--radius-lg);
-      font-size: 1.5rem;
-      font-weight: 700;
+      border-radius: var(--radius-xl);
+      font-size: 1.8rem;
+      font-weight: 800;
       color: var(--accent);
-      box-shadow: 0 4px 15px var(--shadow);
+      box-shadow: 0 8px 32px var(--shadow);
       -webkit-backdrop-filter: blur(10px);
       backdrop-filter: blur(10px);
       border: 1px solid rgba(255, 255, 255, 0.1);
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
-    /* Footer melhorado */
+
+    /* Footer */
     .site-footer {
-      text-align: center;
-      padding: 3rem 1rem;
+      padding: 3rem 1rem 2rem;
       margin-top: 4rem;
       background: var(--card-bg);
-      box-shadow: 0 -4px 20px var(--shadow);
+      box-shadow: 0 -8px 32px var(--shadow);
       -webkit-backdrop-filter: blur(12px);
       backdrop-filter: blur(12px);
       border-top: 1px solid rgba(255, 255, 255, 0.1);
       position: relative;
     }
+
     .footer-content {
       max-width: 1200px;
       margin: 0 auto;
@@ -454,22 +677,26 @@
       gap: 2rem;
       text-align: left;
     }
+
     .footer-section h3 {
       color: var(--primary);
       margin-bottom: 1.5rem;
       font-size: 1.2rem;
       font-weight: 600;
     }
+
     .footer-section p {
       color: var(--text-sub);
       margin-bottom: 1rem;
       line-height: 1.6;
     }
+
     .footer-links {
       display: flex;
       flex-direction: column;
       gap: 0.8rem;
     }
+
     .footer-links a {
       color: var(--text-sub);
       text-decoration: none;
@@ -478,15 +705,18 @@
       align-items: center;
       gap: 0.5rem;
     }
+
     .footer-links a:hover {
       color: var(--primary);
       transform: translateX(5px);
     }
+
     .social-links {
       display: flex;
       gap: 1rem;
       margin-top: 1.5rem;
     }
+
     .social-links a {
       display: flex;
       align-items: center;
@@ -498,140 +728,115 @@
       color: var(--text-light);
       transition: var(--transition);
     }
+
     .social-links a:hover {
       background: var(--primary);
       color: var(--bg-dark);
       transform: translateY(-3px);
     }
+
     .footer-bottom {
       margin-top: 3rem;
       padding-top: 1.5rem;
       border-top: 1px solid rgba(255, 255, 255, 0.1);
       text-align: center;
     }
+
     .footer-bottom small {
       color: var(--text-sub);
       font-size: 0.9rem;
     }
+
     /* Animações */
     @keyframes fadeIn {
       from {
         opacity: 0;
-        transform: translateY(20px);
+        transform: translateY(30px);
       }
       to {
         opacity: 1;
         transform: translateY(0);
       }
     }
-    .game-card {
+
+    .game-card-simple {
       animation: fadeIn 0.6s ease-out forwards;
+      animation-delay: calc(var(--i, 0) * 0.1s);
     }
-    .game-thumb {
-      background: linear-gradient(90deg, #1a1a1a 25%, #2a2a2a 50%, #1a1a1a 75%);
-      background-size: 200% 100%;
-      animation: loading 1.5s infinite;
+
+    .game-modal.active .modal-content {
+      animation: fadeIn 0.5s ease-out;
     }
-    @keyframes loading {
-      0% {
-        background-position: 200% 0;
-      }
-      100% {
-        background-position: -200% 0;
-      }
-    }
-    /* Scrollbar personalizada */
-    ::-webkit-scrollbar {
-      width: 10px;
-    }
-    ::-webkit-scrollbar-track {
-      background: var(--bg-darker);
-    }
-    ::-webkit-scrollbar-thumb {
-      background: var(--card-bg);
-      border-radius: 5px;
-    }
-    ::-webkit-scrollbar-thumb:hover {
-      background: var(--primary);
-    }
+
     /* Responsividade */
     @media (max-width: 768px) {
       .site-header h1 {
         font-size: 2.5rem;
       }
+      
       .site-header .subtitle {
         font-size: 1.1rem;
       }
-      .filters-section {
+      
+      .games-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .modal-header {
         flex-direction: column;
-        align-items: stretch;
+        text-align: center;
       }
-      .search-box {
-        max-width: 100%;
+      
+      .modal-title {
+        font-size: 2rem;
       }
+      
+      .modal-specs {
+        grid-template-columns: 1fr;
+      }
+      
+      .download-options {
+        grid-template-columns: 1fr;
+      }
+      
       .footer-content {
         grid-template-columns: 1fr;
         text-align: center;
       }
+      
       .footer-links a {
         justify-content: center;
       }
     }
-    /* Acessibilidade */
-    @media (prefers-contrast: high) {
-      :root {
-        --bg-dark: #000000;
-        --text-light: #ffffff;
-        --text-sub: #cccccc;
-        --primary: #00ffff;
-        --accent: #ffff00;
-      }
+
+    /* Aviso de anúncios/compras internas */
+    .ad-notice {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      background: rgba(255, 206, 0, 0.1);
+      color: var(--accent);
+      border-radius: var(--radius-sm);
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+      border: 1px solid rgba(255, 206, 0, 0.3);
     }
-    @media (prefers-reduced-motion: reduce) {
-      * {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-      }
-      .game-card:hover {
-        transform: none;
-      }
+
+    /* Scrollbar personalizada */
+    ::-webkit-scrollbar {
+      width: 10px;
     }
-    /* Melhorias para a divisão de jogos do amigo */
-    .friend-games-section {
-      position: relative;
+
+    ::-webkit-scrollbar-track {
+      background: var(--bg-darker);
     }
-    .friend-games-section::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: radial-gradient(circle at 50% 0%, rgba(255, 206, 0, 0.05) 0%, transparent 50%);
-      pointer-events: none;
-      z-index: -1;
-    }
-    .btn-secondary {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.8rem 1.5rem;
+
+    ::-webkit-scrollbar-thumb {
       background: var(--card-bg);
-      color: var(--text-light);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: var(--radius-md);
-      text-decoration: none;
-      font-weight: 500;
-      transition: var(--transition);
-      -webkit-backdrop-filter: blur(10px);
-      backdrop-filter: blur(10px);
+      border-radius: 5px;
     }
-    .btn-secondary:hover {
+
+    ::-webkit-scrollbar-thumb:hover {
       background: var(--primary);
-      color: var(--bg-dark);
-      border-color: var(--primary);
-      transform: translateY(-2px);
     }
   </style>
 </head>
@@ -641,256 +846,647 @@
       <img src="../../../src/assets/images/lOGOFGP.png" alt="Logo FGP" />
     </div>
     <h1>FGP Store</h1>
-    <p class="subtitle">Descubra jogos incríveis e mergulhe em aventuras épicas!</p>
+    <p class="subtitle">A Play Store da Vida • Jogos incríveis e totalmente gratuitos!</p>
   </header>
-  <div class="filters-section">
+
+  <section class="search-section">
     <div class="search-box">
+      <i class="fas fa-search"></i>
       <input type="text" placeholder="Buscar jogos..." id="searchInput">
     </div>
-    <div class="filter-buttons">
-      <button class="filter-btn active" data-filter="all">Todos</button>
-      <button class="filter-btn" data-filter="available">Disponíveis</button>
-      <button class="filter-btn" data-filter="soon">Em Breve</button>
-      <button class="filter-btn" data-filter="android">Android</button>
+  </section>
+
+  <section class="filters-section">
+    <div class="filters-container">
+      <div class="filter-chip active" data-filter="all">
+        <i class="fas fa-gamepad"></i> Todos
+      </div>
+      <div class="filter-chip" data-filter="available">
+        <i class="fas fa-download"></i> Disponíveis
+      </div>
+      <div class="filter-chip" data-filter="android">
+        <i class="fab fa-android"></i> Android
+      </div>
+      <div class="filter-chip" data-filter="windows">
+        <i class="fab fa-windows"></i> Windows
+      </div>
+      <div class="filter-chip" data-filter="soon">
+        <i class="fas fa-clock"></i> Em Breve
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider">
+    <div class="section-title">FGP Games</div>
+  </div>
+
+  <main class="games-grid" id="gamesContainer">
+    <!-- SIU2D - Card Simplificado -->
+    <div class="game-card-simple" style="--i: 1" data-game="siu2d">
+      <img src="../../../src/assets/images/SIU2D.jpg" alt="SIU2D" class="game-icon-large">
+      <h3 class="game-title-simple">SIU2D</h3>
+      <div class="game-status">Disponível</div>
+      <button class="btn-view" data-modal="siu2d">
+        <i class="fas fa-download"></i> BAIXAR
+      </button>
+      <div class="ad-notice">
+        <i class="fas fa-ad"></i> Anúncios de recompensas + Compras Internas
+      </div>
+    </div>
+
+    <!-- Chess RPG - Card Simplificado -->
+    <div class="game-card-simple" style="--i: 2" data-game="chess">
+      <img src="../../../src/assets/images/Chess.jpg" alt="Chess RPG" class="game-icon-large">
+      <h3 class="game-title-simple">Chess RPG</h3>
+      <div class="game-status soon">Em Desenvolvimento</div>
+      <button class="btn-view" data-modal="chess">
+        <i class="fas fa-eye"></i> VER DETALHES
+      </button>
+      <div class="ad-notice">
+        <i class="fas fa-ad"></i> Anúncios + Compras Internas
+      </div>
+    </div>
+
+    <!-- The Life of Atoms - Card Simplificado -->
+    <div class="game-card-simple" style="--i: 3" data-game="atoms">
+      <img src="../../../src/assets/images/atoms.jpg" alt="The Life of Atoms" class="game-icon-large">
+      <h3 class="game-title-simple">The Life of Atoms</h3>
+      <div class="game-status">Disponível</div>
+      <button class="btn-view" data-modal="atoms">
+        <i class="fas fa-download"></i> BAIXAR
+      </button>
+      <div class="ad-notice">
+        <i class="fas fa-ad"></i> Anúncios + Compras Internas
+      </div>
+    </div>
+
+    <!-- Ovynay - Card Simplificado -->
+    <div class="game-card-simple" style="--i: 4" data-game="ovynay">
+      <img src="../../../src/assets/images/Ovynay the time traveler.png" alt="Ovynay" class="game-icon-large">
+      <h3 class="game-title-simple">Ovynay: The Red Dust</h3>
+      <div class="game-status soon">Em Desenvolvimento</div>
+      <button class="btn-view" data-modal="ovynay">
+        <i class="fas fa-eye"></i> VER DETALHES
+      </button>
+      <div class="ad-notice">
+        <i class="fas fa-ad"></i> Anúncios + Compras Internas
+      </div>
+    </div>
+  </main>
+
+  <div class="section-divider">
+    <div class="section-title">Edward Games</div>
+  </div>
+
+  <main class="games-grid">
+    <!-- Coffee Talk - Card Simplificado -->
+    <div class="game-card-simple" style="--i: 5" data-game="coffee">
+      <img src="../../../src/assets/images/coffe-talk.jpg" alt="Coffee Talk" class="game-icon-large">
+      <h3 class="game-title-simple">Coffee Talk</h3>
+      <div class="game-status">Disponível</div>
+      <button class="btn-view" data-modal="coffee">
+        <i class="fas fa-download"></i> BAIXAR
+      </button>
+      <div class="ad-notice">
+        <i class="fas fa-ad"></i> Anúncios + Compras Internas
+      </div>
+    </div>
+  </main>
+
+  <!-- Modais para cada jogo -->
+  
+  <!-- Modal SIU2D -->
+  <div class="game-modal" id="modal-siu2d">
+    <div class="modal-content">
+      <button class="modal-close">&times;</button>
+      
+      <div class="modal-header">
+        <img src="../../../src/assets/images/SIU2D.jpg" alt="SIU2D" class="modal-icon">
+        <div class="modal-header-info">
+          <h2 class="modal-title">SIU2D - Simulator of the Incredible Universe</h2>
+          <p class="modal-developer">Free Game Plant: Elai Leonel Figueroa</p>
+          <div class="ad-notice">
+            <i class="fas fa-ad"></i> Contém anúncios de recompensas (Apenas) e compras internas
+          </div>
+        </div>
+      </div>
+      
+      <div class="modal-body">
+        <div class="modal-media">
+          <img src="../../../src/assets/images/SIU2D.jpg" alt="SIU2D Gameplay">
+        </div>
+        
+        <p class="modal-description">
+          SIU2D é um Simulador do Universo em Cartoon 2D. Explore planetas, estrelas e galáxias em um sandbox espacial educativo e criativo. 
+          Com mais de 10 idiomas disponíveis, você pode aprender sobre o universo enquanto se diverte!
+        </p>
+        
+        <div class="modal-specs">
+          <div class="modal-spec-item">
+            <div class="modal-spec-label">Gênero</div>
+            <div class="modal-spec-value">Space Sandbox, Educacional, Criativo</div>
+          </div>
+          <div class="modal-spec-item">
+            <div class="modal-spec-label">Engine</div>
+            <div class="modal-spec-value">VS Code</div>
+          </div>
+          <div class="modal-spec-item">
+            <div class="modal-spec-label">Plataforma</div>
+            <div class="modal-spec-value">Windows e Android</div>
+          </div>
+          <div class="modal-spec-item">
+            <div class="modal-spec-label">Idiomas</div>
+            <div class="modal-spec-value">10+ idiomas</div>
+          </div>
+          <div class="modal-spec-item">
+            <div class="modal-spec-label">Versão</div>
+            <div class="modal-spec-value">1.0.2 - Alpha</div>
+          </div>
+          <div class="modal-spec-item">
+            <div class="modal-spec-label">Lançamento</div>
+            <div class="modal-spec-value">20/08/2025</div>
+          </div>
+          <div class="modal-spec-item">
+            <div class="modal-spec-label">Protagonista</div>
+            <div class="modal-spec-value">T Singularity</div>
+          </div>
+        </div>
+        
+        <div class="modal-downloads">
+          <h3 class="modal-downloads-title"><i class="fas fa-download"></i> Downloads Disponíveis</h3>
+          
+          <div class="download-options">
+            <div class="download-option">
+              <div class="download-icon android">
+                <i class="fab fa-android"></i>
+              </div>
+              <div class="download-info">
+                <h4>Android APK</h4>
+                <p>Versão 1.0.2 • 34MB</p>
+              </div>
+              <a href="https://drive.google.com/file/d/1uhCu3y22vsx89geQh48-K9aLKD7TSR-4/view?usp=sharing" target="_blank" class="btn-download-modal">
+                <i class="fas fa-download"></i> Baixar
+              </a>
+            </div>
+            
+            <div class="download-option">
+              <div class="download-icon windows">
+                <i class="fab fa-windows"></i>
+              </div>
+              <div class="download-info">
+                <h4>Windows EXE</h4>
+                <p>Instalador Windows • 168MB</p>
+              </div>
+              <a href="https://drive.google.com/file/d/10uHoWUcxCfpK4QyrSDXgZNWpykXAjpWT/view?usp=sharing" target="_blank" class="btn-download-modal">
+                <i class="fas fa-download"></i> Baixar
+              </a>
+            </div>
+            
+            <div class="download-option">
+              <div class="download-icon itch">
+                <i class="fas fa-gamepad"></i>
+              </div>
+              <div class="download-info">
+                <h4>itch.io</h4>
+                <p>Todas as plataformas</p>
+              </div>
+              <a href="https://freegameplant.itch.io/siu2d-simulador-ofthe-incredible-universe" target="_blank" class="btn-download-modal">
+                <i class="fas fa-external-link-alt"></i> Visitar
+              </a>
+            </div>
+            
+            <div class="download-option">
+              <div class="download-icon gamejolt">
+                <i class="fas fa-bolt"></i>
+              </div>
+              <div class="download-info">
+                <h4>GameJolt</h4>
+                <p>Comunidade ativa</p>
+              </div>
+              <a href="https://gamejolt.com/games/siu2d/1047341" target="_blank" class="btn-download-modal">
+                <i class="fas fa-external-link-alt"></i> Visitar
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="section-divider friend-games-section">
-    <div class="section-title">FGP GAMES!!!</div>
+
+  <!-- Modal Chess RPG -->
+  <div class="game-modal" id="modal-chess">
+    <div class="modal-content">
+      <button class="modal-close">&times;</button>
+      
+      <div class="modal-header">
+        <img src="../../../src/assets/images/Chess.jpg" alt="Chess RPG" class="modal-icon">
+        <div class="modal-header-info">
+          <h2 class="modal-title">Chess RPG</h2>
+          <p class="modal-developer">Free Game Plant: Elai Leonel Figueroa</p>
+          <div class="ad-notice">
+            <i class="fas fa-ad"></i> Conterá anúncios e compras internas
+          </div>
+        </div>
+      </div>
+      
+      <div class="modal-body">
+        <div class="modal-media">
+          <img src="../../../src/assets/images/Chess.jpg" alt="Chess RPG">
+        </div>
+        
+        <p class="modal-description">
+          Chess RPG é um Jogo de RPG em Xadrez, você vai upando a sua peça de nível e etc. até mesmo tem skins para suas peças. 
+          Cada peça é um personagem seu! se aventure no mundo de guerras Xadrezanas!
+        </p>
+        
+        <div class="modal-specs">
+          <div class="modal-spec-item">
+            <div class="modal-spec-label">Gênero</div>
+            <div class="modal-spec-value">RPG, Xadrez, Estratégia</div>
+          </div>
+          <div class="modal-spec-item">
+            <div class="modal-spec-label">Engine</div>
+            <div class="modal-spec-value">VS Code</div>
+          </div>
+          <div class="modal-spec-item">
+            <div class="modal-spec-label">Plataforma</div>
+            <div class="modal-spec-value">Windows e Android</div>
+          </div>
+          <div class="modal-spec-item">
+            <div class="modal-spec-label">Idiomas</div>
+            <div class="modal-spec-value">A definir</div>
+          </div>
+          <div class="modal-spec-item">
+            <div class="modal-spec-label">Versão</div>
+            <div class="modal-spec-value">0.0 (Desenvolvimento)</div>
+          </div>
+          <div class="modal-spec-item">
+            <div class="modal-spec-label">Protagonista</div>
+            <div class="modal-spec-value">Dr Joker Pawn</div>
+          </div>
+        </div>
+        
+        <div class="modal-downloads">
+          <h3 class="modal-downloads-title"><i class="fas fa-clock"></i> Em Desenvolvimento</h3>
+          
+          <div style="text-align: center; padding: 2rem;">
+            <p style="font-size: 1.2rem; color: var(--text-sub); margin-bottom: 1.5rem;">
+              Este jogo está em desenvolvimento ativo. Volte em breve para baixar!
+            </p>
+            <button class="btn-download-modal" disabled style="background: var(--text-muted);">
+              <i class="fas fa-hourglass-half"></i> Em Breve
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  <main class="games-grid" id="gamesContainer">
-    <article class="game-card" data-category="available android">
-      <span class="game-badge free">Disponível</span>
-      <img src="../../../src/assets/images/SIU2D.jpg" alt="SIU2D - Simulator of the Incredible Universe" class="game-thumb" />
-      <div class="game-info">
-        <h2>SIU2D - SIMULATOR OF THE INCREDIBLE UNIVERSE</h2>
-        <p class="description">
-          SIU2D é um Simulador do Universo, em Cartoon 2D, avalie como o jogo está ;D, há plataformas como (Playstore).
-        </p>
-        <ul class="specs">
-          <li><strong>Gênero:</strong> Space Sandbox, Educacional, Criativo</li>
-          <li><strong>Engine:</strong> VS Code</li>
-          <li><strong>Plataforma:</strong> Windows e Android</li>
-          <li><strong>Idioma:</strong> contem mais de 10 idiomas..</li>
-          <li><strong>Versão:</strong> 1.0.2 - Alpha</li>
-          <li><strong>Data de lançamento:</strong> August/20/2025</li>
-          <li><strong>Protagonista:</strong> T Singularity</li>
-          <li><strong>autor:</strong> Free Game Plant: Elai Leonel Figueroa</li>
-            
-        </ul>
-          <span class="game-size">Android ~34MB</span>
-          <span class="game-size">Windows ~168MB</span>
+
+  <!-- Modal The Life of Atoms -->
+  <div class="game-modal" id="modal-atoms">
+    <div class="modal-content">
+      <button class="modal-close">&times;</button>
+      
+      <div class="modal-header">
+        <img src="../../../src/assets/images/atoms.jpg" alt="The Life of Atoms" class="modal-icon">
+        <div class="modal-header-info">
+          <h2 class="modal-title">The Life of Atoms</h2>
+          <p class="modal-developer">Free Game Plant: Elai Leonel Figueroa</p>
+          <div class="ad-notice">
+            <i class="fas fa-ad"></i> Contém anúncios e compras internas
+          </div>
         </div>
-        <a href="https://drive.google.com/file/d/1uhCu3y22vsx89geQh48-K9aLKD7TSR-4/view?usp=sharing" target="_blank" class="btn-download">
-          <i class="fas fa-download"></i> Baixar APK (Android)
-        </a>
-        <a href="https://drive.google.com/file/d/10uHoWUcxCfpK4QyrSDXgZNWpykXAjpWT/view?usp=sharing" target="_blank" class="btn-download">
-          <i class="fas fa-download"></i> Baixar EXE (Windows)
-        </a>
-        <a href="https://freegameplant.itch.io/siu2d-simulador-ofthe-incredible-universe" target="_blank" class="btn-download">
-          <i class="fas fa-download"></i> Baixar por itch.io (Ambas plataformas!)
-        </a>
-        <a href="https://gamejolt.com/games/siu2d/1047341" target="_blank" class="btn-download">
-          <i class="fas fa-download"></i> Baixar por GameJolt (Ambas plataformas!)
-        </a>
       </div>
-    </article>
-    <article class="game-card" data-category="soon">
-      <span class="game-badge coming-soon">Em Desenvolvimento</span>
-      <img src="../../../src/assets/images/Chess.jpg" alt="Chess RPG" class="game-thumb" />
-      <div class="game-info">
-        <h2>Chess RPG</h2>
-        <p class="description">
-          Chess RPG é um Jogo de RPG em Xadrez, você vai upando a sua peça de nível e etc. até mesmo tem skins para suas peças. cada peça é um personagem seu! se aventure no mundo de guerras Xadrezanas!
-        </p>
-        <ul class="specs">
-          <li><strong>Gênero:</strong> Ação, Missão, Estratégia</li>
-          <li><strong>Engine:</strong> VS Code</li>
-          <li><strong>Plataforma:</strong> Windows e Android</li>
-          <li><strong>Idioma:</strong> Nulo - (Ainda em Desenvolvimento)</li>
-          <li><strong>Versão:</strong> 0.0</li>
-          <li><strong>Protagonista:</strong> Dr Joker Pawn</li>
-          <li><strong>autor:</strong> Free Game Plant: Elai Leonel Figueroa</li>
-        </ul>
-          <span class="game-size">--</span>
+      
+      <div class="modal-body">
+        <div class="modal-media">
+          <img src="../../../src/assets/images/atoms.jpg" alt="The Life of Atoms">
         </div>
-        <button class="btn-download" disabled>
-          <i class="fas fa-hourglass-half"></i> Em Desenvolvimento
-        </button>
-      </div>
-    </article>
-    <article class="game-card" data-category="available android">
-      <span class="game-badge free">Disponível</span>
-      <img src="../../../src/assets/images/atoms.jpg" alt="The Life of Atoms" class="game-thumb" />
-      <div class="game-info">
-        <h2>The Life of Atoms</h2>
-        <p class="description">
-          The Life of Atoms é um Simulador de átomos, em Cartoon 2D, ainda em beta, aproveite e avalie como o jogo está ;D, em seu Lançamento Oficial, poderão Instalar ele.
+        
+        <p class="modal-description">
+          The Life of Atoms é um Simulador de átomos, em Cartoon 2D, ainda em beta, aproveite e avalie como o jogo está ;D, 
+          em seu Lançamento Oficial, poderão Instalar ele.
         </p>
-        <ul class="specs">
-          <li><strong>Gênero:</strong> Sandbox, Educacional, Missão</li>
-          <li><strong>Engine:</strong> VS Code</li>
-          <li><strong>Plataforma:</strong> Windows e Android</li>
-          <li><strong>Idioma:</strong> contem mais de 10 idiomas..</li>
-          <li><strong>Versão:</strong> 0.01</li>
-          <li><strong>Data de lançamento:</strong> August/20/2025</li>
-          <li><strong>Protagonista:</strong> Dr Bawrloty</li>
-          <li><strong>Co‑protagonista:</strong> T Singularity</li>
-          <li><strong>Antagonista:</strong> Dr Elayte</li>
-          <li><strong>autor:</strong> Free Game Plant: Elai Leonel Figueroa</li>
-        </ul>
-          <span class="game-size">~XXXMB</span>
+        
+        <div class="modal-specs">
+          <div class="modal-spec-item">
+            <div class="modal-spec-label">Gênero</div>
+            <div class="modal-spec-value">Sandbox, Educacional, Missão</div>
+          </div>
+          <div class="modal-spec-item">
+            <div class="modal-spec-label">Engine</div>
+            <div class="modal-spec-value">VS Code</div>
+          </div>
+          <div class="modal-spec-item">
+            <div class="modal-spec-label">Plataforma</div>
+            <div class="modal-spec-value">Windows e Android</div>
+          </div>
+          <div class="modal-spec-item">
+            <div class="modal-spec-label">Idiomas</div>
+            <div class="modal-spec-value">10+ idiomas</div>
+          </div>
+          <div class="modal-spec-item">
+            <div class="modal-spec-label">Versão</div>
+            <div class="modal-spec-value">0.01 Beta</div>
+          </div>
+          <div class="modal-spec-item">
+            <div class="modal-spec-label">Lançamento</div>
+            <div class="modal-spec-value">20/08/2025</div>
+          </div>
+          <div class="modal-spec-item">
+            <div class="modal-spec-label">Protagonista</div>
+            <div class="modal-spec-value">Dr Bawrloty</div>
+          </div>
         </div>
-        <button class="btn-download" disabled>
-          <i class="fas fa-download"></i> Em Breve
-        </button>
-      </div>
-    </article>
-    <article class="game-card" data-category="soon">
-      <span class="game-badge coming-soon">Em Desenvolvimento</span>
-      <img src="../../../src/assets/images/Ovynay the time traveler.png" alt="Ovynay: The Red Dust" class="game-thumb" />
-      <div class="game-info">
-        <h2>Ovynay: The Red Dust (Beta)</h2>
-        <p class="description">
-          Embarque numa épica jornada temporal em Marte primitivo. Resolva puzzles, estabilize atmosferas e enfrente paradoxos…
-        </p>
-        <ul class="specs">
-          <li><strong>Gênero:</strong> Ação‑Aventura, Puzzle, Viagem no Tempo</li>
-          <li><strong>Engine:</strong> Game Maker</li>
-          <li><strong>Plataforma:</strong> Windows, Android, iOS</li>
-          <li><strong>Idioma:</strong> PT/EN/ES</li>
-          <li><strong>Protagonista:</strong> Ovynay</li>
-          <li><strong>autor:</strong> Free Game Plant: Elai Leonel Figueroa</li>
-        </ul>
-          <span class="game-size">--</span>
+        
+        <div class="modal-downloads">
+          <h3 class="modal-downloads-title"><i class="fas fa-download"></i> Lançamento em Breve</h3>
+          
+          <div style="text-align: center; padding: 2rem;">
+            <p style="font-size: 1.2rem; color: var(--text-sub); margin-bottom: 1.5rem;">
+              Este jogo estará disponível para download em breve!
+            </p>
+            <button class="btn-download-modal" disabled style="background: var(--text-muted);">
+              <i class="fas fa-clock"></i> Em Breve
+            </button>
+          </div>
         </div>
-        <button class="btn-download" disabled>
-          <i class="fas fa-hourglass-half"></i> Em Desenvolvimento
-        </button>
       </div>
-    </article>
-    <article class="game-card coming-soon" data-category="soon">
-      <span class="game-badge coming-soon">Próximos Lançamentos</span>
-      <img src="../../../src/assets/images/placeholder.jpg" alt="Próximo Lançamento" class="game-thumb" />
-      <div class="game-info">
-        <h2>Próximo Lançamento</h2>
-        <p class="description">Em breve haverá mais!</p>
-        <button class="btn-download" disabled>
-          <i class="fas fa-clock"></i> Em Breve
-        </button>
-      </div>
-    </article>
-  </main>
-  <div class="section-divider friend-games-section">
-    <div class="section-title">Edward Games!!!</div>
+    </div>
   </div>
-  <main class="games-grid">
-    <article class="game-card" data-category="available android">
-      <span class="game-badge free">Disponível</span>
-      <img src="../../../src/assets/images/coffe-talk.jpg" alt="Coffee Talk" class="game-thumb" />
-      <div class="game-info">
-        <h2>COFFEE TALK</h2>
-        <p class="description">
+
+  <!-- Modal Coffee Talk -->
+  <div class="game-modal" id="modal-coffee">
+    <div class="modal-content">
+      <button class="modal-close">&times;</button>
+      
+      <div class="modal-header">
+        <img src="../../../src/assets/images/coffe-talk.jpg" alt="Coffee Talk" class="modal-icon">
+        <div class="modal-header-info">
+          <h2 class="modal-title">Coffee Talk</h2>
+          <p class="modal-developer">Edward</p>
+          <div class="ad-notice">
+            <i class="fas fa-ad"></i> Contém anúncios e compras internas
+          </div>
+        </div>
+      </div>
+      
+      <div class="modal-body">
+        <div class="modal-media">
+          <img src="../../../src/assets/images/coffe-talk.jpg" alt="Coffee Talk">
+        </div>
+        
+        <p class="modal-description">
           Coffee Talk, trabalhe em uma linda cafeteria enquanto isso, converse com seus clientes seguindo uma incrível história!
         </p>
-        <ul class="specs">
-          <li><strong>Gênero:</strong> história, Missão, Criativo</li>
-          <li><strong>Engine:</strong> Unity</li>
-          <li><strong>Plataforma:</strong> Android</li>
-          <li><strong>Idioma:</strong> contem mais de 10 idiomas..</li>
-          <li><strong>Versão:</strong> 1.0.39</li>
-          <li><strong>Data de lançamento:</strong> Aqui nesta plataforma: 22/11/2025</li>
-          <li><strong>Protagonista:</strong> Cafeteiro - Você</li>
-          <li><strong>autor:</strong> Edward </li>
-        </ul>
-          <span class="game-size">~211MB</span>
+        
+        <div class="modal-specs">
+          <div class="modal-spec-item">
+            <div class="modal-spec-label">Gênero</div>
+            <div class="modal-spec-value">Simulador, Narrativa, Cafeteria</div>
+          </div>
+          <div class="modal-spec-item">
+            <div class="modal-spec-label">Engine</div>
+            <div class="modal-spec-value">Unity</div>
+          </div>
+          <div class="modal-spec-item">
+            <div class="modal-spec-label">Plataforma</div>
+            <div class="modal-spec-value">Android</div>
+          </div>
+          <div class="modal-spec-item">
+            <div class="modal-spec-label">Idiomas</div>
+            <div class="modal-spec-value">10+ idiomas</div>
+          </div>
+          <div class="modal-spec-item">
+            <div class="modal-spec-label">Versão</div>
+            <div class="modal-spec-value">1.0.39</div>
+          </div>
+          <div class="modal-spec-item">
+            <div class="modal-spec-label">Lançamento</div>
+            <div class="modal-spec-value">22/11/2025</div>
+          </div>
+          <div class="modal-spec-item">
+            <div class="modal-spec-label">Protagonista</div>
+            <div class="modal-spec-value">Cafeteiro - Você</div>
+          </div>
         </div>
-        <a href="https://drive.google.com/file/d/1sXdWuN_CtSZMPGdGcPwqZ3zY1oC-Uftk/view?usp=sharing" target="_blank" class="btn-download">
-          <i class="fas fa-download"></i> Baixar APK
-        </a>
-      </div>
-    </article>
-    <article class="game-card coming-soon" data-category="soon">
-      <span class="game-badge coming-soon">Próximos Lançamentos</span>
-      <img src="../../../src/assets/images/placeholder.jpg" alt="Próximo Lançamento" class="game-thumb" />
-      <div class="game-info">
-        <h2>Próximo Lançamento</h2>
-        <p class="description">Em breve haverá mais!</p>
-        <button class="btn-download" disabled>
-          <i class="fas fa-clock"></i> Em Breve
-        </button>
-      </div>
-    </article>
-  </main>
-  <footer class="site-footer">
-    <div class="footer-content">
-      <div class="footer-section">
-        <h3>Sobre a FGP Store</h3>
-        <p>Uma loja de jogos independentes, trazendo experiências únicas e criativas para todos os jogadores.</p>
-        <div class="social-links">
-          <a href="https://www.youtube.com/@freegameplant" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+        
+        <div class="modal-downloads">
+          <h3 class="modal-downloads-title"><i class="fas fa-download"></i> Downloads Disponíveis</h3>
+          
+          <div class="download-options">
+            <div class="download-option">
+              <div class="download-icon android">
+                <i class="fab fa-android"></i>
+              </div>
+              <div class="download-info">
+                <h4>Android APK</h4>
+                <p>Versão 1.0.39 • 211MB</p>
+              </div>
+              <a href="https://drive.google.com/file/d/1sXdWuN_CtSZMPGdGcPwqZ3zY1oC-Uftk/view?usp=sharing" target="_blank" class="btn-download-modal">
+                <i class="fas fa-download"></i> Baixar
+              </a>
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="footer-section">
-        <h3>Links Rápidos</h3>
-        <div class="footer-links">
-          <a href="../entretenimento.html"><i class="fas fa-arrow-left"></i> Voltar</a>
-          <a href="../../start.html"><i class="fas fa-home"></i> Início</a>
-          <a href="#"><i class="fas fa-gamepad"></i> Todos os Jogos</a>
-          <a href="#"><i class="fas fa-question-circle"></i> Ajuda</a>
-        </div>
-      </div>
-      <div class="footer-section">
-        <h3>Contato</h3>
-        <p><i class="fas fa-envelope"></i> contato@fgpfreegameplant.com</p>
       </div>
     </div>
-    <div class="footer-bottom">
-      <small>© 2025 Free Game Plant. Todos os direitos reservados.</small>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>Sobre a FGP Store</h3>
+          <p>Uma loja de jogos independentes, trazendo experiências únicas e criativas para todos os jogadores.</p>
+          <div class="social-links">
+            <a href="https://www.youtube.com/@freegameplant" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+        <div class="footer-section">
+          <h3>Links Rápidos</h3>
+          <div class="footer-links">
+            <a href="../entretenimento.html"><i class="fas fa-arrow-left"></i> Voltar</a>
+            <a href="../../start.html"><i class="fas fa-home"></i> Início</a>
+            <a href="#"><i class="fas fa-gamepad"></i> Todos os Jogos</a>
+            <a href="#"><i class="fas fa-question-circle"></i> Ajuda</a>
+          </div>
+        </div>
+        <div class="footer-section">
+          <h3>Contato</h3>
+          <p><i class="fas fa-envelope"></i> contato@fgpfreegameplant.com</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <small>© 2025 Free Game Plant. Todos os direitos reservados.</small>
+      </div>
     </div>
   </footer>
+
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      const filterButtons = document.querySelectorAll('.filter-btn');
+      // Sistema de modais
+      const viewButtons = document.querySelectorAll('.btn-view');
+      const modals = document.querySelectorAll('.game-modal');
+      const closeButtons = document.querySelectorAll('.modal-close');
       const searchInput = document.getElementById('searchInput');
-      const gameCards = document.querySelectorAll('.game-card');
-      filterButtons.forEach(button => {
+      const filterChips = document.querySelectorAll('.filter-chip');
+      const gameCards = document.querySelectorAll('.game-card-simple');
+
+      // Abrir modal
+      viewButtons.forEach(button => {
         button.addEventListener('click', function() {
-          filterButtons.forEach(btn => btn.classList.remove('active'));
+          const modalId = this.getAttribute('data-modal');
+          const modal = document.getElementById(`modal-${modalId}`);
+          if (modal) {
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Impedir scroll do body
+          }
+        });
+      });
+
+      // Fechar modal
+      closeButtons.forEach(button => {
+        button.addEventListener('click', function() {
+          const modal = this.closest('.game-modal');
+          modal.classList.remove('active');
+          document.body.style.overflow = 'auto'; // Restaurar scroll
+        });
+      });
+
+      // Fechar modal ao clicar fora
+      modals.forEach(modal => {
+        modal.addEventListener('click', function(e) {
+          if (e.target === this) {
+            this.classList.remove('active');
+            document.body.style.overflow = 'auto';
+          }
+        });
+      });
+
+      // Fechar modal com ESC
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+          modals.forEach(modal => {
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+          });
+        }
+      });
+
+      // Sistema de filtros
+      filterChips.forEach(chip => {
+        chip.addEventListener('click', function() {
+          filterChips.forEach(c => c.classList.remove('active'));
           this.classList.add('active');
-          const filter = this.getAttribute('data-filter');
+          
+          const filter = this.dataset.filter;
           gameCards.forEach(card => {
-            if (filter === 'all' || card.getAttribute('data-category').includes(filter)) {
-              card.style.display = 'flex';
-            } else {
-              card.style.display = 'none';
+            const game = card.dataset.game;
+            const modal = document.getElementById(`modal-${game}`);
+            const isAvailable = modal.querySelector('.btn-download-modal:not([disabled])') !== null;
+            const isAndroid = modal.querySelector('.download-icon.android') !== null;
+            const isWindows = modal.querySelector('.download-icon.windows') !== null;
+            const isSoon = card.querySelector('.game-status.soon') !== null;
+            
+            let show = false;
+            
+            switch(filter) {
+              case 'all':
+                show = true;
+                break;
+              case 'available':
+                show = isAvailable;
+                break;
+              case 'android':
+                show = isAndroid;
+                break;
+              case 'windows':
+                show = isWindows;
+                break;
+              case 'soon':
+                show = isSoon;
+                break;
             }
+            
+            card.style.display = show ? 'flex' : 'none';
           });
         });
       });
+
+      // Sistema de busca
       searchInput.addEventListener('input', function() {
-        const searchTerm = this.value.toLowerCase();
+        const searchTerm = this.value.toLowerCase().trim();
+        
         gameCards.forEach(card => {
-          const title = card.querySelector('h2').textContent.toLowerCase();
-          const description = card.querySelector('.description').textContent.toLowerCase();
-          if (title.includes(searchTerm) || description.includes(searchTerm)) {
+          const title = card.querySelector('.game-title-simple').textContent.toLowerCase();
+          const modalId = card.getAttribute('data-game');
+          const modal = document.getElementById(`modal-${modalId}`);
+          const description = modal ? modal.querySelector('.modal-description').textContent.toLowerCase() : '';
+          
+          if (searchTerm === '' || title.includes(searchTerm) || description.includes(searchTerm)) {
             card.style.display = 'flex';
           } else {
             card.style.display = 'none';
           }
         });
       });
+
+      // Animação de digitação no título
       const titleElement = document.querySelector('.site-header h1');
       const originalTitle = titleElement.textContent;
       titleElement.textContent = '';
+      
       let i = 0;
       function typeWriter() {
         if (i < originalTitle.length) {
           titleElement.textContent += originalTitle.charAt(i);
           i++;
-          setTimeout(typeWriter, 100);
+          setTimeout(typeWriter, 50);
+        } else {
+          titleElement.style.textShadow = '0 0 20px var(--primary-glow)';
         }
       }
+      
       setTimeout(typeWriter, 500);
+
+      // Efeito de clique nos cards
+      gameCards.forEach(card => {
+        card.addEventListener('click', function(e) {
+          if (!e.target.closest('.btn-view')) {
+            this.style.transform = 'scale(0.98)';
+            setTimeout(() => {
+              this.style.transform = '';
+            }, 150);
+          }
+        });
+      });
+
+      // Contador de jogos visíveis
+      const updateGameCount = () => {
+        const visibleCards = Array.from(gameCards).filter(card => 
+          card.style.display !== 'none'
+        ).length;
+        
+        const counter = document.querySelector('.game-counter') || document.createElement('div');
+        counter.className = 'game-counter';
+        counter.innerHTML = `
+          <div style="text-align: center; margin: 1rem 0; color: var(--text-sub);">
+            <i class="fas fa-gamepad"></i> ${visibleCards} jogos encontrados
+          </div>
+        `;
+        
+        const existingCounter = document.querySelector('.game-counter');
+        if (!existingCounter) {
+          document.querySelector('.filters-section').after(counter);
+        }
+      };
+
+      updateGameCount();
+      searchInput.addEventListener('input', updateGameCount);
+      filterChips.forEach(chip => {
+        chip.addEventListener('click', updateGameCount);
+      });
     });
   </script>
 </body>
