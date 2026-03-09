@@ -12,8 +12,12 @@ firebase.initializeApp({
 const messaging = firebase.messaging();
 
 messaging.onBackgroundMessage(function(payload) {
-  self.registration.showNotification(payload.notification.title, {
-    body: payload.notification.body,
+
+  const title = payload?.notification?.title || "Free Game Plant";
+  const options = {
+    body: payload?.notification?.body || "Nova atualização disponível!",
     icon: "/FGP.Oficial.com.br/src/assets/images/lOGOFGP.png"
-  });
+  };
+
+  self.registration.showNotification(title, options);
 });
