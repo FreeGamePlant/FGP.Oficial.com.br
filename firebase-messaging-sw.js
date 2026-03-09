@@ -14,6 +14,6 @@ const messaging = firebase.messaging();
 messaging.onBackgroundMessage(function(payload) {
   self.registration.showNotification(payload.notification.title, {
     body: payload.notification.body,
-    icon: "/icon.png"
+    icon: "/FGP.Oficial.com.br/src/assets/images/lOGOFGP.png"
   });
 });
