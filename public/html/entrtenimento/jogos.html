@@ -645,7 +645,7 @@
           </div>
           <div class="game-stats">
             <span><i class="fas fa-download"></i> ${game.downloads || "0"} DLs</span>
-            <span><i class="fas fa-star"></i> ${game.stars || "⭐⭐⭐⭐⭐"}</span>
+            <span><i class="fas fa-star"></i> ${game.stars || ""}</span>
           </div>
           <button class="btn-primary open-modal" data-id="${game.id}">
             <i class="fas ${game.status === "available" ? "fa-download" : "fa-eye"}"></i> ${game.status === "available" ? "ACESSAR JOGO" : "SAIBA MAIS"}
